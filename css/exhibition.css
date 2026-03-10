@@ -1,0 +1,1215 @@
+/* Navigation (desktop & mobile same as index) */
+.main-nav { display: none; }
+.main-nav ul { display: flex; gap: 0.5rem; list-style: none; padding: 0; margin: 0; }
+.main-nav a {
+    color: var(--accent-dark);
+    text-decoration: none;
+    font-weight: 600;
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+}
+.main-nav a:hover, .main-nav a.active {
+    background-color: var(--accent-dark);
+    color: white;
+}
+
+/* Dropdown, mobile menu, offcanvas etc. - full copy from index style.css */
+.dropdown-parent { position: relative; }
+.dropdown {
+    position: absolute;
+    top: 100%;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    min-width: 220px;
+    display: none;
+    z-index: 100;
+}
+.dropdown-parent:hover .dropdown { display: block; }
+
+.mobile-menu-btn {
+    display: block;
+    background: var(--accent-dark);
+    color: white;
+    border: none;
+    font-size: 1.5rem;
+    width: 48px;
+    height: 48px;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+
+
+.mobile-nav-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background: rgba(0,0,0,0.5);
+    display: none;
+    z-index: 1999;
+}
+.mobile-nav-overlay.active { display: block; }
+
+/* Footer (same dark style) */
+
+/* Responsive for header & footer */
+@media (min-width: 768px) {
+    .main-nav { display: block; }
+    .mobile-menu-btn { display: none; }
+    
+}
+
+/* ==================== EXHIBITION SPECIFIC STYLES ==================== */
+.hero-container {
+    position: relative;
+    height: 530px;
+    margin-bottom: 0;
+    overflow: hidden;
+}
+
+.collage-img {
+    position: absolute;
+    box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+    border-radius: 8px;
+    object-fit: cover;
+}
+
+.sidebar ul {
+    list-style: none;
+    padding-left: 0;
+}
+
+.sidebar li {
+    line-height: 1.4;
+    margin-bottom: 1.5rem;
+    text-align: right;
+}
+
+.sidebar li.active .intro-box {
+    background-color: #dc2626;
+    color: white;
+    padding: 0.5rem 1rem;
+    border-radius: 6px;
+    display: inline-block;
+    font-weight: bold;
+}
+
+.sidebar li:not(.active) {
+    position: relative;
+    padding-right: 1.5rem;
+}
+
+.sidebar li:not(.active)::after {
+    content: '';
+    position: absolute;
+    right: 0;
+    top: 0.5em;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background-color: #aaa;
+}
+
+.card-overlay {
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.8) 0%, rgba(0, 0, 0, 0.2) 50%, rgba(0, 0, 0, 0.2) 100%);
+}
+
+.hero-text-content p {
+    text-align: justify;
+}
+
+/* Exhibition Mobile Responsive */
+@media (max-width: 768px) {
+    .hero-container {
+        height: auto;
+        padding: 20px 0;
+        margin-bottom: 2rem;
+    }
+    .hero-text-content p {
+        text-align: left;
+    }
+}
+/* Mobile Responsive Fixes for Exhibition */
+@media (max-width: 767px) {
+    /* Show mobile menu button */
+    .mobile-menu-btn {
+        display: block !important;
+    }
+    
+    /* Hide desktop menu */
+    .main-nav {
+        display: none !important;
+    }
+    
+    .hero-container {
+        display: block !important;
+        height: auto;
+        padding: 20px 0;
+         position: relative;
+    overflow: hidden;
+    }
+    
+    
+    
+    /* Text full width */
+    .hero-text-content {
+        text-align: center;
+        padding: 0 1rem;
+    }
+    
+    .hero-text-content h1 {
+        font-size: 2.5rem !important;
+    }
+    
+    .hero-text-content h2 {
+        font-size: 2rem;
+    }
+    
+    .sections-grid,
+    .bottom-sections {
+        grid-template-columns: 1fr !important;
+    }
+
+}
+
+
+/* Mobile Navigation Offcanvas - Improved Design */
+.mobile-nav-offcanvas {
+    position: fixed;
+    top: 0;
+    right: -100%;
+    width: 80%;
+    max-width: 350px;
+    height: 100vh;
+    background: var(--primary-bg); /* cream background same as body */
+    box-shadow: -6px 0 20px rgba(0, 0, 0, 0.3);
+    transition: right 0.35s ease;
+    z-index: 2000;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+}
+
+.mobile-nav-offcanvas.active {
+    right: 0;
+}
+
+.mobile-nav-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.5rem 1.5rem 1rem;
+    background: var(--accent-dark);
+    color: white;
+}
+
+.mobile-nav-header span {
+    font-weight: 700;
+    font-size: 1.4rem;
+    color: white;
+}
+
+.mobile-nav-close {
+    background: transparent;
+    border: none;
+    color: white;
+    font-size: 2rem;
+    width: 50px;
+    height: 50px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    transition: background 0.3s;
+}
+
+.mobile-nav-close:hover {
+    background: rgba(255,255,255,0.2);
+}
+
+.mobile-nav-menu {
+    padding: 1.5rem 0;
+    flex: 1;
+}
+
+.mobile-nav-menu ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.mobile-nav-menu li {
+    margin-bottom: 0.5rem;
+}
+
+.mobile-nav-menu a {
+    color: var(--accent-dark);
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 1.1rem;
+    padding: 1rem 1.5rem;
+    display: block;
+    transition: background 0.3s;
+}
+
+.mobile-nav-menu a:hover,
+.mobile-nav-menu a.active {
+    background-color: var(--hover-bg);
+    color: var(--accent-dark);
+}
+
+/* Mobile Dropdown in Menu */
+.mobile-dropdown-toggle {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    background: transparent;
+    border: none;
+    color: var(--accent-dark);
+    font-weight: 600;
+    font-size: 1.1rem;
+    padding: 1rem 1.5rem;
+    text-align: left;
+    cursor: pointer;
+}
+
+.mobile-dropdown-content {
+    display: none;
+    background: #e8d8c0;
+    padding-left: 0;
+}
+
+.mobile-dropdown-content.active {
+    display: block;
+}
+
+.mobile-dropdown-content a {
+    padding: 0.8rem 2.5rem;
+    font-size: 1rem;
+}
+
+/* Overlay */
+.mobile-nav-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.6);
+    display: none;
+    z-index: 1999;
+}
+
+.mobile-nav-overlay.active {
+    display: block;
+}
+/* Mobile Menu Header with Logo */
+.mobile-nav-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 1.5rem;
+    background: var(--accent-dark);
+    color: white;
+}
+
+.mobile-logo {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    text-decoration: none;
+    color: white;
+}
+
+.mobile-logo img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.mobile-logo .logo-text .ta {
+    font-size: 1.3rem;
+    font-weight: 800;
+    line-height: 1;
+}
+
+.mobile-nav-header .flex {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.mobile-nav-header span {
+    font-size: 1.3rem;
+    font-weight: 700;
+}
+/* Mobile Dropdown Hover Effect - Same as Desktop */
+.mobile-nav-menu a {
+    color: var(--accent-dark);
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 1.1rem;
+    padding: 1rem 1.5rem;
+    display: block;
+    transition: all 0.3s ease;
+    border-radius: 8px;
+    margin: 0 0.25rem;
+}
+
+.mobile-nav-menu a:hover,
+.mobile-nav-menu a.active {
+    background-color: var(--hover-bg) !important; /* #e6d3bd cream color */
+    color: var(--accent-dark) !important;
+    transform: translateX(4px);
+}
+
+/* Mobile Dropdown Content Styling */
+.mobile-dropdown-content {
+    display: none;
+    background: transparent;
+    padding-left: 0;
+    margin: 0;
+}
+
+.mobile-dropdown-content.active {
+    display: block;
+    background: var(--card-bg); /* #f6ece0 light cream */
+    margin: 0.5rem 0.5rem 0;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.mobile-dropdown-content a {
+    padding: 0.875rem 2rem;
+    font-size: 1rem;
+    font-weight: 500;
+    border-radius: 6px;
+    margin: 0;
+}
+
+.mobile-dropdown-content a:hover {
+    background-color: var(--hover-bg);
+    color: var(--accent-dark);
+    transform: translateX(8px);
+}
+
+/* Mobile Dropdown Toggle Button */
+.mobile-dropdown-toggle {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    background: transparent;
+    border: none;
+    color: var(--accent-dark);
+    font-weight: 600;
+    font-size: 1.1rem;
+    padding: 1rem 1.5rem;
+    text-align: left;
+    cursor: pointer;
+    border-radius: 8px;
+    margin: 0 0.25rem;
+    transition: all 0.3s ease;
+}
+
+.mobile-dropdown-toggle:hover {
+    background-color: var(--hover-bg);
+}
+
+/* Arrow animation */
+.mobile-dropdown-toggle span {
+    transition: transform 0.3s ease;
+    font-size: 0.9rem;
+    color: var(--accent-muted);
+}
+
+.mobile-dropdown-toggle[aria-expanded="true"] span {
+    transform: rotate(180deg);
+}
+/* Dropdown Styles - Desktop */
+.dropdown {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    min-width: 220px;
+    padding: 0.5rem 0;
+    display: none;
+    z-index: 100;
+}
+
+.dropdown a {
+    padding: 0.75rem 1.25rem;
+    color: var(--accent-dark); /* dark blue */
+    display: block;
+    transition: background 0.3s ease;
+}
+
+.dropdown-parent:hover .dropdown,
+.dropdown-parent:focus-within .dropdown {
+    display: block;
+}
+
+.dropdown a:hover {
+    background: var(--hover-bg); /* #e6d3bd light brown hover */
+    color: var(--accent-dark);
+}
+
+/* Mobile Dropdown Styles - Same as Desktop */
+.mobile-dropdown-content {
+    display: none;
+    background: var(--hover-bg); /* light brown background */
+    padding-left: 1rem;
+}
+
+.mobile-dropdown-content.active {
+    display: block;
+}
+
+.mobile-dropdown-content a {
+    padding: 0.75rem 1.25rem;
+    color: var(--accent-dark); /* dark blue text */
+    display: block;
+    transition: background 0.3s ease;
+}
+
+.mobile-dropdown-content a:hover {
+    background: #d9c3a5; /* slightly darker brown on hover */
+    color: var(--accent-dark);
+}
+/* Main Menu Hover & Active Fix */
+.main-nav a {
+    color: var(--accent-dark);
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.95rem;
+    padding: 0.5rem 1rem;
+    display: block;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+}
+
+.main-nav a:hover,
+.main-nav a:focus {
+    background-color: var(--hover-bg) !important; /* Cream hover */
+    color: var(--accent-dark) !important;
+}
+
+/* Active State - Only background dark, text white */
+.main-nav a.active {
+    background-color: var(--accent-dark) !important;
+    color: white !important;
+}
+
+/* Dropdown Items Hover */
+.dropdown a {
+    padding: 0.75rem 1.25rem;
+    color: var(--accent-dark);
+    transition: all 0.3s ease;
+    border-radius: 6px;
+    margin: 0.25rem 0.5rem;
+}
+
+.dropdown a:hover,
+.dropdown a:focus {
+    background-color: var(--hover-bg) !important; /* Cream hover in dropdown */
+    color: var(--accent-dark) !important;
+    transform: translateX(4px);
+}
+
+/* Dropdown Parent (Exhibition & Heritage) - No fixed blue */
+.dropdown-parent > a {
+    color: var(--accent-dark) !important;
+}
+
+.dropdown-parent:hover > a,
+.dropdown-parent:focus-within > a {
+    background-color: var(--hover-bg) !important;
+    color: var(--accent-dark) !important;
+}
+
+/* Active dropdown parent - dark background only */
+.dropdown-parent > a.active {
+    background-color: var(--accent-dark) !important;
+    color: white !important;
+}
+
+/* Mobile menu-la um same hover */
+.mobile-nav-menu a:hover,
+.mobile-dropdown-content a:hover {
+    background-color: var(--hover-bg) !important;
+    color: var(--accent-dark) !important;
+} 
+/* Main Menu & Dropdown - Hover & Active Full Fix */
+.main-nav a,
+.dropdown a {
+    color: var(--accent-dark);
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.95rem;
+    padding: 0.5rem 1rem;
+    display: block;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+}
+
+/* Normal Hover */
+.main-nav a:hover,
+.main-nav a:focus,
+.dropdown a:hover,
+.dropdown a:focus {
+    background-color: var(--hover-bg) !important; /* #e6d3bd cream */
+    color: var(--accent-dark) !important;
+}
+
+/* Active State - Dark background, white text */
+.main-nav a.active,
+.dropdown a.active {
+    background-color: var(--accent-dark) !important; /* #0f2540 dark */
+    color: white !important;
+}
+
+/* Active Item-la um Hover pannum podhu cream varanum */
+.main-nav a.active:hover,
+.dropdown a.active:hover {
+    background-color: var(--hover-bg) !important; /* Cream hover even on active */
+    color: var(--accent-dark) !important;
+}
+
+/* Dropdown Parent Hover */
+.dropdown-parent:hover > a,
+.dropdown-parent:focus-within > a {
+    background-color: var(--hover-bg) !important;
+    color: var(--accent-dark) !important;
+}
+
+/* Mobile-la um same */
+.mobile-nav-menu a:hover,
+.mobile-nav-menu a.active:hover,
+.mobile-dropdown-content a:hover,
+.mobile-dropdown-content a.active:hover {
+    background-color: var(--hover-bg) !important;
+    color: var(--accent-dark) !important;
+}
+
+
+
+
+.let-us-begin {
+    font-family: 'Inter', 'Noto Sans Tamil', sans-serif;
+}
+
+.let-us-begin .tamil-text {
+    font-size: 2rem;
+    font-weight: 500;
+    color: #111;
+}
+
+.let-us-begin .english-text {
+    font-size: 1.6rem;
+    font-weight: 400;
+    color: #111;
+    letter-spacing: 0.4em;
+}
+
+/* Mobile responsive */
+@media (max-width: 768px) {
+    .let-us-begin .tamil-text {
+        font-size: 1.6rem;
+    }
+
+    .let-us-begin .english-text {
+        font-size: 1.2rem;
+        letter-spacing: 0.25em;
+    }
+}
+
+.cards-wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 2rem;
+}
+.card {
+    width: 300px; /* fixed or max-width */
+}
+
+/* ---------------------------------------------------------------------- */
+/* Image Collage Styling (Assumes .hero-container is position: relative) */
+/* ---------------------------------------------------------------------- */
+
+/* Ensures the container is positioned correctly and the images are absolute */
+.hero-container {
+    position: relative;
+    /* You might need to adjust the height on mobile if images overflow vertically */
+    height: 600px; /* Example height for collage space on mobile */
+    overflow: hidden; /* Hide anything that spills outside the container */
+}
+
+.collage-img {
+    position: absolute;
+    /* Add transition for smooth resizing effect */
+    transition: all 0.5s ease-in-out; 
+}
+
+/* ---------------------------------------------------------------------- */
+/* DESKTOP STYLES: Use fixed pixel values (min-width: 768px) */
+/* This ensures your existing desktop layout remains pixel-perfect. */
+/* ---------------------------------------------------------------------- */
+@media (min-width: 768px) {
+    /* Set the container height appropriately for desktop */
+    .hero-container {
+        height: 550px; /* Adjust this height based on your original design */
+    }
+
+    /* Image 1: Road with bike (w-[300px] h-[220px] top-[0px] left-[220px]) */
+    .collage-img:nth-child(1) {
+        width: 300px;
+        height: 220px;
+        top: 0px;
+        left: 220px;
+    }
+    /* Image 2: Elderly man (w-[280px] h-[240px] top-[170px] left-[50px]) */
+    .collage-img:nth-child(2) {
+        width: 280px;
+        height: 240px;
+        top: 170px;
+        left: 50px;
+    }
+    /* Image 3: Elderly woman (w-[250px] h-[360px] top-[100px] left-[420px]) */
+    .collage-img:nth-child(3) {
+        width: 250px;
+        height: 360px;
+        top: 100px;
+        left: 420px;
+    }
+    /* Image 4: Beach (w-[320px] h-[260px] top-[300px] right-20) */
+    .collage-img:nth-child(4) {
+        width: 320px;
+        height: 260px;
+        top: 300px;
+        right: 80px; /* Adjusted right-20 (Tailwind) to 80px */
+        left: auto; /* Ensure 'left' is unset */
+    }
+
+    /* New Image - Desktop */
+@media (min-width: 768px) {
+    .collage-img:nth-child(5) {
+        width: 300px;       /* Adjust size */
+        height: 300px;
+        top: 20px;          /* Top distance from container */
+        right: 50px;        /* Right distance from container */
+        left: auto;         /* Ensure left is unset */
+    }
+}
+
+}
+
+/* ---------------------------------------------------------------------- */
+/* MOBILE STYLES: Use responsive units (max-width: 767px) */
+/* This ensures the collage scales down proportionally on mobile. */
+/* ---------------------------------------------------------------------- */
+@media (max-width: 767px) {
+    /* Image 1: Road with bike (w-[300px] h-[220px] top-[0px] left-[220px]) */
+    .collage-img:nth-child(1) {
+        width: 60vw; /* 60% of viewport width */
+        height: 25vw;
+        top: 5vw;
+        left: 35vw;
+    }
+    /* Image 2: Elderly man (w-[280px] h-[240px] top-[170px] left-[50px]) */
+    .collage-img:nth-child(2) {
+        width: 45vw;
+        height: 30vw;
+        top: 25vw;
+        left: 5vw;
+    }
+    /* Image 3: Elderly woman (w-[250px] h-[360px] top-[100px] left-[420px]) */
+    .collage-img:nth-child(3) {
+        width: 40vw;
+        height: 50vw;
+        top: 20vw;
+        left: 55vw;
+    }
+    /* Image 4: Beach (w-[320px] h-[260px] top-[300px] right-20) */
+    .collage-img:nth-child(4) {
+        width: 50vw;
+        height: 35vw;
+        top: 60vw;
+        right: 10vw; 
+        left: auto; /* Ensure 'left' is unset */
+    }
+    /* New Image - Mobile */
+@media (max-width: 767px) {
+    .collage-img:nth-child(5) {
+        width: 35vw;        /* 35% of viewport width */
+        height: 35vw;       /* Keep it square */
+        top: 5vw;           /* Distance from top */
+        right: 5vw;         /* Distance from right */
+        left: auto;
+    }
+}
+
+}
+.intro-box {
+    background-color: #dc2626; /* same as sidebar active */
+    color: white;
+    padding: 0.5rem 1rem;       /* adjust padding */
+    border-radius: 6px;         /* rounded corners */
+    display: inline-block;      /* shrink to content width */
+    font-weight: bold;
+    text-transform: uppercase;  /* like your current uppercase */
+    text-align: center;         /* center text */
+    margin-bottom: 1rem;        /* space below */
+    font-size: 0.875rem;        /* same as text-sm */
+}
+.js-spa-link {
+    transition: color 0.2s;
+}
+
+.js-spa-link.active {
+    color: #dc2626 !important;       /* red-600 */
+    font-weight: 800 !important;
+    border-left: 4px solid #dc2626;
+    padding-left: 8px;
+}
+@media (max-width: 767px) {
+    .hero-container {
+        height: 120vw;
+    }
+
+    .collage-img:nth-child(1) {
+        width: 60vw;
+        height: 32vw;
+        top: 1vw;
+        left: 15vw;
+    }
+
+    .collage-img:nth-child(2) {
+        width: 30vw;
+        height: 30vw;
+        top: 25vw;
+        left: 10vw;
+    }
+
+    .collage-img:nth-child(3) {
+        width: 48vw;
+        height: 65vw;
+        top: 25vw;
+        left: 45vw;
+    }
+
+    .collage-img:nth-child(4) {
+        width: 50vw;
+        height: 35vw;
+        top: 72vw;
+        right: 5vw;
+        left: 15vw;
+    }
+}
+
+/* ================= MOBILE LAYOUT ================= */
+@media (max-width: 767px) {
+
+    /* Hide original sidebar */
+    aside.sidebar { display: none !important; }
+
+    /* Make content take full width */
+    .hero-text-content { 
+        width: 100%;
+        padding: 1rem;
+    }
+
+    /* Offcanvas Sidebar */
+    .mobile-sidebar {
+        position: fixed;
+        top: 0;
+        right: -100%;        /* hidden by default */
+        width: 80%;
+        max-width: 300px;
+        height: 100vh;
+        background-color: #f6ece0; /* same as your card-bg or light cream */
+        box-shadow: -4px 0 20px rgba(0,0,0,0.3);
+        transition: right 0.35s ease;
+        z-index: 2000;
+        overflow-y: auto;
+        padding: 2rem 1rem;
+    }
+
+    /* Active state slides in */
+    .mobile-sidebar.active { right: 0; }
+
+    /* Overlay behind sidebar */
+    .mobile-sidebar-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100vh;
+        background: rgba(0,0,0,0.5);
+        display: none;
+        z-index: 1999;
+    }
+    .mobile-sidebar-overlay.active { display: block; }
+
+    /* Sidebar links */
+    .mobile-sidebar ul { list-style: none; padding: 0; margin: 0; }
+    .mobile-sidebar li { margin-bottom: 1rem; }
+    .mobile-sidebar li a {
+        display: block;
+        text-align: left;
+        font-weight: 600;
+        text-transform: uppercase;
+        color: #111;
+        padding: 0.75rem 1rem;
+        border-radius: 6px;
+        transition: all 0.3s;
+    }
+    .mobile-sidebar li a:hover { background: #e6d3bd; color: #111; }
+
+    /* Sidebar title box */
+    .mobile-sidebar .intro-box {
+        margin-bottom: 2rem;
+        text-align: center;
+        font-size: 0.875rem;
+        padding: 0.5rem 1rem;
+    }
+}
+
+@media (max-width: 767px) {
+
+    /* Card image height auto & smaller for fit */
+    .grid img {
+        height: auto !important;
+        max-height: 220px;                               
+        object-fit: cover;
+    }
+
+    /* Card title & text smaller for mobile */
+    .grid h5 {
+        font-size: 1.1rem !important;
+    }
+    .grid p {
+        font-size: 0.8rem !important;
+    }
+
+    .grid {
+        grid-template-columns: repeat(3, 1fr) !important;
+        gap: 0.8rem !important;
+    }
+    .grid img {
+        max-height: 160px !important;
+    }
+}
+
+@media (min-width: 640px) and (max-width: 767px) {
+    .grid {
+        grid-template-columns: repeat(2, 1fr) !important;
+    }
+}
+
+@media (min-width: 768px) {
+    .grid {
+        grid-template-columns: repeat(3, 1fr) !important;   /* desktop exact same */
+        gap: 1.5rem !important;
+    }
+}
+@media (max-width: 767px) {
+  /* Hide the text overlay inside the image cards */
+  .grid .relative .absolute h5,
+  .grid .relative .absolute p {
+    display: none !important;
+  }
+}
+
+
+/* ================= DESKTOP GRID LOCK (FINAL FIX) ================= */
+@media (min-width: 768px) {
+
+  /* Force parent to behave as grid */
+  .grid {
+    display: grid !important;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    align-items: flex-start;
+  }
+
+  /* Sidebar: left column */
+  aside.sidebar {
+    grid-column: 1 / span 1;
+    display: block !important;
+  }
+
+  /* Content: right 3 columns */
+  #content-area {
+    grid-column: 2 / span 3;
+    width: 100%;
+    max-width: none;
+  }
+
+}
+/* ================= MOBILE FONT SIZE FIX ================= */
+@media (max-width: 767px) {
+
+  /* h2 – வணக்கம் */
+  #content-area h2 {
+    font-size: 1.4rem !important;
+    margin-bottom: 0.5rem !important;
+  }
+
+  /* h1 – main heading */
+  #content-area h1 {
+    font-size: 1.9rem !important;
+    line-height: 1.25 !important;
+    margin-bottom: 1rem !important;
+  }
+
+  /* paragraph text (text-lg override) */
+  #content-area .text-lg,
+  #content-area #intro-text p {
+    font-size: 0.95rem !important;
+    line-height: 1.3 !important;
+  }
+
+}
+/* ================= MOBILE TEXT SIZE – FINAL ================= */
+@media (max-width: 767px) {
+
+  /* h2 – வணக்கம் */
+  #content-area h2 {
+    font-size: 1rem !important;
+    margin-bottom: 0.4rem !important;
+  }
+
+  /* h1 – main title */
+  #content-area h1 {
+    font-size: 1.7rem !important;
+    line-height: 1 !important;
+    margin-bottom: 0.8rem !important;
+  }
+
+  /* paragraph text (overrides text-lg) */
+  #content-area .text-lg,
+  #content-area #intro-text p {
+    font-size: 0.9rem !important;
+    line-height: 1.3 !important;
+  }
+
+}
+/* DEFAULT (DESKTOP) */
+#read-more-btn {
+  display: none;
+}
+
+/* Desktop: hide extra content after 2nd paragraph */
+@media (min-width: 768px) {
+  #read-more-btn {
+    display: inline-block;
+  }
+}
+
+/* MOBILE: hide everything after FIRST paragraph */
+@media (max-width: 767px) {
+
+  .intro-p2,
+  #more-content {
+    display: none;
+  }
+
+  #read-more-btn {
+    display: inline-block;
+  }
+}
+
+/* =========================================================
+   HERITAGE BRAND - MOBILE: LOGO & PART OF TEXT SAME LINE
+   ========================================================= */
+
+/* Desktop styles - unchanged */
+.heritage-wrapper {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.heritage-brand {
+  display: flex;
+  align-items: center;
+  gap: 28px;
+  width: 100%;
+  max-width: 1400px;
+  padding: 20px 40px;
+  font-family: "Georgia", "Times New Roman", serif;
+}
+
+.brand-logo {
+  width: 60px;
+  height: auto;
+}
+
+.brand-text {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  color: #111;
+}
+
+.brand-title {
+  font-size: 50px;
+  letter-spacing: 3px;
+  font-weight: 500;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.brand-tagline {
+  font-size: 32px;
+  font-weight: 400;
+  white-space: nowrap;
+}
+
+.divider {
+  font-size: 30px;
+}
+
+/* MOBILE VIEW CHANGES ONLY */
+@media (max-width: 767px) {
+  .heritage-brand {
+    display: flex;
+    flex-direction: row; /* Logo and text in same row */
+    align-items: flex-start; /* Align to top */
+    flex-wrap: wrap; /* Allow text to wrap to next line */
+    gap: 1px; /* Gap between logo and text */
+    padding: 10px 15px;
+    width: 100%;
+  }
+  
+  .brand-logo {
+    width: 40px;
+    height: auto;
+    flex-shrink: 0; /* Logo won't shrink */
+    margin-top: 5px; /* Adjust vertical alignment */
+  }
+  
+  .brand-text {
+    display: flex;
+    flex-wrap: wrap; /* Allow text elements to wrap */
+    flex: 1; /* Take remaining space */
+    gap: 4px; /* Gap between text elements */
+    align-items: center;
+    min-width: 0; /* Allow to shrink */
+  }
+  
+  /* Force all text elements to stay together initially */
+  .brand-title,
+  .brand-tagline,
+  .divider {
+    white-space: nowrap; /* Don't break within words */
+    flex-shrink: 0; /* Don't shrink individual elements */
+  }
+  
+  .brand-title {
+    font-size: 20px;
+    letter-spacing: 1px;
+  }
+  
+  .brand-tagline {
+    font-size: 18px;
+  }
+  
+  .divider {
+ display: none !important; /* Remove divider on mobile */  }
+  
+}
+
+/* Extra small screens - adjust text sizes */
+@media (max-width: 480px) {
+  .heritage-brand {
+    gap: 8px;
+    padding: 12px 15px;
+  }
+  
+  .brand-logo {
+    width: 35px;
+  }
+  
+  .brand-text {
+    gap: 3px;
+  }
+  
+  .brand-title {
+    font-size: 20px;
+  }
+  
+  .brand-tagline {
+    font-size: 16px;
+  }
+  
+  .divider {
+    font-size: 16px;
+  }
+}
+
+/* Very narrow screens - hide second divider to save space */
+@media (max-width: 360px) {
+  .divider:nth-of-type(2) {
+    display: none;
+  }
+  
+  .brand-title {
+    font-size: 12px;
+  }
+  
+  .brand-tagline {
+    font-size: 14px;
+  }
+}
+/* COMPLETE IMAGE BORDER REMOVAL */
+.brand-logo,
+.brand-logo img,
+.brand-logo * {
+  /* Remove borders */
+  border: none !important;
+  border-width: 0 !important;
+  border-style: none !important;
+  border-color: transparent !important;
+  
+  /* Remove outlines */
+  outline: none !important;
+  outline-width: 0 !important;
+  
+  /* Remove shadows */
+  box-shadow: none !important;
+  -webkit-box-shadow: none !important;
+  -moz-box-shadow: none !important;
+  
+  /* Remove rounded corners */
+  border-radius: 0 !important;
+  -webkit-border-radius: 0 !important;
+  -moz-border-radius: 0 !important;
+  
+  /* Remove backgrounds */
+  background: none !important;
+  background-color: transparent !important;
+  
+  /* Remove any image-specific borders */
+  -webkit-image-border: none !important;
+  image-border: none !important;
+  
+  /* Remove decorative styles */
+  text-decoration: none !important;
+  text-shadow: none !important;
+  
+  /* Ensure proper display */
+  display: block;
+  margin: 0;
+  padding: 0;
+}
