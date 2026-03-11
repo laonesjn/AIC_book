@@ -255,7 +255,7 @@ Route::get('/search', [SearchController::class, 'results'])
 });
 
 //------------------PDF water Mark--------------------------//
-Route::get('/publicfree/download-pdf/{id}', [PublicationController::class, 'downloadPublicatio'])
+Route::get('/publicfree/download-pdf/{id}', [PublicationController::class, 'downloadPublication'])
     ->name('download.pdf');
 
 

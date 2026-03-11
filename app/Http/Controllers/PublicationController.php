@@ -19,7 +19,7 @@ class PublicationController extends Controller
      * Display publications for client with filtering
      */
 
-     public function downloadPublicatio(int $id)
+     public function downloadPublication(int $id)
     {
         $publication = Publication::findOrFail($id);
 
