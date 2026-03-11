@@ -107,13 +107,15 @@ class JWTService
         try {
             $decoded = JWT::decode($token, new Key($this->secret, $this->algorithm));
 
-            // Validate issuer and audience (iss/aud set but not validated by default)
-            $expectedIssuer = config('app.url');
-            if (($decoded->iss ?? null) !== $expectedIssuer) {
-                return null;
-            }
-            if (($decoded->aud ?? null) !== $expectedIssuer) {
-                return null;
+            // Skip issuer/audience validation in local environment
+            if (app()->environment('production')) {
+                $expectedIssuer = config('app.url');
+                if (($decoded->iss ?? null) !== $expectedIssuer) {
+                    return null;
+                }
+                if (($decoded->aud ?? null) !== $expectedIssuer) {
+                    return null;
+                }
             }
 
             // Ensure required claims are present

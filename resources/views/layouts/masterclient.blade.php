@@ -1133,21 +1133,21 @@
         };
 
         // Laravel Session Messages to Toastr
-        @if(session('success'))
+        if(session('success'))
             toastr.success("{{ session('success') }}");
-        @endif
+        endif
 
-        @if(session('error'))
+        if(session('error'))
             toastr.error("{{ session('error') }}");
-        @endif
+        endif
 
-        @if(session('warning'))
+        if(session('warning'))
             toastr.warning("{{ session('warning') }}");
-        @endif
+        endif
 
-        @if(session('info'))
+        if(session('info'))
             toastr.info("{{ session('info') }}");
-        @endif
+        endif
     </script>
 
     <script> 
