@@ -115,13 +115,15 @@ class AdminJWT
         $isProd       = app()->environment('production');
         $accessMinutes = (int) ceil(($accessTokenData['expires_in'] ?? 600) / 60);
 
+        $baseCookiePath = rtrim(request()->getBasePath(), '/') . '/admin';
+
         cookie()->queue(cookie(
             'access_token', $accessTokenData['token'],
-            $accessMinutes, '/admin', null, $isProd, true, false, 'Strict'
+            $accessMinutes, $baseCookiePath, null, $isProd, true, false, 'Strict'
         ));
         cookie()->queue(cookie(
             'refresh_token', $newRefreshTokenPlain,
-            43200, '/admin', null, $isProd, true, false, 'Strict'
+            43200, $baseCookiePath, null, $isProd, true, false, 'Strict'
         ));
 
         // Return the decoded payload of the freshly issued access token

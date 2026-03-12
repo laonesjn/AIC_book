@@ -249,8 +249,9 @@ class AdminAuthController extends Controller
             }
         }
 
-        $refreshForget = cookie()->forget('refresh_token', '/admin');
-        $accessForget  = cookie()->forget('access_token', '/admin');
+        $baseCookiePath = rtrim(request()->getBasePath(), '/') . '/admin';
+        $refreshForget = cookie()->forget('refresh_token', $baseCookiePath);
+        $accessForget  = cookie()->forget('access_token', $baseCookiePath);
 
         return redirect()->route('admin.login.view')
             ->with('message', 'Logged out successfully.')
@@ -327,7 +328,7 @@ class AdminAuthController extends Controller
                     'otp_verification_token',
                     $verificationToken,
                     5,          // 5 minutes
-                    '/admin',
+                    rtrim(request()->getBasePath(), '/') . '/admin',
                     null,
                     app()->environment('production'), // secure flag
                     true,       // httpOnly
@@ -459,7 +460,7 @@ class AdminAuthController extends Controller
 
         RateLimiter::clear($keyByIp);
 
-        $cookie = cookie()->forget('otp_verification_token', '/admin');
+        $cookie = cookie()->forget('otp_verification_token', rtrim(request()->getBasePath(), '/') . '/admin');
 
         return response()->json(['message' => 'Password reset successful. Please log in.'])
             ->cookie($cookie);
@@ -528,11 +529,15 @@ class AdminAuthController extends Controller
         $isProd       = app()->environment('production');
         $accessMinutes = (int) ceil(($accessTokenData['expires_in'] ?? 600) / 60);
 
+        // SECURITY: Automatically detect whether we are in a subdirectory (e.g., /AIC/public_html)
+        // logic to ensure the cookie is only sent to the /admin routes.
+        $baseCookiePath = rtrim(request()->getBasePath(), '/') . '/admin';
+
         $accessCookie = cookie(
             'access_token',
             $accessTokenData['token'],
             $accessMinutes,
-            '/admin',
+            $baseCookiePath,
             null,
             $isProd, // secure
             true,    // httpOnly
@@ -544,7 +549,7 @@ class AdminAuthController extends Controller
             'refresh_token',
             $refreshTokenPlain,
             43200,          // 30 days in minutes
-            '/admin', // SECURITY: Restricted path — not sent on every request
+            $baseCookiePath, // SECURITY: Restricted path — not sent on every request
             null,
             $isProd, // secure
             true,    // httpOnly
