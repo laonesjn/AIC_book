@@ -825,7 +825,7 @@
 
                         <!-- Heritage Museum -->
                         <li>
-                            <a href="{{ route('heritage.archive-centre') }}">Heritage Museum</a>
+                            <a href="{{ route('heritage.archive-centre') }}"class="{{ Route::is('heritage.archive-centre') ? 'active' : '' }}">Heritage Museum</a>
                         </li>
 
                         <!-- Join (with dropdown) -->
