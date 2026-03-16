@@ -1,11 +1,11 @@
 @extends('layouts.masteradmin')
 
-@section('title', 'Manage Command & Technical Team')
+@section('title', 'Manage Committee and Technical team members')
 
 @section('content')
 <div class="container-fluid">
     <div class="d-flex justify-content-between align-items-center mb-4 flex-wrap">
-        <h2 class="fw-bold">Command & Technical Team ({{ $members->total() }})</h2>
+        <h2 class="fw-bold">Committee and Technical team members ({{ $members->total() }})</h2>
         <a href="{{ route('admin.committee.create') }}" class="btn btn-success shadow-sm">
             <i class="bi bi-plus-circle"></i> Add New Member
         </a>
