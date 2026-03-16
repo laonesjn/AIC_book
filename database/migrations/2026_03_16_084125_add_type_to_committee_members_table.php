@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('committee_members', function (Blueprint $table) {
-            //
+            $table->enum('type', ['committee', 'technical'])->default('committee')->after('status');
         });
     }
 

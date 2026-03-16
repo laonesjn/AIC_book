@@ -22,7 +22,7 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\StaffController;
 use App\Http\Controllers\StaffHistoryController;
 use App\Http\Controllers\MemberController;
-use App\Http\Controllers\CommitteeController;
+use App\Http\Controllers\ComandTechController;
 use App\Models\Exhibition;
 use App\Models\ExhibitionCategory;
 
@@ -123,7 +123,8 @@ Route::post('/collections/access-request', [CollectionAccessRequestController::c
 // })->name('client.heritage-centre');
 
 
-Route::get('/committee', [CommitteeController::class, 'show'])->name('client.committee');
+Route::get('/committee', [ComandTechController::class, 'showCommittee'])->name('client.committee');
+Route::get('/technical-team', [ComandTechController::class, 'showTechnicalTeam'])->name('client.technicalteam');
 
 Route::get('/heritageCentre', function (\Illuminate\Http\Request $request) {
     $query = Exhibition::with('category')
@@ -464,13 +465,13 @@ Route::middleware(['check.permission:Publications'])->group(function () {
     Route::get('members/{id}/photo', [MemberController::class, 'showPhoto'])->name('members.photo');
     Route::get('members/{id}/document', [MemberController::class, 'downloadDocument'])->name('members.document');
 
-    // Committee Management
-    Route::get('committee', [CommitteeController::class, 'index'])->name('committee.index');
-    Route::get('committee/create', [CommitteeController::class, 'create'])->name('committee.create');
-    Route::post('committee', [CommitteeController::class, 'store'])->name('committee.store');
-    Route::get('committee/{id}/edit', [CommitteeController::class, 'edit'])->name('committee.edit');
-    Route::put('committee/{id}', [CommitteeController::class, 'update'])->name('committee.update');
-    Route::delete('committee/{id}', [CommitteeController::class, 'destroy'])->name('committee.destroy');
+    // Committee & Technical Team Management
+    Route::get('committee', [ComandTechController::class, 'index'])->name('committee.index');
+    Route::get('committee/create', [ComandTechController::class, 'create'])->name('committee.create');
+    Route::post('committee', [ComandTechController::class, 'store'])->name('committee.store');
+    Route::get('committee/{id}/edit', [ComandTechController::class, 'edit'])->name('committee.edit');
+    Route::put('committee/{id}', [ComandTechController::class, 'update'])->name('committee.update');
+    Route::delete('committee/{id}', [ComandTechController::class, 'destroy'])->name('committee.destroy');
 });
 
 

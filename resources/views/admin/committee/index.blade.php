@@ -1,11 +1,11 @@
 @extends('layouts.masteradmin')
 
-@section('title', 'Manage Committee Members')
+@section('title', 'Manage Command & Technical Team')
 
 @section('content')
 <div class="container-fluid">
     <div class="d-flex justify-content-between align-items-center mb-4 flex-wrap">
-        <h2 class="fw-bold">Committee Members ({{ $members->total() }})</h2>
+        <h2 class="fw-bold">Command & Technical Team ({{ $members->total() }})</h2>
         <a href="{{ route('admin.committee.create') }}" class="btn btn-success shadow-sm">
             <i class="bi bi-plus-circle"></i> Add New Member
         </a>
@@ -28,6 +28,7 @@
                             <th>Photo</th>
                             <th>Full Name</th>
                             <th>Position</th>
+                            <th>Type</th>
                             <th>Email</th>
                             <th>Phone</th>
                             <th>Status</th>
@@ -58,6 +59,11 @@
                             </td>
                             <td>
                                 <span class="badge bg-info-subtle text-info px-3">{{ $member->purpose }}</span>
+                            </td>
+                            <td>
+                                <span class="badge {{ $member->type == 'committee' ? 'bg-primary-subtle text-primary' : 'bg-warning-subtle text-warning' }} px-3">
+                                    {{ ucfirst($member->type) }}
+                                </span>
                             </td>
                             <td>
                                 <a href="mailto:{{ $member->email }}" class="text-decoration-none">

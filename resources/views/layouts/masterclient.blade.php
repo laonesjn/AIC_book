@@ -810,6 +810,9 @@
                                 <a href="{{ route('client.committee') }}"
                                    class="{{ Route::is('client.committee') ? 'active' : '' }}"
                                    role="menuitem">Committee</a>
+                                <a href="{{ route('client.technicalteam') }}"
+                                    class="{{ Route::is('client.technicalteam') ? 'active' : '' }}"
+                                    role="menuitem">Technical Team</a>
                             </div>
                         </li>
 
@@ -939,6 +942,8 @@
                        class="{{ Route::is('client.supportus') ? 'active' : '' }}">Support Us</a>
                     <a href="{{ route('client.committee') }}"
                        class="{{ Route::is('client.committee') ? 'active' : '' }}">Committee</a>
+                    <a href="{{ route('client.technicalteam') }}"
+                       class="{{ Route::is('client.technicalteam') ? 'active' : '' }}">Technical Team</a>
                 </div>
             </div>
 

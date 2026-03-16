@@ -506,7 +506,8 @@ button:focus-visible, a:focus-visible, input:focus-visible{
         </button>
         <div class="nav-group-items">
           <a href="{{ route('admin.members.index') }}" class="nav-item"><span>Membership List</span></a>
-          <a href="{{ route('admin.committee.index') }}" class="nav-item"><span>Committee Members</span></a>
+          <a href="{{ route('admin.committee.create') }}" class="nav-item"><span>Add Member</span></a>
+          <a href="{{ route('admin.committee.index') }}" class="nav-item"><span>View Team List</span></a>
         </div>
       </div>
       @endif
