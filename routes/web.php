@@ -22,6 +22,7 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\StaffController;
 use App\Http\Controllers\StaffHistoryController;
 use App\Http\Controllers\MemberController;
+use App\Http\Controllers\CommitteeController;
 use App\Models\Exhibition;
 use App\Models\ExhibitionCategory;
 
@@ -56,6 +57,9 @@ Route::get('/discover-our-collection', [CollectionController::class, 'discoverOu
 
 Route::get('/archivecentre', [CollectionController::class, 'getAllMasterCategoriesWithCollectionCount'])
     ->name('client.archivecentrecollection');
+
+Route::get('/committee', [MemberController::class, 'committee'])
+    ->name('client.committee');
 
 
     /*
@@ -121,6 +125,8 @@ Route::post('/collections/access-request', [CollectionAccessRequestController::c
 //     return view('client.heritagecentre');
 // })->name('client.heritage-centre');
 
+
+Route::get('/committee', [CommitteeController::class, 'show'])->name('client.committee');
 
 Route::get('/heritageCentre', function (\Illuminate\Http\Request $request) {
     $query = Exhibition::with('category')
@@ -460,6 +466,14 @@ Route::middleware(['check.permission:Publications'])->group(function () {
     Route::delete('members/{id}', [MemberController::class, 'destroy'])->name('members.destroy');
     Route::get('members/{id}/photo', [MemberController::class, 'showPhoto'])->name('members.photo');
     Route::get('members/{id}/document', [MemberController::class, 'downloadDocument'])->name('members.document');
+
+    // Committee Management
+    Route::get('committee', [CommitteeController::class, 'index'])->name('committee.index');
+    Route::get('committee/create', [CommitteeController::class, 'create'])->name('committee.create');
+    Route::post('committee', [CommitteeController::class, 'store'])->name('committee.store');
+    Route::get('committee/{id}/edit', [CommitteeController::class, 'edit'])->name('committee.edit');
+    Route::put('committee/{id}', [CommitteeController::class, 'update'])->name('committee.update');
+    Route::delete('committee/{id}', [CommitteeController::class, 'destroy'])->name('committee.destroy');
 });
 
 

@@ -1006,7 +1006,7 @@ body {
 
      <section class="archive-hero">
             <div class="container">
-            <h1>About Tamil Information Centre</h1>
+            <h1>About TIC archive</h1>
                 <p class="archive-tagline">
                     Preserving memory, history, and human rights for future generations
                 </p>
