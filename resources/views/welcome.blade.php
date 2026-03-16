@@ -829,16 +829,24 @@ h1, h2, h3 {
 }
 
 @media (max-width: 768px) {
-    .hero-section p {
-        text-align: justify;    /* justify text */
+    .hero-content p, .hero-content p i {
+        text-align: center;    /* center text */
         font-size: 1rem;        /* increase font size for mobile */
         line-height: 1.2;       /* optional: make text more readable */
     }
 
-    .hero-section h1 {
-        text-align: justify;    /* justify text */
+    .hero-content h1 {
+        text-align: center;    /* center text */
         font-size: 1.2rem;        /* increase font size for mobile */
         line-height: 1.4;       /* optional: make text more readable */
+    }
+}
+.mobile-only-br {
+    display: none;
+}
+@media (max-width: 768px) {
+    .mobile-only-br {
+        display: block;
     }
 }
 </style>
@@ -851,8 +859,8 @@ h1, h2, h3 {
             <section class="hero-section">
     <div class="hero-content">
         <h1>"An archive committed to preserving and celebrating the histories, heritage,
-            culture and human rights of Tamil-speaking people in Ilankai / Sri Lanka" </h1>
-        <p><i>- A secure digital archive preserving affidavits, documents, 
+            culture and human rights of Tamil-speaking people in Ilankai / <br class="mobile-only-br">Sri Lanka"</h1>
+        <p><i>- A  secure digital archive preserving affidavits, documents, 
             Photographs and Recorded testimonies that bear witness to history, heritage and Genocide -</p></i>
 
         
@@ -869,7 +877,7 @@ h1, h2, h3 {
             type="search"
             name="q"
             id="global-search-input"
-            placeholder="Search collections, exhibitions, publications..."
+            placeholder="Search..."
             aria-label="Search archive collection"
             aria-autocomplete="list"
             aria-controls="search-dropdown"

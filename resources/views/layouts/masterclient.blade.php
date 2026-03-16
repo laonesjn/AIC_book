@@ -803,10 +803,13 @@
                             <div class="dropdown" role="menu">
                                 <a href="{{ route('client.about') }}"
                                    class="{{ Route::is('client.about') ? 'active' : '' }}"
-                                   role="menuitem">About Us</a>
+                                   role="menuitem">About TIC archive</a>
                                 <a href="{{ route('client.supportus') }}"
                                    class="{{ Route::is('client.supportus') ? 'active' : '' }}"
                                    role="menuitem">Support Us</a>
+                                <a href="{{ route('client.committee') }}"
+                                   class="{{ Route::is('client.committee') ? 'active' : '' }}"
+                                   role="menuitem">Committee</a>
                             </div>
                         </li>
 
@@ -825,7 +828,7 @@
 
                         <!-- Heritage Museum -->
                         <li>
-                            <a href="{{ route('heritage.archive-centre') }}">Heritage Museum</a>
+                            <a href="{{ route('heritage.archive-centre') }}"class="{{ Route::is('heritage.archive-centre') ? 'active' : '' }}">Heritage Museum</a>
                         </li>
 
                         <!-- Join (with dropdown) -->
@@ -931,9 +934,11 @@
                 </button>
                 <div class="drawer-sub" id="drawerAbout">
                     <a href="{{ route('client.about') }}"
-                       class="{{ Route::is('client.about') ? 'active' : '' }}">About Us</a>
+                       class="{{ Route::is('client.about') ? 'active' : '' }}">About TIC archive</a>
                     <a href="{{ route('client.supportus') }}"
                        class="{{ Route::is('client.supportus') ? 'active' : '' }}">Support Us</a>
+                    <a href="{{ route('client.committee') }}"
+                       class="{{ Route::is('client.committee') ? 'active' : '' }}">Committee</a>
                 </div>
             </div>
 
