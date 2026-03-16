@@ -850,10 +850,10 @@ h1, h2, h3 {
         <div class="container">
             <section class="hero-section">
     <div class="hero-content">
-        <h1>"An archive committed to preserving and celebrating the histories,heritage,
-            culture, and human rights of Tamil-speaking people in Sri Lanka" </h1>
-        <p><i>- A  secure digital archive preserving affidavits,documents,Photographs,
-            Recorded testimonies that bear witness to history,heritage,human rights -</p></i>
+        <h1>"An archive committed to preserving and celebrating the histories, heritage,
+            culture and human rights of Tamil-speaking people in Ilankai / Sri Lanka" </h1>
+        <p><i>- A secure digital archive preserving affidavits, documents, 
+            Photographs and Recorded testimonies that bear witness to history, heritage and Genocide -</p></i>
 
         
     {{--
