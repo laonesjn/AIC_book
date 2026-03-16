@@ -99,6 +99,12 @@ class CommitteeController extends Controller
             $photoName = uniqid() . '.' . $photo->getClientOriginalExtension();
             $photo->move(public_path('CommitteeMembers/photo'), $photoName);
             $data['photo_path'] = 'CommitteeMembers/photo/' . $photoName;
+        } elseif ($request->has('remove_photo') && $request->remove_photo == 1) {
+            // Remove the photo if checkbox is checked and no new photo was uploaded
+            if ($member->photo_path && file_exists(public_path($member->photo_path))) {
+                unlink(public_path($member->photo_path));
+            }
+            $data['photo_path'] = null; // Update database to null
         }
 
         $member->update($data);

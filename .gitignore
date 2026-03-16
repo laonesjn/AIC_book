@@ -22,3 +22,13 @@
 Homestead.json
 Homestead.yaml
 Thumbs.db
+
+# User Uploads
+/CommitteeMembers
+/Member
+/artifacts
+/collections
+/exhibitions
+/heritage_collections
+/publications
+/images

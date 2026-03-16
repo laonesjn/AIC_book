@@ -163,13 +163,19 @@
                     @if(isset($member) && $member->photo_path)
                         <div class="mt-3">
                             <label class="text-muted small">Current Photo:</label>
-                            <div>
+                            <div class="d-flex align-items-center gap-3">
                                 <img 
                                     src="{{ asset($member->photo_path) }}" 
                                     alt="{{ $member->full_name }}" 
                                     class="img-fluid rounded shadow-sm" 
                                     style="max-height: 150px; object-fit: cover;"
                                 >
+                                <div class="form-check text-danger mt-2">
+                                    <input class="form-check-input border-danger" type="checkbox" name="remove_photo" id="removePhotoCheck" value="1">
+                                    <label class="form-check-label fw-semibold" for="removePhotoCheck">
+                                        <i class="bi bi-trash"></i> Remove Photo
+                                    </label>
+                                </div>
                             </div>
                         </div>
                     @endif
@@ -227,13 +233,28 @@ document.addEventListener('DOMContentLoaded', function() {
     // Photo Preview
     document.getElementById('photoInput').addEventListener('change', function(e) {
         const preview = document.getElementById('photoPreview');
+        const removeCheck = document.getElementById('removePhotoCheck');
+        
         if (e.target.files[0]) {
             preview.src = URL.createObjectURL(e.target.files[0]);
             preview.classList.remove('d-none');
+            // Uncheck the remove photo box if a new photo is uploaded
+            if(removeCheck) removeCheck.checked = false;
         } else {
             preview.classList.add('d-none');
         }
     });
+
+    // Un-select the file input if "Remove Photo" is checked manually 
+    const removeCheck = document.getElementById('removePhotoCheck');
+    if (removeCheck) {
+        removeCheck.addEventListener('change', function() {
+            if (this.checked) {
+                document.getElementById('photoInput').value = '';
+                document.getElementById('photoPreview').classList.add('d-none');
+            }
+        });
+    }
 });
 </script>
 

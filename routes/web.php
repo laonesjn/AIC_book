@@ -58,9 +58,6 @@ Route::get('/discover-our-collection', [CollectionController::class, 'discoverOu
 Route::get('/archivecentre', [CollectionController::class, 'getAllMasterCategoriesWithCollectionCount'])
     ->name('client.archivecentrecollection');
 
-Route::get('/committee', [MemberController::class, 'committee'])
-    ->name('client.committee');
-
 
     /*
 |--------------------------------------------------------------------------
