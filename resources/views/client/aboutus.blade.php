@@ -854,8 +854,8 @@ body {
 }
 
 .legacy-section {
-    margin-top: 50px;
-    padding-top: 30px;
+    margin-top: 10px;
+    padding-top: 10px;
     border-top: 2px solid var(--primary-bg);
 }
 

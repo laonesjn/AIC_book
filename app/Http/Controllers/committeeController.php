@@ -44,8 +44,8 @@ class CommitteeController extends Controller
         if ($request->hasFile('photo_path')) {
             $photo = $request->file('photo_path');
             $photoName = uniqid() . '.' . $photo->getClientOriginalExtension();
-            $photo->move(public_path('CommitteeMembers/photo'), $photoName);
-            $photoPath = 'CommitteeMembers/photo/' . $photoName;
+            $photo->move(public_path('uploads/com_memberprofile'), $photoName);
+            $photoPath = 'uploads/com_memberprofile/' . $photoName;
         }
 
         CommitteeMember::create([
@@ -97,8 +97,8 @@ class CommitteeController extends Controller
             }
             $photo = $request->file('photo_path');
             $photoName = uniqid() . '.' . $photo->getClientOriginalExtension();
-            $photo->move(public_path('CommitteeMembers/photo'), $photoName);
-            $data['photo_path'] = 'CommitteeMembers/photo/' . $photoName;
+            $photo->move(public_path('uploads/com_memberprofile'), $photoName);
+            $data['photo_path'] = 'uploads/com_memberprofile/' . $photoName;
         } elseif ($request->has('remove_photo') && $request->remove_photo == 1) {
             // Remove the photo if checkbox is checked and no new photo was uploaded
             if ($member->photo_path && file_exists(public_path($member->photo_path))) {
