@@ -43,7 +43,6 @@
                     <tbody>
                         @forelse($archives as $archive)
                         <tr style="cursor:pointer;" 
-                            data-bs-toggle="modal" data-bs-target="#archiveModal"
                             data-id="{{ $archive->id }}"
                             data-donor="{{ $archive->donor_name }}"
                             data-email="{{ $archive->donor_email }}"
@@ -94,9 +93,7 @@
                                             <i class="bi bi-download"></i> Download
                                         </a>
                                     @endif
-                                    <button class="btn btn-sm btn-outline-primary px-3 rounded-pill"
-                                            data-bs-toggle="modal" data-bs-target="#archiveModal"
-                                            onclick="event.stopPropagation()">
+                                    <button class="btn btn-sm btn-outline-primary px-3 rounded-pill btn-view-archive">
                                         <i class="bi bi-eye"></i> View
                                     </button>
                                 </div>
@@ -230,42 +227,58 @@
 
 @section('scripts')
 <script>
-document.getElementById('archiveModal').addEventListener('show.bs.modal', function (e) {
-    const row = e.relatedTarget;
-    // If it's a button, get the row parent
-    const targetRow = row.tagName === 'TR' ? row : row.closest('tr');
-    const d = targetRow.dataset;
+document.addEventListener('DOMContentLoaded', function () {
+    var archiveModal = new bootstrap.Modal(document.getElementById('archiveModal'));
 
-    document.getElementById('modal-donor').textContent = d.donor;
-    document.getElementById('modal-email').textContent = d.email;
-    document.getElementById('modal-phone').textContent = d.phone;
-    document.getElementById('modal-author').textContent = d.author;
-    document.getElementById('modal-date').textContent = d.date;
-    document.getElementById('modal-description').textContent = d.description || 'No description provided.';
+    function openArchiveModal(row) {
+        var d = row.dataset;
 
-    const typeEl = document.getElementById('modal-type');
-    typeEl.textContent = d.type;
-    typeEl.className = 'badge px-3 ' + (d.type === 'PDF' ? 'bg-primary-subtle text-primary' : 'bg-warning-subtle text-warning');
+        document.getElementById('modal-donor').textContent = d.donor;
+        document.getElementById('modal-email').textContent = d.email;
+        document.getElementById('modal-phone').textContent = d.phone;
+        document.getElementById('modal-author').textContent = d.author;
+        document.getElementById('modal-date').textContent = d.date;
+        document.getElementById('modal-description').textContent = d.description || 'No description provided.';
 
-    const downloadBtn = document.getElementById('modal-download-btn');
-    const fileInfo = document.getElementById('modal-file-info');
-    const bookInfo = document.getElementById('modal-book-info');
+        var typeEl = document.getElementById('modal-type');
+        typeEl.textContent = d.type;
+        typeEl.className = 'badge px-3 ' + (d.type === 'PDF' ? 'bg-primary-subtle text-primary' : 'bg-warning-subtle text-warning');
 
-    if (d.type === 'PDF') {
-        bookInfo.classList.add('d-none');
-        if (d.hasFile === 'true') {
-            downloadBtn.classList.remove('d-none');
-            downloadBtn.href = d.downloadUrl;
-            fileInfo.classList.remove('d-none');
+        var downloadBtn = document.getElementById('modal-download-btn');
+        var fileInfo = document.getElementById('modal-file-info');
+        var bookInfo = document.getElementById('modal-book-info');
+
+        if (d.type === 'PDF') {
+            bookInfo.classList.add('d-none');
+            if (d.hasFile === 'true') {
+                downloadBtn.classList.remove('d-none');
+                downloadBtn.href = d.downloadUrl;
+                fileInfo.classList.remove('d-none');
+            } else {
+                downloadBtn.classList.add('d-none');
+                fileInfo.classList.add('d-none');
+            }
         } else {
             downloadBtn.classList.add('d-none');
             fileInfo.classList.add('d-none');
+            bookInfo.classList.remove('d-none');
         }
-    } else {
-        downloadBtn.classList.add('d-none');
-        fileInfo.classList.add('d-none');
-        bookInfo.classList.remove('d-none');
+
+        archiveModal.show();
     }
+
+    document.querySelectorAll('tbody tr[data-id]').forEach(function (row) {
+        row.addEventListener('click', function () {
+            openArchiveModal(this);
+        });
+    });
+
+    document.querySelectorAll('.btn-view-archive').forEach(function (btn) {
+        btn.addEventListener('click', function (e) {
+            e.stopPropagation();
+            openArchiveModal(this.closest('tr'));
+        });
+    });
 });
 </script>
 @endsection

@@ -757,6 +757,7 @@ toastr.options = {
         btn.innerHTML = '<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> ' + (btn.dataset.loadingText || 'Saving...');
       });
     });
+  });
 </script>
 
   <!-- Change Password Modal -->
@@ -865,5 +866,6 @@ toastr.options = {
   </script>
 
 
+@yield('scripts')
 </body>
 </html>
