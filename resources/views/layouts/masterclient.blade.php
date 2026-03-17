@@ -804,9 +804,9 @@
                                 <a href="{{ route('client.about') }}"
                                    class="{{ Route::is('client.about') ? 'active' : '' }}"
                                    role="menuitem">About TIC archive</a>
-                                <a href="{{ route('client.supportus') }}"
-                                   class="{{ Route::is('client.supportus') ? 'active' : '' }}"
-                                   role="menuitem">Support Us</a>
+                                <a href="{{ route('client.archiving') }}"
+                                   class="{{ Route::is('client.archiving') ? 'active' : '' }}"
+                                   role="menuitem">Submit</a>
                                 <a href="{{ route('client.committee') }}"
                                    class="{{ Route::is('client.committee') ? 'active' : '' }}"
                                    role="menuitem">Committee</a>
@@ -938,8 +938,8 @@
                 <div class="drawer-sub" id="drawerAbout">
                     <a href="{{ route('client.about') }}"
                        class="{{ Route::is('client.about') ? 'active' : '' }}">About TIC archive</a>
-                    <a href="{{ route('client.supportus') }}"
-                       class="{{ Route::is('client.supportus') ? 'active' : '' }}">Support Us</a>
+                    <a href="{{ route('client.archiving') }}"
+                       class="{{ Route::is('client.archiving') ? 'active' : '' }}">Submit</a>
                     <a href="{{ route('client.committee') }}"
                        class="{{ Route::is('client.committee') ? 'active' : '' }}">Committee</a>
                     <a href="{{ route('client.technicalteam') }}"

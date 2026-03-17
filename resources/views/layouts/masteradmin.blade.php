@@ -510,6 +510,10 @@ button:focus-visible, a:focus-visible, input:focus-visible{
           <a href="{{ route('admin.committee.index') }}" class="nav-item"><span>View Team List</span></a>
         </div>
       </div>
+      <a href="{{ route('admin.archives.index') }}" class="nav-item">
+        <i class="bi bi-archive-fill"></i>
+        <span>View Submissions</span>
+      </a>
       @endif
       <a href="{{ route('admin.enquiries') }}" class="nav-item">
         <i class="bi bi-envelope-fill"></i>

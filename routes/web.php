@@ -23,6 +23,7 @@ use App\Http\Controllers\StaffController;
 use App\Http\Controllers\StaffHistoryController;
 use App\Http\Controllers\MemberController;
 use App\Http\Controllers\ComandTechController;
+use App\Http\Controllers\ArchiveController;
 use App\Models\Exhibition;
 use App\Models\ExhibitionCategory;
 
@@ -197,6 +198,10 @@ Route::get('/collaborate', function () {
 Route::get('/supportus', function () {
     return view('client.supportus');
 })->name('client.supportus');
+
+
+Route::get('/archiving', [ArchiveController::class, 'show'])->name('client.archiving');
+Route::post('/archiving/submit', [ArchiveController::class, 'store'])->name('client.archiving.submit');
 
 Route::get('/explorexhibition', [ExhibitionCategoryController::class, 'displaycategoryclient'])
     ->name('client.explorexhibition');
@@ -472,6 +477,10 @@ Route::middleware(['check.permission:Publications'])->group(function () {
     Route::get('committee/{id}/edit', [ComandTechController::class, 'edit'])->name('committee.edit');
     Route::put('committee/{id}', [ComandTechController::class, 'update'])->name('committee.update');
     Route::delete('committee/{id}', [ComandTechController::class, 'destroy'])->name('committee.destroy');
+
+    // Archive Management
+    Route::get('archives', [ArchiveController::class, 'index'])->name('archives.index');
+    Route::get('archives/{id}/download', [ArchiveController::class, 'download'])->name('archives.download');
 });
 
 
