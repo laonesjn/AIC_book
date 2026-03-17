@@ -71,12 +71,19 @@
                             </td>
                             <td>{{ $archive->created_at->format('M d, Y') }}</td>
                             <td>
-                                <span class="badge rounded-pill 
-                                    @if($archive->status == 'pending') bg-info-subtle text-info 
-                                    @elseif($archive->status == 'archived') bg-success-subtle text-success
-                                    @else bg-secondary-subtle text-secondary @endif px-3">
-                                    {{ ucfirst($archive->status) }}
-                                </span>
+                                <form action="{{ route('admin.archives.status', $archive->id) }}" method="POST" class="d-inline">
+                                    @csrf
+                                    @method('PATCH')
+                                    <button type="submit" class="border-0 bg-transparent p-0" title="Click to toggle status" onclick="event.stopPropagation()">
+                                        <span class="badge rounded-pill 
+                                            @if($archive->status == 'pending') bg-info-subtle text-info 
+                                            @elseif($archive->status == 'archived') bg-success-subtle text-success
+                                            @else bg-secondary-subtle text-secondary @endif px-3">
+                                            {{ $archive->status == 'archived' ? 'Accepted' : ucfirst($archive->status) }}
+                                            <i class="bi bi-arrow-repeat ms-1 small"></i>
+                                        </span>
+                                    </button>
+                                </form>
                             </td>
                             <td class="text-end pe-4">
                                 <div class="btn-group">

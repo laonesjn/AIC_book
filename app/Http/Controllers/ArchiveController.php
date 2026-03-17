@@ -122,4 +122,17 @@ class ArchiveController extends Controller
 
         return back()->with('success', 'Setting updated successfully.');
     }
+
+    /**
+     * Admin: Toggle status of archiving submission.
+     */
+    public function updateStatus($id)
+    {
+        $archive = Archive::findOrFail($id);
+        $newStatus = ($archive->status === 'pending') ? 'archived' : 'pending';
+        
+        $archive->update(['status' => $newStatus]);
+
+        return back()->with('success', 'Status updated to ' . ucfirst($newStatus) . ' successfully.');
+    }
 }
