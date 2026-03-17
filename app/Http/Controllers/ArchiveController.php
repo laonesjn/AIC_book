@@ -13,7 +13,10 @@ class ArchiveController extends Controller
      */
     public function show()
     {
-        return view('client.archiving');
+        $addressSetting = \App\Models\SiteSetting::where('key', 'submission_address')->first();
+        $address = $addressSetting ? $addressSetting->value : "The TIC Archives Office,\n123 Heritage Lane, Jaffna,\nSri Lanka.";
+        
+        return view('client.archiving', compact('address'));
     }
 
     /**
@@ -77,7 +80,10 @@ class ArchiveController extends Controller
     public function index()
     {
         $archives = Archive::latest()->paginate(15);
-        return view('admin.viewarchives', compact('archives'));
+        $addressSetting = \App\Models\SiteSetting::where('key', 'submission_address')->first();
+        $address = $addressSetting ? $addressSetting->value : "The TIC Archives Office,\n123 Heritage Lane, Jaffna,\nSri Lanka.";
+
+        return view('admin.viewarchives', compact('archives', 'address'));
     }
 
     /**
@@ -97,5 +103,23 @@ class ArchiveController extends Controller
         }
 
         return response()->download($filePath);
+    }
+
+    /**
+     * Admin: Update site setting.
+     */
+    public function updateSetting(Request $request)
+    {
+        $request->validate([
+            'key' => 'required|string',
+            'value' => 'required|string',
+        ]);
+
+        \App\Models\SiteSetting::updateOrCreate(
+            ['key' => $request->key],
+            ['value' => $request->value]
+        );
+
+        return back()->with('success', 'Setting updated successfully.');
     }
 }

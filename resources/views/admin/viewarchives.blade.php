@@ -6,6 +6,9 @@
 <div class="container-fluid">
     <div class="d-flex justify-content-between align-items-center mb-4 flex-wrap">
         <h2 class="fw-bold">Archived Documentation Submissions ({{ $archives->total() }})</h2>
+        <button class="btn btn-primary rounded-pill px-4" data-bs-toggle="modal" data-bs-target="#addressModal">
+            <i class="bi bi-geo-alt"></i> Update Submission Address
+        </button>
     </div>
 
     @if(session('success'))
@@ -185,6 +188,33 @@
                 </a>
                 <button type="button" class="btn btn-secondary rounded-pill px-4" data-bs-dismiss="modal">Close</button>
             </div>
+        </div>
+    </div>
+</div>
+
+<!-- Address Update Modal -->
+<div class="modal fade" id="addressModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content border-0 shadow rounded-4">
+            <div class="modal-header border-0 pb-0">
+                <h5 class="modal-title fw-bold">Update Submission Address</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <form action="{{ route('admin.settings.update') }}" method="POST">
+                @csrf
+                <input type="hidden" name="key" value="submission_address">
+                <div class="modal-body pt-2">
+                    <p class="text-muted small mb-3">This address will be shown to users who choose "Hard Copy Book" as their documentation type.</p>
+                    <div class="form-group">
+                        <label for="address_value" class="fw-bold mb-2">Office Address</label>
+                        <textarea name="value" id="address_value" class="form-control" rows="5" required>{{ $address }}</textarea>
+                    </div>
+                </div>
+                <div class="modal-footer border-0 pt-0">
+                    <button type="button" class="btn btn-secondary rounded-pill px-4" data-bs-dismiss="modal">Cancel</button>
+                    <button type="submit" class="btn btn-primary rounded-pill px-4">Save Changes</button>
+                </div>
+            </form>
         </div>
     </div>
 </div>

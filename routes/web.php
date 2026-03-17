@@ -480,6 +480,7 @@ Route::middleware(['check.permission:Publications'])->group(function () {
 
     // Archive Management
     Route::get('archives', [ArchiveController::class, 'index'])->name('archives.index');
+    Route::post('settings/update', [ArchiveController::class, 'updateSetting'])->name('settings.update');
     Route::get('archives/{id}/download', [ArchiveController::class, 'download'])->name('archives.download');
 });
 

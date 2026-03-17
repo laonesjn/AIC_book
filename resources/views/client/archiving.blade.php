@@ -191,10 +191,10 @@
             <div id="address-container" class="info-box">
                 <h4>Submission Address</h4>
                 <p>Please send your hard copy book to our main archive center at:</p>
-                <p><strong>The TIC Archives Office,<br>
-                123 Heritage Lane, Jaffna,<br>
-                Sri Lanka.</strong></p>
-                <p><small>* Please include your donor details inside the package.</small></p>
+                <div class="mt-3">
+                    {!! nl2br(e($address)) !!}
+                </div>
+                <p class="mt-3"><small>* Please include your donor details inside the package.</small></p>
             </div>
 
             <div class="form-group">
