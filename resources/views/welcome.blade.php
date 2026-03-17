@@ -860,7 +860,7 @@ h1, h2, h3 {
     <div class="hero-content">
         <h1>"An archive committed to preserving and celebrating the histories, heritage,
             culture and human rights of Tamil-speaking people in Ilankai / <br class="mobile-only-br">Sri Lanka"</h1>
-        <p><i>- A  secure digital archive preserving affidavits, documents, 
+        <p><i>- A secure digital archive preserving affidavits, documents, 
             Photographs and Recorded testimonies that bear witness to history, heritage and Genocide -</p></i>
 
         
