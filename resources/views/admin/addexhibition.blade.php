@@ -53,8 +53,8 @@
     .artifact-image-preview { width: 80px; height: 80px; object-fit: cover; border-radius: 8px; border: 1.5px solid var(--border); margin-top: 10px; display: none; }
     .btn-add-artifact { display: inline-flex; align-items: center; gap: 8px; background: none; border: 2px dashed var(--gold); color: var(--gold); font-family: 'DM Sans', sans-serif; font-size: 13px; font-weight: 600; padding: 10px 20px; border-radius: var(--radius); cursor: pointer; transition: all .2s; margin-top: 4px; }
     .btn-add-artifact:hover { background: var(--gold-lt); }
-    .btn-submit { display: inline-flex; align-items: center; gap: 10px; background: var(--ink); color: #fff; font-family: 'DM Sans', sans-serif; font-size: 15px; font-weight: 600; padding: 15px 40px; border: none; border-radius: var(--radius); cursor: pointer; transition: all .2s; box-shadow: 0 4px 18px rgba(15,15,15,.25); }
-    .btn-submit:hover { background: #1c1c1c; transform: translateY(-1px); }
+    .btn-submit { display: inline-flex; align-items: center; gap: 10px; background: var(--ink); color: black; font-family: 'DM Sans', sans-serif; font-size: 15px; font-weight: 600; padding: 15px 40px; border: none; border-radius: var(--radius); cursor: pointer; transition: all .2s; box-shadow: 0 4px 18px rgba(15,15,15,.25); }
+    .btn-submit:hover { background: #1c1c1c; color: white; transform: translateY(-1px); }
     .btn-submit .arrow { transition: transform .2s; }
     .btn-submit:hover .arrow { transform: translateX(4px); }
     .form-footer { display: flex; align-items: center; gap: 20px; padding: 28px 0; border-top: 1px solid var(--border); margin-top: 8px; }
