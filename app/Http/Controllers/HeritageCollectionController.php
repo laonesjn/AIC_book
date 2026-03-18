@@ -454,6 +454,8 @@ class HeritageCollectionController extends Controller
 
     $collection->increment('view_count');
 
+    $hasPdf = !empty($collection->pdf);
+
     if ($collection->access_type === 'Private') {
         $collection->pdf = null;
     }
@@ -461,7 +463,7 @@ class HeritageCollectionController extends Controller
     $titleImg    = $collection->title_image;
     $overviewImg = !empty($images) ? $images[count($images) - 1] : $titleImg;
 
-    return view('client.heritagecollectionshow', compact('collection', 'titleImg', 'images', 'overviewImg'));
+    return view('client.heritagecollectionshow', compact('collection', 'titleImg', 'images', 'overviewImg', 'hasPdf'));
 }
 
     // ── Client: Download watermarked PDF ──────────────────────────────────────

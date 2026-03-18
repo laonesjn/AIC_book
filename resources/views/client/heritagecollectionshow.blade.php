@@ -1126,7 +1126,7 @@
 </section>
 
     <!-- PDF Section -->
- 
+    @if($hasPdf)
     <div class="pdf-section">
         <div class="pdf-icon">📄</div>
         <div class="pdf-content">
@@ -1155,6 +1155,7 @@
 </button>
         @endif
     </div>
+    @endif
 
         {{-- ============ ONEDRIVE LINKS SECTION ============ --}}
 @if($collection->oneDriveLinks->isNotEmpty())

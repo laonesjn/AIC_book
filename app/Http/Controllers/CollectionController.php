@@ -478,6 +478,8 @@ class CollectionController extends Controller
     $images = $collection->images ?? [];
     $collection->increment('view_count');
 
+    $hasPdf = !empty($collection->pdf);
+
     if ($collection->access_type === 'Private') {
         $collection->pdf = null;
     }
@@ -485,7 +487,7 @@ class CollectionController extends Controller
     $titleImg    = $collection->title_image;
     $overviewImg = !empty($images) ? $images[count($images) - 1] : $titleImg;
 
-    return view('client.collectionshow', compact('collection', 'titleImg', 'images', 'overviewImg'));
+    return view('client.collectionshow', compact('collection', 'titleImg', 'images', 'overviewImg', 'hasPdf'));
 }
 
     // ── Client: Download watermarked PDF ──────────────────────────────────────
