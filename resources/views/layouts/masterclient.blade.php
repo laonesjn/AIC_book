@@ -228,9 +228,14 @@
             box-shadow: 0 6px 20px rgba(0,0,0,0.13);
             min-width: 210px;
             padding: 0.4rem 0;
-            display: none;
             z-index: 200;
             border: 1px solid rgba(15,37,64,0.07);
+
+            /* Transition setup */
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(10px);
+            transition: all 0.2s ease, visibility 0s linear 0.2s, opacity 0.2s linear 0s;
         }
 
         .dropdown a {
@@ -259,7 +264,21 @@
         /* show on hover or keyboard focus-within */
         .dropdown-parent:hover .dropdown,
         .dropdown-parent:focus-within .dropdown {
-            display: block;
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+            transition-delay: 0s;
+        }
+
+        /* Bridge the gap between the trigger and the menu */
+        .dropdown::before {
+            content: "";
+            position: absolute;
+            top: -15px;
+            left: 0;
+            width: 100%;
+            height: 15px;
+            /* background: rgba(255,0,0,0.2); /* Uncomment to debug the bridge */
         }
 
         /* ---- DESKTOP NAV RIGHT ACTIONS (optional search/cta) ---- */
