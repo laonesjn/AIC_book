@@ -426,7 +426,12 @@ button:focus-visible, a:focus-visible, input:focus-visible{
           <a href="{{ route('admin.collections.create') }}" class="nav-item"><span>Add Collection</span></a>
           <a href="{{ route('admin.collections.index') }}" class="nav-item"><span>View Collection</span></a>
           <a href="{{ route('admin.main.index') }}" class="nav-item"><span>Mange Catogry</span></a>
-          <a href="{{ route('admin.access-requests.index') }}" class="nav-item"><span>Collection Request</span></a>
+          <a href="{{ route('admin.access-requests.index') }}" class="nav-item {{ request()->routeIs('admin.access-requests.index') ? 'active' : '' }}">
+            <span>Collection Request</span>
+            @if(isset($pendingCollectionRequestsCount) && $pendingCollectionRequestsCount > 0)
+              <span class="badge-count">{{ $pendingCollectionRequestsCount }}</span>
+            @endif
+          </a>
         </div>
       </div>
       @endif
@@ -442,7 +447,12 @@ button:focus-visible, a:focus-visible, input:focus-visible{
           <a href="{{ route('admin.heritagecollections.create') }}" class="nav-item"><span>Add Heritage Collection</span></a>
           <a href="{{ route('admin.heritagecollections.index') }}" class="nav-item"><span>View Heritage Collections</span></a>
           <a href="{{ route('admin.heritage.indexadmin') }}"class="nav-item"><span>Mange Main Catogry</span></a>
-          <a href="{{ route('admin.heritage.access-requests.index') }}" class="nav-item"><span>Heritage Collection Request</span></a>
+          <a href="{{ route('admin.heritage.access-requests.index') }}" class="nav-item {{ request()->routeIs('admin.heritage.access-requests.index') ? 'active' : '' }}">
+            <span>Heritage Collection Request</span>
+            @if(isset($pendingHeritageRequestsCount) && $pendingHeritageRequestsCount > 0)
+              <span class="badge-count">{{ $pendingHeritageRequestsCount }}</span>
+            @endif
+          </a>
         </div>
       </div>
       @endif
@@ -458,7 +468,12 @@ button:focus-visible, a:focus-visible, input:focus-visible{
           <a href="{{ route('admin.publications.create') }}" class="nav-item"><span>Add Publication</span></a>
           <a href="{{ route('admin.publications.view') }}" class="nav-item"><span>View All</span></a>
           <a href="{{ route('admin.categories.main.index') }}" class="nav-item"><span>Publications Categories</span></a>
-          <a href="{{ route('admin.publicationorders') }}" class="nav-item"><span>Orders</span></a>
+          <a href="{{ route('admin.publicationorders') }}" class="nav-item {{ request()->routeIs('admin.publicationorders') ? 'active' : '' }}">
+            <span>Orders</span>
+            @if(isset($pendingOrdersCount) && $pendingOrdersCount > 0)
+              <span class="badge-count">{{ $pendingOrdersCount }}</span>
+            @endif
+          </a>
         </div>
       </div>
       @endif
@@ -510,9 +525,12 @@ button:focus-visible, a:focus-visible, input:focus-visible{
           <a href="{{ route('admin.committee.index') }}" class="nav-item"><span>View Team List</span></a>
         </div>
       </div>
-      <a href="{{ route('admin.archives.index') }}" class="nav-item">
+      <a href="{{ route('admin.archives.index') }}" class="nav-item {{ request()->routeIs('admin.archives.index') ? 'active' : '' }}">
         <i class="bi bi-archive-fill"></i>
         <span>View Submissions</span>
+        @if(isset($pendingArchivesCount) && $pendingArchivesCount > 0)
+          <span class="badge-count">{{ $pendingArchivesCount }}</span>
+        @endif
       </a>
       @endif
       <a href="{{ route('admin.enquiries') }}" class="nav-item">
