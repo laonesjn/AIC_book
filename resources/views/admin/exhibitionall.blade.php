@@ -5,9 +5,14 @@
 @section('content')
 <div class="d-flex justify-content-between align-items-center mb-4">
     <h2 class="section-title mb-0">Virtual Exhibitions</h2>
-    <a href="{{ route('admin.exhibitions.create') }}" class="btn btn-primary">
-        <i class="bi bi-plus-lg me-1"></i>New Exhibition
-    </a>
+    <div>
+        <button class="btn btn-secondary btn-sm me-2" onclick="openHistoryModal()">
+            <i class="fas fa-history me-1"></i>History
+        </button>
+        <a href="{{ route('admin.exhibitions.create') }}" class="btn btn-primary">
+            <i class="bi bi-plus-lg me-1"></i>New Exhibition
+        </a>
+    </div>
 </div>
 
 {{-- Filters --}}
@@ -88,4 +93,61 @@
 </div>
 
 <div class="mt-4">{{ $exhibitions->links() }}</div>
+
+<!-- History Modal -->
+<div class="modal fade" id="historyModal" tabindex="-1">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title"><i class="fas fa-history me-2"></i>Exhibition History</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                <div id="historyLoading" class="text-center py-3">
+                    <div class="spinner-border spinner-border-sm"></div> Loading...
+                </div>
+                <table class="table table-sm d-none" id="historyTable">
+                    <thead class="table-light">
+                        <tr>
+                            <th>Action</th>
+                            <th>Item Name</th>
+                            <th>Changed By</th>
+                            <th>Date</th>
+                        </tr>
+                    </thead>
+                    <tbody id="historyBody"></tbody>
+                </table>
+                <p class="text-muted text-center d-none" id="historyEmpty">No history found.</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    function openHistoryModal() {
+        const modal = new bootstrap.Modal(document.getElementById('historyModal'));
+        modal.show();
+
+        document.getElementById('historyLoading').classList.remove('d-none');
+        document.getElementById('historyTable').classList.add('d-none');
+        document.getElementById('historyEmpty').classList.add('d-none');
+
+        fetch('{{ route("admin.exhibitions.history") }}')
+            .then(r => r.json())
+            .then(data => {
+                document.getElementById('historyLoading').classList.add('d-none');
+                if (!data.length) {
+                    document.getElementById('historyEmpty').classList.remove('d-none');
+                    return;
+                }
+                const badge = a => a === 'deleted'
+                    ? '<span class="badge bg-danger">Deleted</span>'
+                    : '<span class="badge bg-warning text-dark">Edited</span>';
+                document.getElementById('historyBody').innerHTML = data
+                    .map(r => `<tr><td>${badge(r.action)}</td><td>${r.item_name}</td><td>${r.admin_name}</td><td>${r.date}</td></tr>`)
+                    .join('');
+                document.getElementById('historyTable').classList.remove('d-none');
+            });
+    }
+</script>
 @endsection

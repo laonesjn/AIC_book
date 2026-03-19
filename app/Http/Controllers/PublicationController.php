@@ -209,6 +209,27 @@ class PublicationController extends Controller
     }
 
     /**
+     * History of edited/deleted publications
+     */
+    public function history()
+    {
+        $logs = \App\Models\AuditLog::with('admin')
+            ->where('model_type', Publication::class)
+            ->whereIn('action', ['updated', 'deleted'])
+            ->orderByDesc('created_at')
+            ->limit(30)
+            ->get()
+            ->map(fn($log) => [
+                'action'     => $log->action,
+                'item_name'  => $log->changes['before']['title'] ?? $log->changes['after']['title'] ?? 'N/A',
+                'admin_name' => $log->admin->name ?? 'Unknown',
+                'date'       => $log->created_at->format('M d, Y H:i'),
+            ]);
+
+        return response()->json($logs);
+    }
+
+    /**
      * Show create form
      */
     public function create()

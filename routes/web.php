@@ -426,6 +426,7 @@ Route::middleware(['check.permission:Publications'])->group(function () {
 
 
     Route::get('/publications', [PublicationController::class, 'adminindex'])->name('publications.view');
+    Route::get('/publications/history', [PublicationController::class, 'history'])->name('publications.history');
     Route::get('/publications/create', [PublicationController::class, 'create'])->name('publications.create');
     Route::post('/publications', [PublicationController::class, 'store'])->name('publications.store');
     Route::put('/publications/{publication}', [PublicationController::class, 'update'])->name('publications.update');
@@ -540,6 +541,7 @@ Route::patch('/collection/access-requests/{collectionAccessRequest}/status',
 Route::middleware(['check.permission:Virtual Exhibition'])->group(function () {
 Route::get   ('/exhibitions',                    [ExhibitionController::class, 'index'])       ->name('exhibitions.index');
 Route::get   ('/exhibitions/trashed',            [ExhibitionController::class, 'trashed'])     ->name('exhibitions.trashed');
+Route::get   ('/exhibitions/history',            [ExhibitionController::class, 'history'])     ->name('exhibitions.history');
 Route::post  ('/exhibitions/{id}/restore',       [ExhibitionController::class, 'restore'])     ->name('exhibitions.restore');
 Route::delete('/exhibitions/{id}/force-delete',  [ExhibitionController::class, 'forceDelete']) ->name('exhibitions.forceDelete');
 Route::get   ('/exhibitions/create',             [ExhibitionController::class, 'create'])      ->name('exhibitions.create');

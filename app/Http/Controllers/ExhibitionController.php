@@ -21,6 +21,27 @@ class ExhibitionController extends Controller
     }
 
     // ========================================================================
+    //  HISTORY
+    // ========================================================================
+    public function history()
+    {
+        $logs = \App\Models\AuditLog::with('admin')
+            ->where('model_type', Exhibition::class)
+            ->whereIn('action', ['updated', 'deleted'])
+            ->orderByDesc('created_at')
+            ->limit(30)
+            ->get()
+            ->map(fn($log) => [
+                'action'     => $log->action,
+                'item_name'  => $log->changes['before']['title'] ?? $log->changes['after']['title'] ?? 'N/A',
+                'admin_name' => $log->admin->name ?? 'Unknown',
+                'date'       => $log->created_at->format('M d, Y H:i'),
+            ]);
+
+        return response()->json($logs);
+    }
+
+    // ========================================================================
     //  INDEX
     // ========================================================================
     public function index(Request $request)
