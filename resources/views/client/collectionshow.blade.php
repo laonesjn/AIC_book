@@ -1008,7 +1008,7 @@
     <section class="hero-section">
         <!-- Hero Image -->
         <div class="hero-image-container">
-             <img src="{{ Str::startsWith($titleImg, ['http://','https://']) ? $titleImg : asset('public/'.$titleImg) }}" 
+             <img src="{{ Str::startsWith($titleImg, ['http://','https://']) ? $titleImg : asset($titleImg) }}" 
              alt="{{ $collection->title }}">
         </div>
 
@@ -1071,7 +1071,7 @@
         @foreach($images as $index => $img)
         <div class="image-card">
             <div class="image-card-image">
-                <img src="{{ Str::startsWith($img, ['http://','https://']) ? $img : asset('public/'.$img) }}" 
+                <img src="{{ Str::startsWith($img, ['http://','https://']) ? $img : asset($img) }}" 
                      alt="{{ $collection->title }} - Image {{ $index + 1 }}">
             </div>
             <div class="image-card-caption">
@@ -1119,7 +1119,7 @@
 
         @if($overviewImg)
         <div class="overview-image">
-            <img src="{{ Str::startsWith($overviewImg, ['http://','https://']) ? $overviewImg : asset('public/'.$overviewImg) }}" 
+            <img src="{{ Str::startsWith($overviewImg, ['http://','https://']) ? $overviewImg : asset($overviewImg) }}" 
                  alt="{{ $collection->title }}">
         </div>
         @endif
@@ -1150,7 +1150,7 @@
         '{{ $collection->masterMainCategory->name ?? 'N/A' }}',
         '{{ $collection->subcategory ?? 'N/A' }}',
         '{{ $collection->created_at->format('F d, Y') }}',
-        '{{ Str::startsWith($titleImg, ['http://','https://']) ? $titleImg : asset('public/'.$titleImg) }}'
+        '{{ Str::startsWith($titleImg, ['http://','https://']) ? $titleImg : asset($titleImg) }}'
     )">
     🔒 Request Access
 </button>

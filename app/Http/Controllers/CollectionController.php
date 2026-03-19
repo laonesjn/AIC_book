@@ -507,7 +507,7 @@ class CollectionController extends Controller
             abort(404, 'No PDF attached to this collection.');
         }
 
-        $filePath = storage_path('app/public/' . $publication->pdf);
+        $filePath = public_path($publication->pdf);
 
         if (!file_exists($filePath)) {
             abort(404, 'File not found.');

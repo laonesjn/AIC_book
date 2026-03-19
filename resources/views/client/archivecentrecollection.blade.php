@@ -282,7 +282,7 @@
                                 <img
                                     src="{{ Str::startsWith($collection->title_image, ['http://', 'https://'])
                                         ? $collection->title_image
-                                        : asset('public/'.$collection->title_image) }}"
+                                        : asset($collection->title_image) }}"
                                     class="card-img-top"
                                     alt="{{ $collection->title }}"
                                 >
