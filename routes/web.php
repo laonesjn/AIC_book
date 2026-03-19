@@ -501,6 +501,7 @@ Route::middleware(['check.permission:Publications'])->group(function () {
      // Collections resource routes
     Route::get('/collections', [CollectionController::class, 'index'])->name('collections.index');
     Route::get('/collections/create', [CollectionController::class, 'create'])->name('collections.create');
+    Route::get('/collections/history', [CollectionController::class, 'history'])->name('collections.history');
     Route::post('/collections', [CollectionController::class, 'store'])->name('collections.store');
     Route::get('/collections/{collection}', [CollectionController::class, 'show'])->name('collections.show');
     Route::get('/collections/{collection}/edit', [CollectionController::class, 'edit'])->name('collections.edit');
@@ -613,6 +614,10 @@ Route::delete('/exhibitions/main/categories/{category}', [ExhibitionCategoryCont
         // GET  /admin/heritage/collections/create
         Route::get('/heritagecollections/create', [HeritageCollectionController::class, 'create'])
             ->name('heritagecollections.create');
+
+        // GET  /admin/heritage/collections/history
+        Route::get('/heritagecollections/history', [HeritageCollectionController::class, 'history'])
+            ->name('heritagecollections.history');
 
         // POST /admin/heritage/collections
         Route::post('heritagecollections', [HeritageCollectionController::class, 'store'])
