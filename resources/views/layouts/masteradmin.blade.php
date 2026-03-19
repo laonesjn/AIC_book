@@ -420,6 +420,9 @@ button:focus-visible, a:focus-visible, input:focus-visible{
         <button class="nav-group-btn" onclick="toggleNav(this)">
           <i class="bi bi-newspaper"></i>
           <span>Collection</span>
+          @if(isset($pendingCollectionRequestsCount) && $pendingCollectionRequestsCount > 0)
+            <span class="badge-count" style="margin-left: auto; margin-right: 10px;">{{ $pendingCollectionRequestsCount }}</span>
+          @endif
           <i class="bi bi-chevron-right chevron"></i>
         </button>
         <div class="nav-group-items">
@@ -440,6 +443,9 @@ button:focus-visible, a:focus-visible, input:focus-visible{
       <div class="nav-group">
        <button class="nav-group-btn" onclick="toggleNav(this)">
           <i class="bi bi-building"></i> <span>Heritage Collection</span>
+          @if(isset($pendingHeritageRequestsCount) && $pendingHeritageRequestsCount > 0)
+            <span class="badge-count" style="margin-left: auto; margin-right: 10px;">{{ $pendingHeritageRequestsCount }}</span>
+          @endif
           <i class="bi bi-chevron-right chevron"></i>
         </button>
 
@@ -462,6 +468,9 @@ button:focus-visible, a:focus-visible, input:focus-visible{
         <button class="nav-group-btn" onclick="toggleNav(this)">
           <i class="bi bi-journal-richtext"></i>
           <span>Publications</span>
+          @if(isset($pendingOrdersCount) && $pendingOrdersCount > 0)
+            <span class="badge-count" style="margin-left: auto; margin-right: 10px;">{{ $pendingOrdersCount }}</span>
+          @endif
           <i class="bi bi-chevron-right chevron"></i>
         </button>
         <div class="nav-group-items">
