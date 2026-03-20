@@ -9,7 +9,7 @@
         --accent-muted: #bfa98b;
         --card-bg: #f6ece0;
         --hover-bg: #e6d3bd;
-        --border-radius: 12px;
+        --border-radius: 24px;
         --font-serif: "Georgia", "Times New Roman", serif;
     }
 
@@ -68,8 +68,7 @@
         }
 
         .member-photo-wrapper {
-            width: 130px;
-            height: 130px;
+            height: 220px;
         }
 
         .member-name {
@@ -87,35 +86,34 @@
     .member-card {
         background: var(--card-bg);
         border-radius: var(--border-radius);
-        padding: 2rem;
+        padding: 0 1.5rem 2rem;
         text-align: center;
         transition: transform 0.3s ease, box-shadow 0.3s ease;
-        border: 1px solid rgba(15, 37, 64, 0.1);
+        border: 1px solid rgba(15, 37, 64, 0.05);
         display: flex;
         flex-direction: column;
         align-items: center;
         position: relative;
         overflow: hidden;
+        box-shadow: 0 10px 30px rgba(15, 37, 64, 0.08);
     }
 
     .member-card:hover {
         transform: translateY(-8px);
-        box-shadow: 0 12px 25px rgba(15, 37, 64, 0.12);
+        box-shadow: 0 15px 35px rgba(15, 37, 64, 0.12);
         background: var(--hover-bg);
     }
 
     .member-photo-wrapper {
-        width: 150px;
-        height: 150px;
-        border-radius: 50%;
+        width: 100%;
+        height: 280px;
         margin-bottom: 1.5rem;
         overflow: hidden;
-        border: 4px solid #fff;
-        box-shadow: 0 4px 12px rgba(0,0,0,0.1);
         background: #fdfdfd;
         display: flex;
         align-items: center;
         justify-content: center;
+        border-radius: var(--border-radius);
     }
 
     .member-photo {
@@ -189,7 +187,7 @@
     .modal-member-photo {
         width: 100px;
         height: 100px;
-        border-radius: 50%;
+        border-radius: var(--border-radius);
         object-fit: cover;
         border: 4px solid #fff;
         box-shadow: 0 4px 12px rgba(0,0,0,0.1);
@@ -198,7 +196,7 @@
     .modal-initials {
         width: 100px;
         height: 100px;
-        border-radius: 50%;
+        border-radius: var(--border-radius);
         background: var(--card-bg);
         border: 4px solid #fff;
         box-shadow: 0 4px 12px rgba(0,0,0,0.1);
