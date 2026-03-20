@@ -44,6 +44,39 @@
         max-width: 800px;
     }
 
+    @media (max-width: 768px) {
+        .committee-hero {
+            padding: 3rem 1.5rem 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .committee-hero h1 {
+            font-size: 2.25rem;
+            letter-spacing: -0.5px;
+        }
+
+        .committee-hero p {
+            font-size: 1.1rem;
+        }
+
+        .member-grid {
+            gap: 1.5rem;
+        }
+
+        .member-card {
+            padding: 1.5rem;
+        }
+
+        .member-photo-wrapper {
+            width: 130px;
+            height: 130px;
+        }
+
+        .member-name {
+            font-size: 1.25rem;
+        }
+    }
+
     .member-grid {
         display: grid;
         grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));

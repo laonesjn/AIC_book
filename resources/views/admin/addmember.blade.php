@@ -51,7 +51,7 @@
                                name="purpose" 
                                class="form-control @error('purpose') is-invalid @enderror" 
                                value="{{ old('purpose', $member->purpose ?? '') }}" 
-                               placeholder="e.g. Secretary / Web Developer"
+                               placeholder="e.g. Secretary / Chairman"
                                required>
                     </div>
 
