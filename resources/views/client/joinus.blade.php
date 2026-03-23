@@ -248,11 +248,68 @@
     border-color: var(--accent-dark);
      color: var(--accent-dark);
 }
-/* Optional: Make the whole container responsive */
+/* Volunteer box mobile responsiveness */
 @media (max-width: 768px) {
     .volunteer-box {
-        padding: 25px;
-        margin: 20px 10px;
+        padding: 15px;
+        margin: 15px 8px;
+    }
+    .title {
+        font-size: 1.6em;
+        margin-bottom: 20px;
+    }
+    .section-title {
+        font-size: 1.3em;
+    }
+    .community-text {
+        font-size: 1em;
+    }
+    .activities-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 10px;
+    }
+    .activity-item {
+        padding: 15px 10px;
+        font-size: 0.95em;
+    }
+    .left-section {
+        min-width: unset;
+        width: 100%;
+    }
+    .right-section {
+        min-width: unset;
+        width: 100%;
+    }
+    .apply-box {
+        padding: 15px;
+    }
+    .apply-box p:first-child {
+        font-size: 1.3rem;
+    }
+    .apply-box p:nth-child(2) {
+        font-size: 1em;
+    }
+    .apply-btn {
+        padding: 0.8rem 2rem;
+        font-size: 1rem;
+    }
+    .sidebar-box {
+        padding: 15px;
+    }
+    .sidebar-title {
+        font-size: 1.1em;
+    }
+}
+@media (max-width: 480px) {
+    .title {
+        font-size: 1.3em;
+    }
+    .activities-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+    .activity-item {
+        font-size: 0.85em;
+        padding: 12px 8px;
     }
 }
 /* :root {
