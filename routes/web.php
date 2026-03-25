@@ -20,7 +20,6 @@ use App\Http\Controllers\GalleryImageController;
 use App\Http\Controllers\SearchController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\StaffController;
-use App\Http\Controllers\StaffHistoryController;
 use App\Http\Controllers\MemberController;
 use App\Http\Controllers\ComandTechController;
 use App\Http\Controllers\ArchiveController;
@@ -344,11 +343,6 @@ Route::get('/audit-logs', [DashboardController::class, 'auditLogs'])->name('audi
         Route::get('/staff/{staff}/edit', [StaffController::class, 'edit'])->name('staff.edit');
         Route::put('/staff/{staff}', [StaffController::class, 'update'])->name('staff.update');
         Route::delete('/staff/{staff}', [StaffController::class, 'destroy'])->name('staff.destroy');
-
-        // Staff History (Audit Logs)
-        Route::get('/staff-history', [StaffHistoryController::class, 'index'])->name('staff.history.index');
-        Route::get('/staff-history/{module}', [StaffHistoryController::class, 'items'])->name('staff.history.items');
-        Route::get('/staff-history/{module}/{id}', [StaffHistoryController::class, 'show'])->name('staff.history.show');
     });
 
 // Dashboard AJAX - Chart data

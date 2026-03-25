@@ -516,7 +516,6 @@ button:focus-visible, a:focus-visible, input:focus-visible{
         </button>
         <div class="nav-group-items">
           <a href="{{ route('admin.staff.index') }}" class="nav-item"><span>Staff List</span></a>
-          <a href="{{ route('admin.staff.history.index') }}" class="nav-item"><span>Staff History</span></a>
         </div>
       </div>
       @endif
@@ -542,9 +541,12 @@ button:focus-visible, a:focus-visible, input:focus-visible{
         @endif
       </a>
       @endif
-      <a href="{{ route('admin.enquiries') }}" class="nav-item">
+      <a href="{{ route('admin.enquiries') }}" class="nav-item {{ request()->routeIs('admin.enquiries') ? 'active' : '' }}">
         <i class="bi bi-envelope-fill"></i>
         <span>Enquiries</span>
+        @if(isset($pendingEnquiriesCount) && $pendingEnquiriesCount > 0)
+          <span class="badge-count">{{ $pendingEnquiriesCount }}</span>
+        @endif
       </a>
       <!--<a href="#" class="nav-item" onclick="loadPage('support')">-->
       <!--  <i class="bi bi-headset"></i>-->
