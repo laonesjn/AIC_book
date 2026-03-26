@@ -93,12 +93,15 @@ h1, h2, h3 {
 
 
     .hero-content h1 {
-        font-size: 1rem;
+        font-size: 1.2rem;
         font-weight: 200;
-        line-height: 1;
+        line-height: 1.25;
         color: var(--accent-dark);
-        margin-bottom: 0.875rem;
-        
+        margin-bottom: 0.8rem;
+    }
+
+    .nowrap {
+        white-space: nowrap;
     }
 
     .hero-content p {
@@ -382,7 +385,7 @@ h1, h2, h3 {
     /* Small devices (landscape phones, 576px and up) */
     @media (min-width: 576px) {
         .hero-content h1 {
-            font-size: 2rem;
+            font-size: 1.8rem;
         }
 
         .hero-content p {
@@ -444,13 +447,13 @@ h1, h2, h3 {
     /* Medium devices (tablets, 768px and up) */
     @media (min-width: 768px) {
         .hero-section {
-            grid-template-columns: 1fr 1fr;
+            grid-template-columns: 1.25fr 0.75fr;
             gap: 2.5rem;
             margin: 2rem 0 3rem;
         }
 
         .hero-content h1 {
-            font-size: 2.5rem;
+            font-size: 1.6rem;
         }
 
         .hero-content p {
@@ -507,15 +510,14 @@ h1, h2, h3 {
         }
     }
 
-    /* Large devices (desktops, 992px and up) */
     @media (min-width: 992px) {
         .hero-section {
-            grid-template-columns: 1.0fr 0.8fr;
+            grid-template-columns: 1.2fr 0.8fr;
             gap: 3rem;
         }
 
         .hero-content h1 {
-            font-size: 2rem;
+            font-size: 1.8rem;
         }
 
         .hero-image {
@@ -567,7 +569,7 @@ h1, h2, h3 {
     /* Extra large devices (large desktops, 1200px and up) */
     @media (min-width: 1200px) {
         .hero-content h1 {
-            font-size: 3.0rem;
+            font-size: 2.0rem;
         }
 
         .hero-image {
@@ -654,150 +656,49 @@ h1, h2, h3 {
 
   .featured-grid {
     display: grid;
-    grid-auto-flow: column;
-    grid-auto-columns: minmax(220px, 1fr);
-    gap: 12px;
-    overflow-x: auto;
-    padding: 0 8px 12px;
-  }
-
-  .featured-grid::-webkit-scrollbar {
-    display: none;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+    padding: 0;
   }
 
   .featured-card {
-    border-radius: 10px;
+    border-radius: 12px;
+    margin-bottom: 1rem;
   }
 
-  /* image small – no big image */
   .featured-card .card-thumb img {
-    height: 130px;
+    height: 200px;
     object-fit: cover;
   }
 
-  /* compact content */
   .featured-card-content {
-    padding: 10px;
+    padding: 1.5rem;
   }
 
   .featured-card-content h3 {
-    font-size: 14.5px;
-    line-height: 1.3;
-    margin-bottom: 6px;
+    font-size: 1.25rem;
+    line-height: 1.4;
+    margin-bottom: 0.75rem;
   }
 
   .featured-card .explore-btn {
-    font-size: 13px;
-    padding: 6px 12px;
-  }
-}
-@media (max-width: 640px) {
-  .featured-grid {
-    grid-auto-columns: 70%;
-  }
-}
-/* ===============================
-   FEATURED COLLECTIONS – MOBILE (SMALLER CARDS)
-   =============================== */
-@media (max-width: 640px) {
-
-  .featured-grid {
-    display: grid;
-    grid-auto-flow: column;
-    grid-auto-columns: 32%;
-    gap: 10px;
-    overflow-x: auto;
-    padding: 0 6px 10px;
-  }
-
-  .featured-grid::-webkit-scrollbar {
-    display: none;
-  }
-
-  .featured-card {
-    border-radius: 8px;
-  }
-
-  /* image VERY small */
-  .featured-card .card-thumb img {
-    height: 95px;
-    object-fit: cover;
-  }
-
-  /* compact content */
-  .featured-card-content {
-    padding: 6px;
-  }
-
-  .featured-card-content h3 {
-    font-size: 12px;
-    line-height: 1.25;
-    margin-bottom: 4px;
-  }
-
-  .featured-card .explore-btn {
-    font-size: 11px;
-    padding: 4px 8px;
-  }
-}
-@media (max-width: 640px) {
-  .featured-grid {
+    font-size: 1rem;
+    padding: 0.75rem 1.5rem;
     width: 100%;
-    box-sizing: border-box;
+    text-align: center;
   }
-}@media (max-width: 640px) {
-
-  .featured-grid {
-    display: grid;
-    grid-auto-flow: column;
-    grid-auto-columns: 32%;
-    gap: 10px;
-    overflow-x: auto;
-    padding: 0 6px 10px;
-    align-items: stretch;          /* ← added */
-  }
-
-  .featured-card {
-    display: flex;
-    flex-direction: column;
-    height: 100%;                  /* ← very important */
-    border-radius: 8px;
-  }
-
-  .featured-card-content {
-    padding: 6px;
-    margin-top: auto;              /* ← pushes button to bottom */
-    display: flex;
-    flex-direction: column;
-    gap: 4px;
-  }
-
-  .featured-card .explore-btn {
-    margin-top: auto;              /* extra safety */
-    align-self: flex-start;        /* or center / stretch – your choice */
-    font-size: 11px;
-    padding: 4px 8px;
-  }
-
 }
-/* ===============================
-   CTA SECTION – FORCE ROW (MOBILE)
-   =============================== */
+/* Vertical alignment for CTA section on mobile */
 @media (max-width: 640px) {
 
   .cta-section {
     display: flex;
-    flex-direction: row;
-    align-items: center;           /* vertically centers button with text */
-    justify-content: space-between;
-    gap: 12px;
-    padding: 12px 10px;            /* optional – better spacing on small screens */
-  }
-
-  .cta-content {
-    flex: 1 1 auto;
-    text-align: justify;           /* makes text nicely spread / justified */
-    hyphens: auto;                 /* optional: better line breaks in Tamil/English mix */
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    padding: 2.5rem 1.5rem;
+    text-align: center;
   }
 
   .cta-content h2 {
@@ -812,17 +713,10 @@ h1, h2, h3 {
   }
 
   .cta-btn {
-    /* Centers button vertically relative to text block */
-    align-self: center;
-    
-    /* Looks better centered/compact on mobile */
-    white-space: nowrap;
-    font-size: 12px;
-    padding: 6px 14px;           /* slightly wider padding → nicer touch target */
-    margin-left: 8px;             /* small breathing space from text */
-
-    /* Optional: make it feel more "button-like" */
-    flex-shrink: 0;
+    width: 100%;
+    font-size: 1rem;
+    padding: 0.875rem;
+    text-align: center;
   }
 
  
@@ -859,7 +753,7 @@ h1, h2, h3 {
             <section class="hero-section">
     <div class="hero-content">
         <h1>"An archive committed to preserving and celebrating the histories, heritage,
-            culture and human rights of Tamil-speaking people in Ilankai / <br class="mobile-only-br">Sri Lanka"</h1>
+            culture and human rights of Tamil-speaking people in <span class="nowrap">Ilankai&nbsp;/&nbsp;Sri&nbsp;Lanka</span>"</h1>
         <p><i>- A secure digital archive preserving affidavits, documents, 
             Photographs and Recorded testimonies that bear witness to history, heritage and Genocide -</p></i>
 
