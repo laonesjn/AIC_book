@@ -377,22 +377,22 @@
 
     document.getElementById('confirmDeleteBtn').addEventListener('click', function() {
         if (collectionToDelete) {
+            const deleteUrl = "{{ route('admin.heritagecollections.destroy', ':id') }}".replace(':id', collectionToDelete);
 
-         const deleteUrl = `{{ route('admin.heritagecollections.destroy', ':id') }}`.replace(':id', collectionToDelete);
-
-fetch(deleteUrl, {
-    method: 'DELETE',
-    headers: {
-        'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').content,
-        'Accept': 'application/json'
-    }
-});
-            
-            .then(response => {
-                if (response.ok) {
-                    window.location.href = "{{ route('admin.collections.index') }}";
+            fetch(deleteUrl, {
+                method: 'DELETE',
+                headers: {
+                    'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').content,
+                    'X-Requested-With': 'XMLHttpRequest',
+                    'Accept': 'application/json'
+                }
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    window.location.href = "{{ route('admin.heritagecollections.index') }}";
                 } else {
-                    alert('Failed to delete collection');
+                    alert(data.message || 'Failed to delete collection');
                 }
             })
             .catch(error => {

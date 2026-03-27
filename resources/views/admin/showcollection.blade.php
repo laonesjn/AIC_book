@@ -401,17 +401,21 @@
 
     document.getElementById('confirmDeleteBtn').addEventListener('click', function() {
         if (collectionToDelete) {
-            fetch(`{{ url('admin') }}/${collectionToDelete}/delete`, {
+            const deleteUrl = "{{ route('admin.collections.destroy', ':id') }}".replace(':id', collectionToDelete);
+            fetch(deleteUrl, {
                 method: 'DELETE',
                 headers: {
                     'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').content,
+                    'X-Requested-With': 'XMLHttpRequest',
+                    'Accept': 'application/json'
                 }
             })
-            .then(response => {
-                if (response.ok) {
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
                     window.location.href = "{{ route('admin.collections.index') }}";
                 } else {
-                    alert('Failed to delete collection');
+                    alert(data.message || 'Failed to delete collection');
                 }
             })
             .catch(error => {

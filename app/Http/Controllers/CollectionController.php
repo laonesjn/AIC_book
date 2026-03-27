@@ -357,7 +357,7 @@ class CollectionController extends Controller
      * Delete the specified collection and all its stored files.
      * Route: DELETE /admin/collections/{collection}
      */
-    public function destroy(Collection $collection)
+    public function destroy(Request $request, Collection $collection)
     {
         try {
             $this->deleteFiles($collection->images);
@@ -366,10 +366,24 @@ class CollectionController extends Controller
 
             $collection->delete();
 
+            if ($request->ajax() || $request->wantsJson()) {
+                return response()->json([
+                    'success' => true,
+                    'message' => 'Collection deleted successfully.'
+                ]);
+            }
+
             return redirect()->route('admin.collections.index')
                 ->with('success', 'Collection deleted successfully.');
 
         } catch (\Exception $e) {
+            if ($request->ajax() || $request->wantsJson()) {
+                return response()->json([
+                    'success' => false,
+                    'message' => 'Failed to delete collection: ' . $e->getMessage()
+                ], 500);
+            }
+
             return redirect()->back()
                 ->with('error', 'Failed to delete collection: ' . $e->getMessage());
         }

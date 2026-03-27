@@ -335,7 +335,7 @@ class HeritageCollectionController extends Controller
      * Delete the specified heritage collection and all its stored files.
      * Route: DELETE /admin/heritage/collections/{collection}
      */
-    public function destroy(HeritageCollection $collection)
+    public function destroy(Request $request, HeritageCollection $collection)
     {
         try {
             $this->deleteFiles($collection->images);
@@ -344,10 +344,24 @@ class HeritageCollectionController extends Controller
 
             $collection->delete();
 
-            return redirect()->route('admin.viewheritagecollection')
+            if ($request->ajax() || $request->wantsJson()) {
+                return response()->json([
+                    'success' => true,
+                    'message' => 'Heritage collection deleted successfully.'
+                ]);
+            }
+
+            return redirect()->route('admin.heritagecollections.index')
                 ->with('success', 'Heritage collection deleted successfully.');
 
         } catch (\Exception $e) {
+            if ($request->ajax() || $request->wantsJson()) {
+                return response()->json([
+                    'success' => false,
+                    'message' => 'Failed to delete heritage collection: ' . $e->getMessage()
+                ], 500);
+            }
+
             return redirect()->back()
                 ->with('error', 'Failed to delete heritage collection: ' . $e->getMessage());
         }
