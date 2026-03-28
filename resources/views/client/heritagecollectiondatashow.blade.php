@@ -916,7 +916,7 @@
         <!-- Hero Image -->
         <div class="hero-image-container">
              <img src="{{ Str::startsWith($title_img, ['http://','https://']) ? $title_img : asset($title_img) }}" 
-             alt="{{ $collection->title }}">
+             alt="{{ $collection->title }}" loading="lazy">
         </div>
 
         <!-- Hero Content -->
@@ -962,7 +962,7 @@
                 <div class="image-card">
                     <div class="image-card-image">
                         <img src="{{ Str::startsWith($img, ['http://','https://']) ? $img : asset($img) }}" 
-                             alt="{{ $collection->title }} - Image {{ $index + 1 }}">
+                             alt="{{ $collection->title }} - Image {{ $index + 1 }}" loading="lazy">
                     </div>
                     <div class="image-card-caption">
                         Image {{ $index + 1 }} - {{ $collection->title }}
@@ -982,7 +982,7 @@
         <div class="image-card">
             <div class="image-card-image">
                 <img src="{{ Str::startsWith($img, ['http://','https://']) ? $img : asset($img) }}" 
-                     alt="{{ $collection->title }} - Image {{ $index + 1 }}">
+                     alt="{{ $collection->title }} - Image {{ $index + 1 }}" loading="lazy">
             </div>
             <div class="image-card-caption">
                 Image {{ $index + 1 }} - {{ $collection->title }}
@@ -1014,7 +1014,7 @@
         @if(count($images) > 0)
         <div class="overview-image">
             <img src="{{ Str::startsWith($images[count($images)-1], ['http://','https://']) ? $images[count($images)-1] : asset($images[count($images)-1]) }}" 
-                 alt="{{ $collection->title }} - Last Image">
+                 alt="{{ $collection->title }} - Last Image" loading="lazy">
         </div>
         @endif
     </div>
@@ -1030,7 +1030,7 @@
         @if($overview_img)
         <div class="overview-image">
             <img src="{{ Str::startsWith($overview_img, ['http://','https://']) ? $overview_img : asset($overview_img) }}" 
-                 alt="{{ $collection->title }}">
+                 alt="{{ $collection->title }}" loading="lazy">
         </div>
         @endif
     </div>

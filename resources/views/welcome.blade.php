@@ -1102,7 +1102,9 @@ const thumbHtml = imageSrc
 <div class="hero-image">
     <img id="hero-img" class="hero-image-content" 
          src="./images/TIC.jfif"
-         alt="Tamil heritage image">
+         alt="Tamil heritage image"
+         loading="eager"
+         fetchpriority="high">
 
     <video id="hero-vid" class="hero-image-content" style="display: none;" muted loop>
         <source src="image/Tamil TIC   promo 2023 final.mp4" type="video/mp4">

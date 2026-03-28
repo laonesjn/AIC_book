@@ -972,7 +972,7 @@
     </div>
     <div class="modal-body-public">
       <div>
-        <img id="publicModalCover" src="" alt="Book cover" class="modal-cover">
+        <img id="publicModalCover" src="" alt="Book cover" class="modal-cover" loading="lazy">
       </div>
       <div class="modal-details">
         <h3>Description</h3>
@@ -1015,7 +1015,7 @@
       <!-- Left: Book Details -->
       <div class="private-details-section">
         <h3>📖 Publication Details</h3>
-        <img id="privateModalCover" src="" alt="Book cover" class="private-cover">
+        <img id="privateModalCover" src="" alt="Book cover" class="private-cover" loading="lazy">
         
         <div class="private-info">
           <div class="detail-item">

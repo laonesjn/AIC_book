@@ -337,7 +337,7 @@ body { color: var(--text-dark); font-family: var(--font-sans); line-height: 1.6;
     <section class="hero-section">
         <div class="hero-image-container">
             @if($exhibition->cover_image)
-                <img src="{{ asset('public/'.$exhibition->cover_image) }}" alt="{{ $exhibition->title }}">
+                <img src="{{ asset('public/'.$exhibition->cover_image) }}" alt="{{ $exhibition->title }}" loading="lazy">
             @else
                 <div class="hero-img-empty">🏛️</div>
             @endif
@@ -407,7 +407,7 @@ body { color: var(--text-dark); font-family: var(--font-sans); line-height: 1.6;
             @endphp
             @if($overviewImg)
             <div class="overview-image">
-                <img src="{{ asset('public/'.$overviewImg) }}" alt="{{ $exhibition->title }}">
+                <img src="{{ asset('public/'.$overviewImg) }}" alt="{{ $exhibition->title }}" loading="lazy">
             </div>
             @endif
         </div>
@@ -423,7 +423,7 @@ body { color: var(--text-dark); font-family: var(--font-sans); line-height: 1.6;
                  onclick="openArtifact('{{ addslashes($artifact->name) }}','{{ $artifact->image_path ? asset($artifact->image_path) : '' }}','{{ addslashes($artifact->description ?? '') }}')">
                 <div class="artifact-card-image">
                     @if($artifact->image_path)
-                        <img src="{{ asset('public/'.$artifact->image_path) }}" alt="{{ $artifact->name }}">
+                        <img src="{{ asset('public/'.$artifact->image_path) }}" alt="{{ $artifact->name }}" loading="lazy">
                     @else
                         <div class="artifact-card-empty">🏺</div>
                     @endif
@@ -448,7 +448,7 @@ body { color: var(--text-dark); font-family: var(--font-sans); line-height: 1.6;
         <div class="gallery-scroll-track">
             @foreach($exhibition->galleryImages as $img)
             <div class="gallery-thumb-wrap" onclick="openLightbox('{{ asset($img->image_path) }}')">
-                <img class="gallery-thumb" src="{{ asset('public/'.$img->image_path) }}" alt="Gallery image">
+                <img class="gallery-thumb" src="{{ asset('public/'.$img->image_path) }}" alt="Gallery image" loading="lazy">
                 <div class="gallery-zoom">🔍</div>
             </div>
             @endforeach

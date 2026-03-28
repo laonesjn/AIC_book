@@ -724,7 +724,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    transition: opacity 0.4s ease, visibility 0.4s ease;
+    transition: opacity 0.2s ease, visibility 0.2s ease;
 }
 
 #page-loader.hidden {
@@ -793,7 +793,8 @@
                     <img src="{{ asset('./images/newlogo.jpeg') }}"
                          alt="Tamil Bookshop Archives Logo"
                          width="100" height="100"
-                         loading="eager">
+                         loading="eager"
+                         fetchpriority="high">
                     <div class="logo-text">
                         <span class="ta">THE TIC <br>ARCHIVES</span>
                     </div>
@@ -925,7 +926,7 @@
         <!-- Drawer header -->
         <div class="drawer-header">
             <a href="{{ route('client.home') }}" class="drawer-logo" aria-label="Home">
-                <img src="{{ asset('./images/newlogo.jpeg') }}" alt="" width="36" height="36">
+                <img src="{{ asset('./images/newlogo.jpeg') }}" alt="" width="36" height="36" loading="lazy">
                 <span>THE ARCHIVES</span>
             </a>
             <button class="mobile-nav-close" id="mobileNavClose" aria-label="Close navigation">
@@ -1007,7 +1008,8 @@
         <a href="https://www.paypal.com/donate?hosted_button_id=YOUR_BUTTON_ID" target="_blank">
             <img src="https://www.paypalobjects.com/webstatic/mktg/logo/pp_cc_mark_111x69.jpg"
                  alt="Donate with PayPal"
-                 style="width:20px;height:auto;margin-right:6px;vertical-align:middle;">
+                  style="width:20px;height:auto;margin-right:6px;vertical-align:middle;"
+                  loading="lazy">
             Donate
         </a>
     </div>
@@ -1181,7 +1183,7 @@
 
     <script> 
     
-    window.addEventListener('load', function () {
+    document.addEventListener('DOMContentLoaded', function () {
         const loader = document.getElementById('page-loader');
         if (!loader) return;
 
@@ -1189,7 +1191,7 @@
 
         setTimeout(() => {
             loader.remove(); // optional but keeps DOM clean
-        }, 500);
+        }, 200);
     });
 
     (function () {

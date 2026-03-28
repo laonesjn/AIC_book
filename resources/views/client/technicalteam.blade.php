@@ -246,7 +246,7 @@
                 >
                     <div class="member-photo-wrapper">
                         @if($member->photo_path)
-                            <img src="{{ asset($member->photo_path) }}" alt="{{ $member->full_name }}" class="member-photo">
+                            <img src="{{ asset($member->photo_path) }}" alt="{{ $member->full_name }}" class="member-photo" loading="lazy">
                         @else
                             <div class="member-initials">
                                 {{ collect(explode(' ', $member->full_name))->map(fn($n) => substr($n, 0, 1))->take(2)->join('') }}
@@ -324,7 +324,7 @@ document.getElementById('memberModal').addEventListener('show.bs.modal', functio
 
     const wrap = document.getElementById('modal-photo-wrap');
     if (d.photo) {
-        wrap.innerHTML = '<img src="' + d.photo + '" class="modal-member-photo" alt="' + d.name + '">';
+        wrap.innerHTML = '<img src="' + d.photo + '" class="modal-member-photo" alt="' + d.name + '" loading="lazy">';
     } else {
         wrap.innerHTML = '<div class="modal-initials">' + d.initials + '</div>';
     }

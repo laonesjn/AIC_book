@@ -315,7 +315,7 @@
       <article class="exhibition-card">
         <div style="position: relative;">
           <span class="exhibition-badge">NOW OPEN</span>
-          <img src="https://images.unsplash.com/photo-1580060839134-75a5edca2e99?w=600" alt="Exhibition" class="exhibition-image">
+          <img src="https://images.unsplash.com/photo-1580060839134-75a5edca2e99?w=600" alt="Exhibition" class="exhibition-image" loading="lazy">
         </div>
         <div class="exhibition-content">
           <h3 class="exhibition-title">Voices of Resilience: Tamil Women in History</h3>
@@ -332,7 +332,7 @@
       <article class="exhibition-card">
         <div style="position: relative;">
           <span class="exhibition-badge">NOW OPEN</span>
-          <img src="https://images.unsplash.com/photo-1513364776144-60967b0f800f?w=600" alt="Exhibition" class="exhibition-image">
+          <img src="https://images.unsplash.com/photo-1513364776144-60967b0f800f?w=600" alt="Exhibition" class="exhibition-image" loading="lazy">
         </div>
         <div class="exhibition-content">
           <h3 class="exhibition-title">Sacred Spaces: Temple Architecture of Jaffna</h3>
@@ -349,7 +349,7 @@
       <article class="exhibition-card">
         <div style="position: relative;">
           <span class="exhibition-badge">NOW OPEN</span>
-          <img src="https://images.unsplash.com/photo-1541367777708-7905fe3296c0?w=600" alt="Exhibition" class="exhibition-image">
+          <img src="https://images.unsplash.com/photo-1541367777708-7905fe3296c0?w=600" alt="Exhibition" class="exhibition-image" loading="lazy">
         </div>
         <div class="exhibition-content">
           <h3 class="exhibition-title">Written Heritage: Tamil Manuscripts & Publishing</h3>
@@ -366,7 +366,7 @@
       <article class="exhibition-card">
         <div style="position: relative;">
           <span class="exhibition-badge">NOW OPEN</span>
-          <img src="https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=600" alt="Exhibition" class="exhibition-image">
+          <img src="https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=600" alt="Exhibition" class="exhibition-image" loading="lazy">
         </div>
         <div class="exhibition-content">
           <h3 class="exhibition-title">Musical Traditions: Classical & Folk</h3>
@@ -485,42 +485,42 @@
 
   <div class="gallery-grid">
     <div class="gallery-item">
-      <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=500" alt="Gallery 1">
+      <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=500" alt="Gallery 1" loading="lazy">
       <div class="gallery-overlay">
         <span class="gallery-caption">Main Exhibition Hall</span>
       </div>
     </div>
 
     <div class="gallery-item">
-      <img src="https://images.unsplash.com/photo-1577705998148-6da4f3963bc8?w=400" alt="Gallery 2">
+      <img src="https://images.unsplash.com/photo-1577705998148-6da4f3963bc8?w=400" alt="Gallery 2" loading="lazy">
       <div class="gallery-overlay">
         <span class="gallery-caption">Artifact Display Area</span>
       </div>
     </div>
 
     <div class="gallery-item">
-      <img src="https://images.unsplash.com/photo-1580541631950-7282082b53ce?w=400" alt="Gallery 3">
+      <img src="https://images.unsplash.com/photo-1580541631950-7282082b53ce?w=400" alt="Gallery 3" loading="lazy">
       <div class="gallery-overlay">
         <span class="gallery-caption">Interactive Zone</span>
       </div>
     </div>
 
     <div class="gallery-item">
-      <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=500" alt="Gallery 4">
+      <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=500" alt="Gallery 4" loading="lazy">
       <div class="gallery-overlay">
         <span class="gallery-caption">Multimedia Room</span>
       </div>
     </div>
 
     <div class="gallery-item">
-      <img src="https://images.unsplash.com/photo-1582555172866-f73bb12a2ab3?w=400" alt="Gallery 5">
+      <img src="https://images.unsplash.com/photo-1582555172866-f73bb12a2ab3?w=400" alt="Gallery 5" loading="lazy">
       <div class="gallery-overlay">
         <span class="gallery-caption">Special Collections</span>
       </div>
     </div>
 
     <div class="gallery-item">
-      <img src="https://images.unsplash.com/photo-1582555172866-f73bb12a2ab3?w=400" alt="Gallery 6">
+      <img src="https://images.unsplash.com/photo-1582555172866-f73bb12a2ab3?w=400" alt="Gallery 6" loading="lazy">
       <div class="gallery-overlay">
         <span class="gallery-caption">Heritage Reading Room</span>
       </div>

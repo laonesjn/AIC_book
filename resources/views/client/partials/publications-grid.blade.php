@@ -185,7 +185,7 @@
             : asset('images/newlogo.jpeg');
     @endphp
 
-    <img src="{{ $imgSrc }}" 
+    <img src="{{ $imgSrc }}" loading="lazy" 
          alt="{{ $pub->title }}" 
          class="book-cover"
          onerror="this.src='{{ asset('images/newlogo.jpeg') }}'">

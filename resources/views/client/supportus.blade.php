@@ -435,7 +435,7 @@
 
             <!-- Volunteer -->
             <article class="support-card">
-                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQMW4hnhH0v6aWc4wwZ5eQWepJUDKaLAkz5uw&s" alt="Volunteer">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQMW4hnhH0v6aWc4wwZ5eQWepJUDKaLAkz5uw&s" alt="Volunteer" loading="lazy">
                 <h3>Volunteer</h3>
                 <p>Join our volunteer team and help at events, archives and education projects. Make a hands-on difference in your community.</p>
                 <a href="./volunteer-signup.html" class="cta-btn primary">Sign Up</a>
@@ -444,7 +444,7 @@
 
             <!-- Support Our Publications -->
             <article class="support-card">
-                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTUDLGHTMYYyY1MH7zDXE9EBYUJ_B2ezAhJwA&s alt="Support Our Publications">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTUDLGHTMYYyY1MH7zDXE9EBYUJ_B2ezAhJwA&s" alt="Support Our Publications" loading="lazy">
                 <h3>Support Our Publications</h3>
                 <p>Help us continue publishing valuable research and cultural resources for the community by purchasing our publications.</p>
                 <a href="./publication.html" class="cta-btn primary">Visit Shop</a>

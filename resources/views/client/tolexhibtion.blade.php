@@ -282,6 +282,7 @@
                                         : asset('public/'.$collection->title_image) }}"
                                     class="card-img-top"
                                     alt="{{ $collection->title }}"
+                                    loading="lazy"
                                 >
                             @else
                                 <div class="card-img-top d-flex align-items-center justify-content-center bg-light"

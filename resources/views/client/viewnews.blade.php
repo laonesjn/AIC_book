@@ -603,11 +603,11 @@
       <div class="images-stack">
         @if(!empty($news->title_image))
           <div class="image-item">
-            <img src="{{ asset($news->title_image) }}" alt="{{ $news->title }}">
+            <img src="{{ asset($news->title_image) }}" alt="{{ $news->title }}" loading="lazy">
           </div>
         @else
           <div class="image-item">
-            <img src="https://picsum.photos/350/280?random=1" alt="{{ $news->title }}">
+            <img src="https://picsum.photos/350/280?random=1" alt="{{ $news->title }}" loading="lazy">
           </div>
         @endif
 
@@ -617,7 +617,7 @@
           @endphp
           @foreach($images as $img)
             <div class="image-item">
-              <img src="{{ asset($img) }}" alt="Gallery image">
+              <img src="{{ asset($img) }}" alt="Gallery image" loading="lazy">
             </div>
           @endforeach
         @else
