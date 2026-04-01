@@ -25,6 +25,7 @@ use App\Http\Controllers\ComandTechController;
 use App\Http\Controllers\ArchiveController;
 use App\Models\Exhibition;
 use App\Models\ExhibitionCategory;
+use App\Http\Controllers\Admin\SupportingDocumentController;
 
 
 /*
@@ -452,6 +453,10 @@ Route::middleware(['check.permission:Publications'])->group(function () {
 
     //---------------Enquiry------------------//
     Route::middleware(['check.permission:Members'])->group(function () {
+
+    Route::get('documents', [SupportingDocumentController::class, 'index'])->name('documents.index');
+    Route::post('documents', [SupportingDocumentController::class, 'store'])->name('documents.store');
+    Route::delete('documents/{id}', [SupportingDocumentController::class, 'destroy'])->name('documents.destroy');
 
     Route::get('enquiries', [EnquiryController::class, 'index'])->name('enquiries');
     Route::get('enquiries/{id}', [EnquiryController::class, 'show'])->name('enquiries.show');

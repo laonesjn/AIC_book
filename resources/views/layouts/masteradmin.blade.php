@@ -540,6 +540,11 @@ button:focus-visible, a:focus-visible, input:focus-visible{
           <span class="badge-count">{{ $pendingArchivesCount }}</span>
         @endif
       </a>
+      
+      <a href="{{ route('admin.documents.index') }}" class="nav-item {{ request()->routeIs('admin.documents.*') ? 'active' : '' }}">
+        <i class="bi bi-file-earmark-pdf"></i>
+        <span>Manage PDFs</span>
+      </a>
       @endif
       <a href="{{ route('admin.enquiries') }}" class="nav-item {{ request()->routeIs('admin.enquiries') ? 'active' : '' }}">
         <i class="bi bi-envelope-fill"></i>

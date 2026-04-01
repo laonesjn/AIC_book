@@ -18,7 +18,8 @@ class MemberController extends Controller
         $a = rand(1, 9);
         $b = rand(1, 9);
         session()->put('math_captcha', $a + $b);
-        return view('client.joinus', compact('a', 'b'));
+        $documents = \App\Models\SupportingDocument::latest()->get();
+        return view('client.joinus', compact('a', 'b', 'documents'));
     }
 
     /**

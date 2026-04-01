@@ -542,29 +542,15 @@
               </div>
 
               <div class="document-cards-container">
+                  @foreach($documents as $doc)
                   <div class="document-card">
-                      <h3>Volunteer Handbook</h3>
-                      <p>Complete guide for IIC volunteers</p>
-                      <a href="#" class="download-link">Download PDF</a>
+                      <h3>{{ $doc->title }}</h3>
+                      @if($doc->description)
+                      <p>{{ $doc->description }}</p>
+                      @endif
+                      <a href="{{ asset($doc->file_path) }}" target="_blank" class="download-link">Download {{ strtoupper($doc->file_type ?? 'PDF') }}</a>
                   </div>
-
-                  <div class="document-card">
-                      <h3>Partnership Guidelines</h3>
-                      <p>Framework for organizational collaboration</p>
-                      <a href="#" class="download-link">Download PDF</a>
-                  </div>
-
-                  <div class="document-card">
-                      <h3>Annual Report</h3>
-                      <p>IIC's latest activities and achievements</p>
-                      <a href="#" class="download-link">Download PDF</a>
-                  </div>
-
-                  <div class="document-card">
-                      <h3>Project Proposals</h3>
-                      <p>Template for partnership proposals</p>
-                      <a href="#" class="download-link">Download DOC</a>
-                  </div>
+                  @endforeach
               </div>
     </div>
 
