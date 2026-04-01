@@ -55,7 +55,7 @@ class RequestController extends Controller
 public function toggleStatus($id)
 {
     $order = RequestAccess::findOrFail($id);
-    $order->status = $order->status === 'Pending' ? 'Complete' : 'Pending';
+    $order->status = strtolower($order->status) === 'pending' ? 'approved' : 'pending';
     $order->save();
 
     return response()->json(['success' => true, 'new_status' => $order->status]);

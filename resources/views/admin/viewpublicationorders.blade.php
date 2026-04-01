@@ -137,15 +137,17 @@ document.querySelectorAll('.view-btn').forEach(button => {
     document.getElementById('modalStatus').textContent = this.dataset.status;
     document.getElementById('modalWhy').textContent = this.dataset.why || 'N/A';
 
-    // Store order ID in button
-    document.getElementById('changeStatusBtn').dataset.id = this.dataset.id;
+    // Store order ID in button and hide if already Accepted
+    const btn = document.getElementById('changeStatusBtn');
+    btn.dataset.id = this.dataset.id;
+    btn.style.display = this.dataset.status.toLowerCase() === 'approved' ? 'none' : '';
   });
 });
 
 // AJAX status toggle
 document.getElementById('changeStatusBtn').addEventListener('click', function () {
     const orderId = this.dataset.id;
-    const url = '{{ route("admin.orders.toggle-status", ":id") }}'.replace(':id', orderId);
+    const url = '{{ url("admin/orders") }}/' + orderId + '/toggle-status';
 
     fetch(url, {
         method: 'POST',
@@ -154,11 +156,14 @@ document.getElementById('changeStatusBtn').addEventListener('click', function ()
             'Content-Type': 'application/json'
         },
     })
-    .then(res => res.json())
+    .then(res => {
+        if (!res.ok) { alert('Error: ' + res.status + ' ' + res.statusText); return null; }
+        return res.json();
+    })
     .then(data => {
-        if (data.success) {
+        if (data && data.success) {
             document.getElementById('modalStatus').textContent = data.new_status;
-            alert('Status updated to ' + data.new_status);
+            document.getElementById('changeStatusBtn').style.display = 'none';
             location.reload();
         }
     });
