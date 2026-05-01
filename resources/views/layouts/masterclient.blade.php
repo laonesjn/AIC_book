@@ -14,9 +14,7 @@
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&family=Noto+Sans+Tamil:wght@100..900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=Cinzel:wght@400;600&display=swap" rel="stylesheet" />
     
     <!-- Toastr CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
@@ -24,22 +22,24 @@
     <!-- intl-tel-input CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/intl-tel-input@21.0.8/build/css/intlTelInput.css">
 
-    @yield('styles')
 
     <style>
         /* ============================================================
            CSS VARIABLES
         ============================================================ */
         :root {
-            --primary-bg:    #f6e3c5;
-            --accent-dark:   #0f2540;
-            --accent-muted:  #bfa98b;
-            --card-bg:       #f6ece0;
-            --hover-bg:      #e6d3bd;
-            --border-radius: 12px;
-            --font-serif:    "Georgia", "Times New Roman", serif;
-            --header-h-mob:  64px;
-            --header-h-desk: 88px;
+            --parchment: #f4ede0;
+            --parchment-dark: #e8dcc8;
+            --ink: #1a1008;
+            --rust: #8b2d2d;
+            --rust-dark: #6e2222;
+            --gold: #c9973a;
+            --text-muted: #5a4030;
+            --nav-h: 64px;
+            --font-serif: 'EB Garamond', Georgia, serif;
+            --font-heading: 'Cinzel', serif;
+            --font-accent: 'Playfair Display', serif;
+            --container-max: 1200px;
         }
 
         /* ============================================================
@@ -54,23 +54,25 @@
 
         body {
             font-family: var(--font-serif);
-            background-color: var(--primary-bg);
-            color: var(--accent-dark);
-            line-height: 1.5;
+            background-color: var(--parchment);
+            color: var(--ink);
+            font-size: 17px;
+            line-height: 1.6;
             -webkit-font-smoothing: antialiased;
             user-select: none;
+            overflow-x: hidden;
         }
 
-        h1, h2, h3 {
-            font-family: var(--font-serif);
-            font-weight: 700;
-            line-height: 1.3;
+        h1, h2, h3, h4, h5, h6 {
+            font-family: var(--font-heading);
+            font-weight: 400;
+            color: var(--ink);
         }
 
-        h1 { font-size: clamp(1.5rem,  5vw, 2.5rem); }
-        h2 { font-size: clamp(1.25rem, 4vw, 2rem);   }
-        h3 { font-size: clamp(1.1rem,  3vw, 1.5rem); }
-        p  { font-size: clamp(0.875rem, 2.5vw, 1rem); }
+        h1 { font-size: clamp(1.8rem, 5vw, 2.5rem); }
+        h2 { font-size: clamp(1.5rem, 4vw, 2rem); }
+        h3 { font-size: clamp(1.2rem, 3vw, 1.5rem); }
+        p { font-size: clamp(0.95rem, 2.5vw, 1.1rem); }
 
         /* ============================================================
            ACCESSIBILITY
@@ -91,18 +93,21 @@
            HEADER
         ============================================================ */
         header {
-            background: #fff;
-            border-bottom: 1px solid rgba(15,37,64,0.1);
+            background: rgba(10, 6, 2, 0.98);
+            border-bottom: 1px solid #3a2a18;
             position: sticky;
             top: 0;
             z-index: 1000;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+            height: var(--nav-h);
+            display: flex;
+            align-items: center;
         }
 
         .header-container {
+            width: 100%;
             max-width: 1400px;
             margin: 0 auto;
-            padding: 0.55rem 1rem;        /* mobile */
+            padding: 0 28px;
         }
 
         .header-main {
@@ -110,205 +115,77 @@
             justify-content: space-between;
             align-items: center;
             width: 100%;
-            gap: 1rem;
         }
 
-        /* ============================================================
-           LOGO
-        ============================================================ */
-        .logo {
-            display: flex;
-            align-items: center;
-            gap: 0.6rem;
-            text-decoration: none;
-            color: var(--accent-dark);
-            flex-shrink: 0;
-        }
-
-        .logo img {
-            width:  48px;   /* mobile */
-            height: 48px;
-            background: #fff;
-            flex-shrink: 0;
-            display: block;
-        }
-
-        .logo-text { display: flex; flex-direction: column; }
-
-        .logo-text .ta {
-            font-family: var(--font-serif);
-            font-size: 1.05rem;   /* mobile */
-            font-weight: 700;
-            letter-spacing: -0.5px;
-            line-height: 1.15;
-        }
-
-        .logo-text .en {
-            font-size: 0.62rem;
-            color: var(--accent-muted);
+        .nav-brand {
+            font-family: 'Cinzel', serif;
+            font-size: 15px;
             font-weight: 600;
+            color: #e8dcc8;
+            letter-spacing: 0.1em;
+            text-decoration: none;
+            white-space: nowrap;
         }
-
-        .logo-text .meta {
-            font-size: 0.58rem;
-            color: var(--accent-muted);
-        }
-
-        /* ============================================================
-           DESKTOP NAV  — hidden below 992px
-        ============================================================ */
-        .main-nav { display: none; }
 
         .main-nav ul {
-            list-style: none;
-            padding: 0; margin: 0;
             display: flex;
-            gap: 0.15rem;
             align-items: center;
-            flex-wrap: nowrap;
+            gap: 24px;
+            list-style: none;
+            margin: 0;
+            padding: 0;
         }
 
-        .main-nav li { position: relative; }
-
-        .main-nav > ul > li > a,
-        .main-nav > ul > li > .nav-link-btn {
-            font-family: var(--font-serif);
-            font-weight: 700;
-            font-size: 0.88rem;
-            color: var(--accent-dark);
+        .main-nav a {
+            font-family: 'EB Garamond', serif;
+            font-size: 15px;
+            color: #d4c4a8;
             text-decoration: none;
-            padding: 0.45rem 0.85rem;
+            letter-spacing: 0.04em;
+            transition: color 0.2s;
+        }
+
+        .main-nav a:hover {
+            color: var(--gold);
+        }
+
+        .nav-right {
             display: flex;
             align-items: center;
-            gap: 0.3rem;
-            border-radius: 8px;
-            white-space: nowrap;
-            transition: background 0.2s, outline 0.2s;
-            cursor: pointer;
+            gap: 15px;
+        }
+
+        .nav-search-btn {
             background: none;
             border: none;
-            line-height: 1.4;
-        }
-
-        .main-nav > ul > li > a:hover,
-        .main-nav > ul > li > a:focus,
-        .main-nav > ul > li > .nav-link-btn:hover,
-        .main-nav > ul > li > .nav-link-btn:focus {
-            background: var(--hover-bg);
-            outline: 2px solid var(--accent-dark);
-            outline-offset: 2px;
-        }
-
-        .main-nav > ul > li > a.active {
-            background: var(--accent-dark);
-            color: #fff;
-        }
-
-        /* chevron icon for desktop dropdown triggers */
-        .main-nav .nav-chevron {
-            font-size: 0.65rem;
-            transition: transform 0.25s;
-            pointer-events: none;
-        }
-
-        .dropdown-parent:hover .nav-chevron,
-        .dropdown-parent:focus-within .nav-chevron {
-            transform: rotate(180deg);
-        }
-
-        /* ---- DESKTOP DROPDOWN ---- */
-        .dropdown-parent { position: relative; }
-
-        .dropdown {
-            position: absolute;
-            top: calc(100% + 6px);
-            left: 0;
-            background: #fff;
-            border-radius: 10px;
-            box-shadow: 0 6px 20px rgba(0,0,0,0.13);
-            min-width: 210px;
-            padding: 0.4rem 0;
-            z-index: 200;
-            border: 1px solid rgba(15,37,64,0.07);
-
-            /* Transition setup */
-            opacity: 0;
-            visibility: hidden;
-            transform: translateY(10px);
-            transition: all 0.2s ease, visibility 0s linear 0.2s, opacity 0.2s linear 0s;
-        }
-
-        .dropdown a {
-            font-family: var(--font-serif);
-            font-weight: 600;
-            font-size: 0.875rem;
-            color: var(--accent-dark);
-            text-decoration: none;
-            padding: 0.7rem 1.2rem;
-            display: block;
-            white-space: nowrap;
-            transition: background 0.15s;
-        }
-
-        .dropdown a:hover,
-        .dropdown a:focus {
-            background: var(--hover-bg);
-            outline: none;
-        }
-
-        .dropdown a.active {
-            background: var(--accent-dark);
-            color: #fff;
-        }
-
-        /* show on hover or keyboard focus-within */
-        .dropdown-parent:hover .dropdown,
-        .dropdown-parent:focus-within .dropdown {
-            opacity: 1;
-            visibility: visible;
-            transform: translateY(0);
-            transition-delay: 0s;
-        }
-
-        /* Bridge the gap between the trigger and the menu */
-        .dropdown::before {
-            content: "";
-            position: absolute;
-            top: -15px;
-            left: 0;
-            width: 100%;
-            height: 15px;
-            /* background: rgba(255,0,0,0.2); /* Uncomment to debug the bridge */
-        }
-
-        /* ---- DESKTOP NAV RIGHT ACTIONS (optional search/cta) ---- */
-        .nav-actions {
-            display: none;  /* shown at 992px+ */
-            align-items: center;
-            gap: 0.5rem;
-            flex-shrink: 0;
-        }
-
-        /* ============================================================
-           MOBILE HAMBURGER BUTTON
-        ============================================================ */
-        .mobile-menu-btn {
-            display: flex;          /* visible on mobile */
-            align-items: center;
-            justify-content: center;
-            background: none;
-            border: 2px solid var(--accent-dark);
-            border-radius: 8px;
-            padding: 0;
+            color: #d4c4a8;
             cursor: pointer;
-            min-width: 44px;
-            min-height: 44px;
-            width: 44px;
-            height: 44px;
-            color: var(--accent-dark);
-            font-size: 1.15rem;
-            transition: background 0.2s;
-            flex-shrink: 0;
+            padding: 4px;
+            display: flex;
+            align-items: center;
+            transition: color 0.2s;
+        }
+
+        .nav-search-btn:hover {
+            color: var(--gold);
+        }
+
+        .mobile-toggle {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 6px;
+        }
+
+        .mobile-toggle span {
+            display: block;
+            width: 22px;
+            height: 2px;
+            background: #d4c4a8;
+            transition: 0.3s;
         }
 
         .mobile-menu-btn:hover,
@@ -333,168 +210,62 @@
         .mobile-nav-drawer {
             position: fixed;
             top: 0; right: -100%;
-            width: min(310px, 88vw);
+            width: 300px;
             height: 100dvh;
-            background: #fff;
+            background: rgba(10, 6, 2, 0.98);
             z-index: 1300;
-            padding: 0;
-            overflow-y: auto;
-            transition: right 0.32s cubic-bezier(0.4,0,0.2,1);
+            transition: 0.3s;
             display: flex;
             flex-direction: column;
+            border-left: 1px solid #3a2a18;
         }
         .mobile-nav-drawer.open { right: 0; }
 
-        /* Drawer header */
         .drawer-header {
+            padding: 20px 24px;
             display: flex;
             align-items: center;
             justify-content: space-between;
-            padding: 1rem 1.25rem;
-            border-bottom: 1px solid rgba(15,37,64,0.08);
-            /* background: var(--primary-bg); */
-            flex-shrink: 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.07);
         }
 
         .drawer-logo {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
+            font-family: 'Cinzel', serif;
+            font-size: 15px;
+            color: #d4c4a8;
             text-decoration: none;
-            color: var(--accent-dark);
-        }
-
-        .drawer-logo img { width: 100px; height: 80px; }
-
-        .drawer-logo span {
-            font-family: var(--font-serif);
-            font-weight: 700;
-            /* font-size: 0.95rem; */
-              font-size: 1.3rem;
-            line-height: 1.2;
+            letter-spacing: 0.1em;
         }
 
         .mobile-nav-close {
             background: none;
-            border: 2px solid var(--accent-dark);
-            border-radius: 8px;
-            font-size: 1.1rem;
-            cursor: pointer;
-            color: var(--accent-dark);
-            min-width: 40px;
-            min-height: 40px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: background 0.2s;
-        }
-        .mobile-nav-close:hover { background: var(--hover-bg); }
-
-        /* Drawer body */
-        .drawer-body {
-            padding: 0.75rem 0;
-            flex: 1;
-            overflow-y: auto;
-        }
-
-        /* Single link item */
-        .drawer-link {
-            font-family: var(--font-serif);
-            font-weight: 600;
-            font-size: 1rem;
-            color: var(--accent-dark);
-            text-decoration: none;
-            padding: 0.8rem 1.5rem;
-            display: flex;
-            align-items: center;
-            min-height: 48px;
-            transition: background 0.15s;
-            border-left: 3px solid transparent;
-        }
-
-        .drawer-link:hover,
-        .drawer-link:focus {
-            background: var(--hover-bg);
-            border-left-color: var(--accent-muted);
-            outline: none;
-        }
-
-        .drawer-link.active {
-            background: var(--accent-dark);
-            color: #fff;
-            border-left-color: var(--accent-dark);
-        }
-
-        /* Accordion group */
-        .drawer-group {}
-
-        .drawer-group-toggle {
-            font-family: var(--font-serif);
-            font-weight: 700;
-            font-size: 1rem;
-            color: var(--accent-dark);
-            background: none;
             border: none;
-            border-left: 3px solid transparent;
-            padding: 0.8rem 1.5rem;
-            width: 100%;
-            text-align: left;
+            color: #d4c4a8;
+            font-size: 20px;
             cursor: pointer;
-            min-height: 48px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            transition: background 0.15s;
         }
 
-        .drawer-group-toggle:hover,
-        .drawer-group-toggle:focus {
-            background: var(--hover-bg);
-            border-left-color: var(--accent-muted);
-            outline: none;
+        .drawer-body ul {
+            list-style: none;
+            padding: 20px 0;
+            margin: 0;
         }
 
-        .drawer-group-chevron {
-            font-size: 0.7rem;
-            transition: transform 0.25s;
-        }
-
-        .drawer-group-toggle[aria-expanded="true"] .drawer-group-chevron {
-            transform: rotate(180deg);
-        }
-
-        .drawer-sub {
-            display: none;
-            background: rgba(15,37,64,0.03);
-            border-left: 3px solid var(--accent-muted);
-            margin-left: 1.5rem;
-            margin-right: 0.75rem;
-            border-radius: 0 0 6px 6px;
-        }
-
-        .drawer-sub.open { display: block; }
-
-        .drawer-sub a {
-            font-family: var(--font-serif);
-            font-weight: 500;
-            font-size: 0.9rem;
-            color: var(--accent-dark);
-            text-decoration: none;
-            padding: 0.65rem 1.1rem;
+        .drawer-body a {
             display: block;
-            min-height: 42px;
-            transition: background 0.15s;
+            padding: 13px 24px;
+            font-family: 'EB Garamond', serif;
+            font-size: 17px;
+            color: #d4c4a8;
+            text-decoration: none;
+            letter-spacing: 0.04em;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+            transition: 0.2s;
         }
 
-        .drawer-sub a:hover,
-        .drawer-sub a:focus {
-            background: var(--hover-bg);
-            outline: none;
-        }
-
-        .drawer-sub a.active {
-            color: var(--accent-dark);
-            font-weight: 700;
+        .drawer-body a:hover {
+            color: var(--gold);
+            background: rgba(255, 255, 255, 0.04);
         }
 
         .drawer-divider {
@@ -682,24 +453,11 @@
         /* ============================================================
            DESKTOP  992px+  — show desktop nav, hide mobile btn
         ============================================================ */
-        @media (min-width: 992px) {
-            .header-container  { padding: 0.75rem 1.5rem; }
-
-            .logo img          { width: 80px; height: 80px; }
-            .logo-text .ta     { font-size: 1.75rem; }
-
-            /* Show desktop nav */
-            .main-nav          { display: block; }
-
-            /* Hide mobile hamburger */
-            .mobile-menu-btn   { display: none; }
-
-            .nav-actions       { display: flex; }
-
-            main               { margin-top: 2.5rem; }
-
-            .footer-content    { grid-template-columns: 2fr 1fr 1fr 1fr; }
-        }
+            @media (max-width: 900px) {
+                .main-nav { display: none; }
+                .mobile-toggle { display: flex; }
+                .header-container { padding: 0 20px; }
+            }
 
         /* ============================================================
            LARGE DESKTOP  1200px+
@@ -770,6 +528,7 @@
 
 
     </style>
+    @yield('styles')
 </head>
 <body>
 
@@ -787,123 +546,32 @@
     <header role="banner">
         <div class="header-container">
             <div class="header-main">
+                <a href="{{ route('client.home') }}" class="nav-brand">THE TIC ARCHIVES</a>
 
-                <!-- ── LOGO ── -->
-                <a href="{{ route('client.home') }}" class="logo" aria-label="The Archives Home">
-                    <img src="{{ asset('./images/newlogo.jpeg') }}"
-                         alt="Tamil Bookshop Archives Logo"
-                         width="100" height="100"
-                         loading="eager"
-                         fetchpriority="high">
-                    <div class="logo-text">
-                        <span class="ta">THE TIC <br>ARCHIVES</span>
-                    </div>
-                </a>
-
-                <!-- ── DESKTOP NAVIGATION ── -->
-                <nav class="main-nav" role="navigation" aria-label="Main navigation">
+                <nav class="main-nav" role="navigation">
                     <ul>
-
-                        <!-- Home -->
-                        <li>
-                            <a href="{{ route('client.home') }}"
-                               class="{{ Route::is('client.home') ? 'active' : '' }}">
-                                Home
-                            </a>
-                        </li>
-
-                        <!-- About (with dropdown) -->
-                        <li class="dropdown-parent">
-                            <a href="{{ route('client.about') }}"
-                               class="{{ Route::is('client.about') ? 'active' : '' }}"
-                               aria-haspopup="true">
-                                About
-                                <i class="fas fa-chevron-down nav-chevron" aria-hidden="true"></i>
-                            </a>
-                            <div class="dropdown" role="menu">
-                                <a href="{{ route('client.about') }}"
-                                   class="{{ Route::is('client.about') ? 'active' : '' }}"
-                                   role="menuitem">About TIC archive</a>
-                                <a href="{{ route('client.archiving') }}"
-                                   class="{{ Route::is('client.archiving') ? 'active' : '' }}"
-                                   role="menuitem">Submit</a>
-                                <a href="{{ route('client.committee') }}"
-                                   class="{{ Route::is('client.committee') ? 'active' : '' }}"
-                                   role="menuitem">Committee</a>
-                                <a href="{{ route('client.technicalteam') }}"
-                                    class="{{ Route::is('client.technicalteam') ? 'active' : '' }}"
-                                    role="menuitem">Technical Team</a>
-                            </div>
-                        </li>
-
-                        <!-- Archive Centre -->
-                        <li>
-                            <a href="{{ route('client.archivecentrecollection') }}"
-                               class="{{ Route::is('client.archivecentrecollection') ? 'active' : '' }}">
-                                Archive Centre
-                            </a>
-                        </li>
-
-                        <!-- Exhibition -->
-                        <li>
-                            <a href="{{ route('client.heritage-centre') }} " class="{{ Route::is('client.heritage-centre') ? 'active' : '' }}">Exhibition</a>
-                        </li>
-
-                        <!-- Heritage Museum -->
-                        <li>
-                            <a href="{{ route('heritage.archive-centre') }}"class="{{ Route::is('heritage.archive-centre') ? 'active' : '' }}">Heritage Museum</a>
-                        </li>
-
-                        <!-- Join (with dropdown) -->
-                        <li class="dropdown-parent">
-                            <a href="#" aria-haspopup="true">
-                                Join
-                                <i class="fas fa-chevron-down nav-chevron" aria-hidden="true"></i>
-                            </a>
-                            <div class="dropdown" role="menu">
-                                <a href="{{ route('client.joinus') }}" role="menuitem">
-                                    Membership
-                                </a>
-                                <a href="https://www.paypal.com/donate?hosted_button_id=YOUR_BUTTON_ID" role="menuitem" target="_blank">
-                                    <img src="https://www.paypalobjects.com/webstatic/mktg/logo/pp_cc_mark_111x69.jpg"
-                                        alt="Donate with PayPal"
-                                        style="width:18px; height:auto; margin-right:6px; vertical-align:middle;">
-                                    Donate
-                                </a>
-                            </div>
-                        </li>
-
-                        <!-- Shop -->
-                        <li>
-                            <a href="{{ route('client.publications') }}"
-                               class="{{ Route::is('client.publications') ? 'active' : '' }}">
-                                Shop
-                            </a>
-                        </li>
-
-                        <!-- Contact -->
-                        <li>
-                            <a href="{{ route('client.contactus') }}"
-                               class="{{ Route::is('client.contactus') ? 'active' : '' }}">
-                                Contact
-                            </a>
-                        </li>
-
+                        <li><a href="{{ route('client.home') }}">Home</a></li>
+                        <li><a href="{{ route('client.archivecentrecollection') }}">Collections</a></li>
+                        <li><a href="{{ route('client.heritage-centre') }}">Exhibition</a></li>
+                        <li><a href="{{ route('heritage.archive-centre') }}">Museum</a></li>
+                        <li><a href="{{ route('client.about') }}">About</a></li>
+                        <li><a href="{{ route('client.contactus') }}">Contact</a></li>
                     </ul>
                 </nav>
-                <!-- /desktop nav -->
 
-                <!-- ── MOBILE HAMBURGER BUTTON ── -->
-                <button class="mobile-menu-btn"
-                        id="mobileMenuBtn"
-                        aria-label="Open navigation menu"
-                        aria-expanded="false"
-                        aria-controls="mobileNavDrawer">
-                    <i class="fas fa-bars" aria-hidden="true"></i>
-                </button>
-
-            </div><!-- /header-main -->
-        </div><!-- /header-container -->
+                <div class="nav-right">
+                    <button class="nav-search-btn" aria-label="Search" onclick="toggleSearchOverlay()">
+                        <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                            <circle cx="11" cy="11" r="8" />
+                            <line x1="21" y1="21" x2="16.65" y2="16.65" />
+                        </svg>
+                    </button>
+                    <button class="mobile-toggle" id="mobile-toggle" aria-label="Menu">
+                        <span></span><span></span><span></span>
+                    </button>
+                </div>
+            </div>
+        </div>
     </header>
 
     <!-- ================================================================
@@ -917,136 +585,36 @@
     <!-- ================================================================
          MOBILE NAV DRAWER
     ================================================================ -->
-    <nav class="mobile-nav-drawer"
-         id="mobileNavDrawer"
-         role="navigation"
-         aria-label="Mobile navigation"
-         aria-hidden="true">
-
-        <!-- Drawer header -->
+    <nav class="mobile-nav-drawer" id="mobileNavDrawer" role="navigation" aria-hidden="true">
         <div class="drawer-header">
-            <a href="{{ route('client.home') }}" class="drawer-logo" aria-label="Home">
-                <img src="{{ asset('./images/newlogo.jpeg') }}" alt="" width="36" height="36" loading="lazy">
-                <span>THE ARCHIVES</span>
-            </a>
-            <button class="mobile-nav-close" id="mobileNavClose" aria-label="Close navigation">
-                <i class="fas fa-times" aria-hidden="true"></i>
+            <a href="{{ route('client.home') }}" class="drawer-logo">THE TIC ARCHIVES</a>
+            <button class="mobile-nav-close" id="mobileNavClose" aria-label="Close menu">
+                <i class="fas fa-times"></i>
             </button>
         </div>
-
-        <!-- Drawer body -->
         <div class="drawer-body">
-
-            <!-- Home -->
-            <a href="{{ route('client.home') }}"
-               class="drawer-link {{ Route::is('client.home') ? 'active' : '' }}">
-                <i class="fas fa-home" style="width:18px;margin-right:10px;opacity:0.6" aria-hidden="true"></i>
-                Home
-            </a>
-
-            <!-- About accordion -->
-            <div class="drawer-group">
-                <button class="drawer-group-toggle"
-                        aria-expanded="false"
-                        aria-controls="drawerAbout">
-                    <span>
-                        <i class="fas fa-info-circle" style="width:18px;margin-right:10px;opacity:0.6" aria-hidden="true"></i>
-                        About
-                    </span>
-                    <i class="fas fa-chevron-down drawer-group-chevron" aria-hidden="true"></i>
-                </button>
-                <div class="drawer-sub" id="drawerAbout">
-                    <a href="{{ route('client.about') }}"
-                       class="{{ Route::is('client.about') ? 'active' : '' }}">About TIC archive</a>
-                    <a href="{{ route('client.archiving') }}"
-                       class="{{ Route::is('client.archiving') ? 'active' : '' }}">Submit</a>
-                    <a href="{{ route('client.committee') }}"
-                       class="{{ Route::is('client.committee') ? 'active' : '' }}">Committee</a>
-                    <a href="{{ route('client.technicalteam') }}"
-                       class="{{ Route::is('client.technicalteam') ? 'active' : '' }}">Technical Team</a>
-                </div>
-            </div>
-
-            <div class="drawer-divider"></div>
-
-            <!-- Archive Centre -->
-            <a href="{{ route('client.archivecentrecollection') }}"
-               class="drawer-link {{ Route::is('client.archivecentrecollection') ? 'active' : '' }}">
-                <i class="fas fa-archive" style="width:18px;margin-right:10px;opacity:0.6" aria-hidden="true"></i>
-                Archive Centre
-            </a>
-
-            <!-- Exhibition -->
-            <a href="{{ route('client.heritage-centre') }}"   class="drawer-link {{ Route::is('client.heritage-centre') ? 'active' : '' }}">
-                <i class="fas fa-landmark" style="width:18px;margin-right:10px;opacity:0.6" aria-hidden="true"></i>
-                Exhibition
-            </a>
-
-            <!-- Heritage Museum -->
-            <a href="{{ route('heritage.archive-centre') }}" class="drawer-link">
-                <i class="fas fa-building-columns" style="width:18px;margin-right:10px;opacity:0.6" aria-hidden="true"></i>
-                Heritage Museum
-            </a>
-
-            <div class="drawer-divider"></div>
-
-           <!-- Join accordion -->
-<div class="drawer-group">
-    <button class="drawer-group-toggle"
-            aria-expanded="false"
-            aria-controls="drawerJoin">
-        <span>
-            <i class="fas fa-users" style="width:18px;margin-right:10px;opacity:0.6" aria-hidden="true"></i>
-            Join
-        </span>
-        <i class="fas fa-chevron-down drawer-group-chevron" aria-hidden="true"></i>
-    </button>
-    <div class="drawer-sub" id="drawerJoin">
-        <a href="{{ route('client.joinus') }}">Membership</a>
-
-        <!-- Donate link with PayPal icon -->
-        <a href="https://www.paypal.com/donate?hosted_button_id=YOUR_BUTTON_ID" target="_blank">
-            <img src="https://www.paypalobjects.com/webstatic/mktg/logo/pp_cc_mark_111x69.jpg"
-                 alt="Donate with PayPal"
-                  style="width:20px;height:auto;margin-right:6px;vertical-align:middle;"
-                  loading="lazy">
-            Donate
-        </a>
-    </div>
-</div>
-
-            <div class="drawer-divider"></div>
-
-            <!-- Shop -->
-            <a href="{{ route('client.publications') }}"
-               class="drawer-link {{ Route::is('client.publications') ? 'active' : '' }}">
-                <i class="fas fa-shop" style="width:18px;margin-right:10px;opacity:0.6" aria-hidden="true"></i>
-                Shop
-            </a>
-
-            <!-- Contact -->
-            <a href="{{ route('client.contactus') }}"
-               class="drawer-link {{ Route::is('client.contactus') ? 'active' : '' }}">
-                <i class="fas fa-envelope" style="width:18px;margin-right:10px;opacity:0.6" aria-hidden="true"></i>
-                Contact
-            </a>
-
-        </div><!-- /drawer-body -->
-
-        <!-- Drawer footer CTA -->
-        <div class="drawer-footer">
-            <a href="{{ route('client.contactus') }}">Get in Touch &rarr;</a>
+            <ul>
+                <li><a href="{{ route('client.home') }}">Home</a></li>
+                <li><a href="{{ route('client.archivecentrecollection') }}">Collections</a></li>
+                <li><a href="{{ route('client.heritage-centre') }}">Exhibition</a></li>
+                <li><a href="{{ route('heritage.archive-centre') }}">Museum</a></li>
+                <li><a href="{{ route('client.about') }}">About</a></li>
+                <li><a href="{{ route('client.contactus') }}">Contact</a></li>
+            </ul>
         </div>
-
-    </nav><!-- /mobile-nav-drawer -->
+    </nav>
 
     <!-- ================================================================
          MAIN CONTENT
     ================================================================ -->
     <main id="main-content" role="main">
-        <div class="container">
+        @hasSection('no-container')
             @yield('content')
-        </div>
+        @else
+            <div class="container" style="padding-top: 2rem; padding-bottom: 2rem;">
+                @yield('content')
+            </div>
+        @endif
     </main>
 
     <!-- ================================================================
@@ -1164,21 +732,21 @@
         };
 
         // Laravel Session Messages to Toastr
-        if(session('success'))
+        @if(session('success'))
             toastr.success("{{ session('success') }}");
-        endif
+        @endif
 
-        if(session('error'))
+        @if(session('error'))
             toastr.error("{{ session('error') }}");
-        endif
+        @endif
 
-        if(session('warning'))
+        @if(session('warning'))
             toastr.warning("{{ session('warning') }}");
-        endif
+        @endif
 
-        if(session('info'))
+        @if(session('info'))
             toastr.info("{{ session('info') }}");
-        endif
+        @endif
     </script>
 
     <script> 
@@ -1198,7 +766,7 @@
         'use strict';
 
         /* ── Elements ── */
-        const hamburger = document.getElementById('mobileMenuBtn');
+        const hamburger = document.getElementById('mobile-toggle');
         const overlay   = document.getElementById('mobileNavOverlay');
         const drawer    = document.getElementById('mobileNavDrawer');
         const closeBtn  = document.getElementById('mobileNavClose');
@@ -1213,6 +781,11 @@
             document.body.style.overflow = 'hidden';
             // Move focus into drawer for accessibility
             closeBtn.focus();
+        }
+
+        function toggleSearchOverlay() {
+            // No search overlay logic found, redirecting to results page
+            window.location.href = "{{ route('search.results') }}";
         }
 
         function closeDrawer() {

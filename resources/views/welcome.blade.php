@@ -1,1176 +1,431 @@
 @extends('layouts.masterclient')
 
-@section('title', 'Tamil Bookshop Archives - Preserving Tamil Heritage Since 1983')
+@section('title', 'The TIC Archives - Preserving Tamil Heritage')
 
-@section('meta_description', 'Explore the Tamil Bookshop Archives featuring rare books, historical documents, cultural exhibitions, and Tamil heritage collections from Sri Lanka and the Tamil diaspora.')
+@section('meta_description', 'Explore The TIC Archives featuring rare books, historical documents, cultural exhibitions, and Tamil heritage collections.')
 
+@section('no-container', true)
+
+@section('styles')
 <style>
-    /* Update the font family in your CSS variables */
-:root {
-    --primary-bg: #f6e3c5;
-    --accent-dark: #0f2540;
-    --accent-muted: #bfa98b;
-    --card-bg: #f6ece0;
-    --hover-bg: #e6d3bd;
-    --border-radius: 12px;
-    /* Added the requested Font Stack here */
-    --font-serif: "Georgia", "Times New Roman", serif;
-}
+    /* ─────────────── HERO ─────────────── */
+    .hero {
+      position: relative;
+      min-height: 480px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 60px 24px 80px;
+      overflow: hidden;
+      margin-top: calc(-1 * var(--nav-h)); /* Pull up to go under nav if needed, but nav is sticky */
+    }
 
-body {
-    /* Apply the serif font to the whole body */
-    font-family: "Georgia", "Times New Roman", serif;
-    background-color: var(--primary-bg);
-    color: var(--accent-dark);
-    line-height: 1.2;
-    -webkit-font-smoothing: antialiased;
-    user-select: none; 
-}
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      background: url('{{ asset("images/topimg.jpeg") }}') center/cover no-repeat;
+      filter: sepia(0.6) brightness(0.4) contrast(1.1);
+      z-index: 0;
+    }
 
+    .hero-bg::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to bottom, rgba(10, 6, 2, 0.4) 0%, rgba(10, 6, 2, 0.2) 40%, rgba(10, 6, 2, 0.65) 100%);
+    }
 
-/* Optional: Headings styling */
-h1, h2, h3, h4, h5, h6 {
-    font-family: "Georgia", "Times New Roman", serif;
-}
+    /* Removed CSS torn-paper edge in favor of tornbkrund.png */
 
-/* Optional: Paragraph, span, li */
-p, span, li {
-    font-family: "Georgia", "Times New Roman", serif;
-}
+    .hero-content {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      max-width: 900px;
+    }
 
+    .hero-logo-box {
+      width: 140px;
+      height: 140px;
+      margin: 0 auto 32px;
+      /* background: rgba(255, 255, 255, 0.95); */
+      border-radius: 50%;
+      /* border: 4px solid rgba(255, 255, 255, 0.5); */
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+    }
 
+    .hero-logo-box img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      transform: scale(1.35) translateX(-3px); /* Scale to fit, nudge left to center */
+    }
 
+    .hero-quote {
+      font-family: var(--font-accent);
+      font-size: clamp(24px, 5vw, 42px);
+      font-weight: 600;
+      color: #fff;
+      line-height: 1.2;
+      margin-bottom: 20px;
+      text-shadow: 0 3px 15px rgba(0, 0, 0, 0.7);
+    }
 
-/* Make headings stand out with the serif style */
-h1, h2, h3 {
-    font-family: var(--font-serif);
-    font-weight: 700;
-}
+    .hero-sub {
+      font-family: var(--font-serif);
+      font-size: clamp(15px, 3vw, 18px);
+      color: #e0d4be;
+      max-width: 550px;
+      line-height: 1.7;
+      text-shadow: 0 2px 8px rgba(0, 0, 0, 0.6);
+    }
 
-        /* Skip to content link for accessibility */
-        .skip-link {
-            position: absolute;
-            top: -40px;
-            left: 0;
-            background: var(--accent-dark);
-            color: white;
-            padding: 8px 16px;
-            text-decoration: none;
-            z-index: 9999;
-            border-radius: 0 0 4px 0;
-        }
+    /* ─────────────── FEATURED ─────────────── */
+    .featured-section {
+      background: transparent;
+      padding: 40px 24px 70px;
+    }
 
-        .skip-link:focus {
-            top: 0;
-            outline: 3px solid #ffd700;
-        }
+    .section-head {
+      font-family: var(--font-heading);
+      font-size: clamp(20px, 4vw, 24px);
+      text-align: center;
+      letter-spacing: 0.08em;
+      margin-bottom: 40px;
+    }
 
+    .cards-wrapper {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+      max-width: 1000px;
+      margin: 0 auto;
+    }
 
+    .archive-card {
+      border-radius: 6px;
+      overflow: hidden;
+      background: #1a1008;
+      display: flex;
+      flex-direction: column;
+      box-shadow: 0 6px 24px rgba(0, 0, 0, 0.3);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      text-decoration: none;
+    }
 
-        /* Desktop Navigation - Show at 768px and above */
-        @media (min-width: 768px) {
-            .main-nav {
-                display: block;
-            }
+    .archive-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 12px 40px rgba(0, 0, 0, 0.45);
+    }
 
-            .mobile-menu-btn {
-                display: none;
-            }
+    .card-media {
+      position: relative;
+      height: 220px;
+      overflow: hidden;
+    }
 
-           
-        }
+    .card-media img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.6s ease;
+    }
 
-      
+    .archive-card:hover .card-media img {
+      transform: scale(1.08);
+    }
 
-    /* Hero Section */
-    .hero-section {
-        display: grid;
+    .card-overlay {
+      position: absolute;
+      inset: 0;
+      background: rgba(10, 6, 2, 0.65);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 20px;
+      color: #fff;
+    }
+
+    .overlay-title {
+      font-family: var(--font-heading);
+      font-size: 20px;
+      font-weight: 600;
+      line-height: 1.1;
+      margin-bottom: 8px;
+    }
+
+    .overlay-sub {
+      font-family: var(--font-serif);
+      font-size: 14px;
+      font-style: italic;
+      color: #d4c4a8;
+    }
+
+    .card-content {
+      padding: 16px 20px 24px;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .card-headline {
+      font-family: var(--font-accent);
+      font-size: 18px;
+      font-weight: 600;
+      color: #e8dcc8;
+      margin-bottom: 8px;
+    }
+
+    .card-summary {
+      font-family: var(--font-serif);
+      font-size: 14px;
+      color: #b0a090;
+      line-height: 1.5;
+      margin-bottom: 15px;
+    }
+
+    .card-btn {
+      display: inline-block;
+      margin-top: auto;
+      padding: 10px 22px;
+      background: var(--rust);
+      color: #fff;
+      font-family: var(--font-serif);
+      font-size: 14px;
+      border: none;
+      border-radius: 4px;
+      text-align: center;
+      transition: background 0.2s;
+    }
+
+    .archive-card:hover .card-btn {
+      background: var(--rust-dark);
+    }
+
+    /* ─────────────── ABOUT ─────────────── */
+    .about-section {
+      background: transparent;
+      padding: 40px 24px 80px;
+      text-align: center;
+      border-top: none;
+    }
+
+    .main-parchment-wrapper {
+      background: url('{{ asset("images/tornbkrund.png") }}') center/100% 100% no-repeat;
+      padding: 60px 0;
+      margin-top: -40px;
+      position: relative;
+      z-index: 5;
+    }
+
+    footer {
+      margin-top: 0 !important;
+    }
+
+    /* Standard inner container for full-width sections */
+    .section-container {
+      max-width: var(--container-max);
+      margin: 0 auto;
+    }
+
+    .about-paragraph {
+      font-family: var(--font-serif);
+      font-size: clamp(16px, 3vw, 18px);
+      max-width: 650px;
+      margin: 0 auto 40px;
+      line-height: 1.8;
+    }
+
+    .stats-container {
+      display: flex;
+      justify-content: center;
+      max-width: 800px;
+      margin: 0 auto 30px;
+      border: 1px solid transparent;
+    }
+
+    .stat-box {
+      flex: 1;
+      padding: 10px 20px;
+      border-right: 1px solid #c0b09a;
+    }
+
+    .stat-box:last-child {
+      border-right: none;
+    }
+
+    .stat-val {
+      font-family: var(--font-accent);
+      font-size: clamp(26px, 5vw, 36px);
+      font-weight: 700;
+      display: block;
+      line-height: 1;
+    }
+
+    .stat-tag {
+      font-size: 12px;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-top: 8px;
+      display: block;
+    }
+
+    .final-tagline {
+      font-family: var(--font-serif);
+      font-size: 16px;
+      font-style: italic;
+      color: var(--text-muted);
+      margin-bottom: 25px;
+    }
+
+    .read-more-link {
+      display: inline-block;
+      font-family: var(--font-heading);
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--rust);
+      text-decoration: none;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      transition: color 0.2s, transform 0.2s;
+    }
+
+    .read-more-link:hover {
+      color: var(--ink);
+      transform: translateX(5px);
+    }
+
+    /* ─────────────── RESPONSIVE ─────────────── */
+    @media (max-width: 768px) {
+      .cards-wrapper {
         grid-template-columns: 1fr;
-        gap: 1.5rem;
-        margin: 1.5rem 0 2.5rem;
-        align-items: center;
-    }
-
-
-    .hero-content h1 {
-        font-size: 1.2rem;
-        font-weight: 200;
-        line-height: 1.25;
-        color: var(--accent-dark);
-        margin-bottom: 0.8rem;
-    }
-
-    .nowrap {
-        white-space: nowrap;
-    }
-
-    .hero-content p {
-        font-size: 0.50rem;
-        color: #243447;
-        margin-bottom: 1.25rem;
-        line-height: 1.6;
-    }
-
-    /* Search Box */
-    .search-box {
-        display: flex;
-        align-items: center;
-        background: white;
-        border: 2px solid rgba(15, 37, 64, 0.2);
-        border-radius: 12px;
-        max-width: 100%;
-        margin-top: 1rem;
-        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
-        overflow: hidden;
-    }
-
-    .search-box input {
-        flex: 1;
-        border: none;
-        outline: none;
-        font-size: 0.95rem;
-        padding: 0.875rem 1rem;
-        background: transparent;
-        min-width: 0;
-    }
-
-    .search-box button {
-        background: transparent;
-        color: #000;
-        border: none;
-        padding: 0.875rem 1rem;
-        cursor: pointer;
-        transition: all 0.3s ease;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        flex-shrink: 0;
-    }
-
-    .search-box button:hover,
-    .search-box button:focus {
-        background: rgba(15, 37, 64, 0.05);
-        outline: 2px solid var(--accent-dark);
-        outline-offset: -2px;
-    }
-
-    .search-box svg {
-        width: 20px;
-        height: 20px;
-    }
-/* Hero Image */
-.hero-image {
-    display: flex;
-    align-items: flex-end; 
-    justify-content: flex-end;
-    width: 100%;
-    height: 450px; 
-    overflow: visible; 
-}
-
-
-
-.hero-image-content {
-    width: 110%;
-    height: auto;
-    object-fit: cover;
-}
-.hero-video-wrap {
-  width: 100%;
-  height: 100%;
-  overflow: hidden;     
-  background: transparent;
-}
-
-#hero-vid {
-  width: 100%;
-  height: 100%;
-  border: none;
-  outline: none;
-  box-shadow: none;
-  background: transparent;
-  display: block;
-}
-
-
-    /* Section Titles */
-    .section-title {
-        font-size: 1.5rem;
-        font-weight: 700;
-        margin: 2.5rem 0 1.25rem;
-        color: var(--accent-dark);
-    }
-
-    /* Featured Collections Grid */
-    .featured-grid {
+        max-width: 400px;
+      }
+      .stats-container {
         display: grid;
-        grid-template-columns: 1fr;
-        gap: 1.25rem;
-        margin-bottom: 2.5rem;
+        grid-template-columns: 1fr 1fr;
+        border: 1px solid #c0b09a;
+      }
+      .stat-box {
+        border-bottom: 1px solid #c0b09a;
+      }
+      .stat-box:nth-child(even) {
+        border-right: none;
+      }
+      .stat-box:nth-child(n+3) {
+        border-bottom: none;
+      }
     }
-
-    .featured-card {
-        background: linear-gradient(180deg, rgba(255, 255, 255, 0.6), rgba(255, 255, 255, 0.4));
-        /* border-radius: 12px; */
-        border: 1px solid rgba(15, 37, 64, 0.08);
-        transition: all 0.3s ease;
-        cursor: pointer;
-        overflow: hidden;
-    }
-
-    .featured-card:hover {
-        background: linear-gradient(180deg, rgba(255, 255, 255, 0.75), rgba(255, 255, 255, 0.55));
-        transform: translateY(-4px);
-        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
-    }
-
-    .featured-card:focus-within {
-        outline: 3px solid var(--accent-dark);
-        outline-offset: 2px;
-    }
-
-   .card-thumb {
-  width: 100%;
-  overflow: hidden;
-  background: transparent;
-}
-
-.card-thumb img {
-  width: 100%;
-  height: auto;         
-  display: block;        
-}
-
-
-
-    .featured-card-content {
-        padding: 2rem;
-    }
-
-    .featured-card h3 {
-        font-size: 1.125rem;
-        /* text-align: center; */
-        font-weight: 700;
-        margin-bottom: 0.875rem;
-        color: var(--accent-dark);
-    }
-
-    .explore-btn {
-        display: inline-block;
-        padding: 0.5rem 0.5rem;
-        border: 2px solid var(--accent-dark);
-        background: transparent;
-        color: var(--accent-dark);
-        font-weight: 700;
-        font-size: 0.9rem;
-        text-decoration: none;
-        border-radius: 8px;
-        transition: all 0.3s ease;
-    }
-
-    .explore-btn:hover,
-    .explore-btn:focus {
-        background: var(--accent-dark);
-        color: white;
-        transform: translateX(4px);
-        outline: 2px solid #ffd700;
-        outline-offset: 2px;
-    }
-
-    /* New Items Grid */
-    .new-items-grid {
-        display: grid;
-        grid-template-columns: 1fr;
-        gap: 1.25rem;
-        margin-bottom: 2.5rem;
-    }
-
-    .new-item-card {
-        background: rgba(255, 255, 255, 0.4);
-        /* border-radius: 12px; */
-        transition: all 0.3s ease;
-        cursor: pointer;
-        overflow: hidden;
-    }
-
-    .new-item-card:hover {
-        transform: scale(1.02);
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-    }
-
-    .new-item-image {
-        width: 100%;
-        height: 160px;
-        overflow: hidden;
-        background: linear-gradient(135deg, #d4c5b5 0%, #bfa98b 100%);
-        display: flex;
-        align-items: center;
-        justify-content: center;
-    }
-
-    .new-item-image img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-        object-position: center;
-    }
-
-    .new-item-meta {
-        padding: 1rem;
-        text-align: center;
-    }
-
-    .new-item-meta strong {
-        display: block;
-        font-size: 1rem;
-        color: var(--accent-dark);
-        margin-bottom: 0.75rem;
-    }
-
-    /* Call to Action */
-    .cta-section {
-        background: var(--accent-dark);
-        color: white;
-        padding: 1.75rem;
-        /* border-radius: 12px; */
-        display: flex;
-        flex-direction: column;
-        gap: 1.25rem;
-        margin: 2.5rem 0;
-    }
-
-    .cta-content {
-        flex: 1;
-    }
-
-    .cta-content h2 {
-        font-size: 1.375rem;
-        font-weight: 700;
-        margin-bottom: 0.625rem;
-        line-height: 1.3;
-    }
-
-    .cta-content p {
-        margin: 0;
-        font-size: 0.95rem;
-        line-height: 1.6;
-        opacity: 0.95;
-    }
-
-    .cta-btn {
-        background: var(--card-bg);
-        color: var(--accent-dark);
-        padding: 0.75rem 1.25rem;
-        border-radius: 8px;
-        font-weight: 700;
-        font-size: 0.95rem;
-        text-decoration: none;
-        display: inline-block;
-        transition: all 0.3s ease;
-        align-self: flex-start;
-        text-align: center;
-    }
-
-    .cta-btn:hover,
-    .cta-btn:focus {
-        background: white;
-        transform: scale(1.05);
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-        outline: 2px solid #ffd700;
-        outline-offset: 2px;
-    }
-
-    /* Responsive Design - Mobile First */
-    
-    /* Small devices (landscape phones, 576px and up) */
-    @media (min-width: 576px) {
-        .hero-content h1 {
-            font-size: 1.8rem;
-        }
-
-        .hero-content p {
-            font-size: 1rem;
-        }
-
-        .hero-image {
-            height: 250px;
-        }
-
-        .search-box {
-            max-width: 500px;
-        }
-
-        .search-box input {
-            font-size: 1rem;
-            padding: 1rem;
-        }
-
-        .search-box button {
-            padding: 1rem 1.125rem;
-        }
-
-        .section-title {
-            font-size: 1.75rem;
-        }
-
-        .featured-grid {
-            grid-template-columns: repeat(2, 1fr);
-            gap: 1.5rem;
-        }
-
-        .new-items-grid {
-            grid-template-columns: repeat(2, 1fr);
-            gap: 1.5rem;
-        }
-
-        .card-thumb {
-            height: 200px;
-        }
-
-        .new-item-image {
-            height: 180px;
-        }
-
-        .featured-card h3 {
-            font-size: 1.2rem;
-        }
-
-        .cta-section {
-            padding: 2rem;
-        }
-
-        .cta-content p {
-            font-size: 1rem;
-        }
-    }
-
-    /* Medium devices (tablets, 768px and up) */
-    @media (min-width: 768px) {
-        .hero-section {
-            grid-template-columns: 1.25fr 0.75fr;
-            gap: 2.5rem;
-            margin: 2rem 0 3rem;
-        }
-
-        .hero-content h1 {
-            font-size: 1.6rem;
-        }
-
-        .hero-content p {
-            font-size: 1.125rem;
-            margin-bottom: 1.5rem;
-        }
-
-        .hero-image {
-            height: 100%;
-            min-height: 300px;
-        }
-
-        .search-box {
-            max-width: 550px;
-            margin-top: 1.5rem;
-        }
-
-        .section-title {
-            font-size: 2rem;
-            margin: 3rem 0 1.5rem;
-        }
-
-        .featured-grid {
-            gap: 1.75rem;
-        }
-
-        .new-items-grid {
-            gap: 1.75rem;
-        }
-
-        .card-thumb {
-            height: 220px;
-        }
-
-        .new-item-image {
-            height: 200px;
-        }
-
-        .featured-card h3 {
-            font-size: 1.25rem;
-        }
-
-        .new-item-meta strong {
-            font-size: 1.1rem;
-        }
-
-        .explore-btn {
-            font-size: 0.95rem;
-            padding: 0.6rem 1.125rem;
-        }
-
-        .cta-section {
-            gap: 1.5rem;
-        }
-    }
-
-    @media (min-width: 992px) {
-        .hero-section {
-            grid-template-columns: 1.2fr 0.8fr;
-            gap: 3rem;
-        }
-
-        .hero-content h1 {
-            font-size: 1.8rem;
-        }
-
-        .hero-image {
-            min-height: 350px;
-        }
-
-        .search-box {
-            max-width: 600px;
-        }
-
-        .featured-grid {
-            grid-template-columns: repeat(3, 1fr);
-            gap: 1.5rem;
-            margin-bottom: 3rem;
-        }
-
-        .new-items-grid {
-            grid-template-columns: repeat(4, 1fr);
-            gap: 1.5rem;
-            margin-bottom: 3rem;
-        }
-
-        .card-thumb {
-            height: 200px;
-        }
-
-        .new-item-image {
-            height: 180px;
-        }
-
-        .cta-section {
-            flex-direction: row;
-            align-items: center;
-            justify-content: space-between;
-            padding: 2.5rem 3rem;
-        }
-
-        .cta-content h2 {
-            font-size: 1.75rem;
-        }
-
-        .cta-btn {
-            align-self: center;
-            padding: 0.875rem 1.5rem;
-            font-size: 1rem;
-        }
-    }
-
-    /* Extra large devices (large desktops, 1200px and up) */
-    @media (min-width: 1200px) {
-        .hero-content h1 {
-            font-size: 2.0rem;
-        }
-
-        .hero-image {
-            min-height: 380px;
-        }
-
-        .card-thumb {
-            height: 220px;
-        }
-
-        .new-item-image {
-            height: 200px;
-        }
-    }
-
-    /* Extra small devices adjustments */
-    @media (max-width: 375px) {
-        .hero-content h1 {
-            font-size: 1.5rem;
-        }
-
-        .hero-content p {
-            font-size: 0.875rem;
-        }
-
-        .hero-image {
-            height: 200px;
-        }
-
-        .section-title {
-            font-size: 1.375rem;
-        }
-
-        .featured-card h3,
-        .new-item-meta strong {
-            font-size: 1rem;
-        }
-
-        .explore-btn {
-            font-size: 0.85rem;
-            padding: 0.5rem 0.875rem;
-        }
-
-        .cta-content h2 {
-            font-size: 1.25rem;
-        }
-
-        .cta-content p {
-            font-size: 0.875rem;
-        }
-    }
-
-/* Desktop Navigation - Show at 768px and above */
-@media (min-width: 768px) {
-    .main-nav {
-        display: block;
-    }
-
-    .mobile-menu-btn {
-        display: none;
-    }
-}
-
-
-.featured-card {
-    cursor: pointer;
-}
-
-
-
-
-
-
-
-@keyframes pulse {
-    0% { transform: scale(0.8); opacity: 1; }
-    100% { transform: scale(1.5); opacity: 0; }
-}
-
-/* ===============================
-   FEATURED COLLECTIONS – MOBILE ROW (NO SWIPER)
-   =============================== */
-@media (max-width: 640px) {
-
-  .featured-grid {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 1.5rem;
-    padding: 0;
-  }
-
-  .featured-card {
-    border-radius: 12px;
-    margin-bottom: 1rem;
-  }
-
-  .featured-card .card-thumb img {
-    height: 200px;
-    object-fit: cover;
-  }
-
-  .featured-card-content {
-    padding: 1.5rem;
-  }
-
-  .featured-card-content h3 {
-    font-size: 1.25rem;
-    line-height: 1.4;
-    margin-bottom: 0.75rem;
-  }
-
-  .featured-card .explore-btn {
-    font-size: 1rem;
-    padding: 0.75rem 1.5rem;
-    width: 100%;
-    text-align: center;
-  }
-}
-/* Vertical alignment for CTA section on mobile */
-@media (max-width: 640px) {
-
-  .cta-section {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 20px;
-    padding: 2.5rem 1.5rem;
-    text-align: center;
-  }
-
-  .cta-content h2 {
-    margin: 0 0 4px 0;
-    line-height: 1.3;
-  }
-
-  .cta-content p {
-    font-size: 12.5px;
-    margin: 0;
-    line-height: 1.35;
-  }
-
-  .cta-btn {
-    width: 100%;
-    font-size: 1rem;
-    padding: 0.875rem;
-    text-align: center;
-  }
-
- 
-}
-
-@media (max-width: 768px) {
-    .hero-content p, .hero-content p i {
-        text-align: center;    /* center text */
-        font-size: 1rem;        /* increase font size for mobile */
-        line-height: 1.2;       /* optional: make text more readable */
-    }
-
-    .hero-content h1 {
-        text-align: center;    /* center text */
-        font-size: 1.2rem;        /* increase font size for mobile */
-        line-height: 1.4;       /* optional: make text more readable */
-    }
-}
-.mobile-only-br {
-    display: none;
-}
-@media (max-width: 768px) {
-    .mobile-only-br {
-        display: block;
-    }
-}
 </style>
+@endsection
 
 @section('content')
-    <!-- Main Content -->
-
-  
-        <div class="container">
-            <section class="hero-section">
+  <!-- ── HERO SECTION ── -->
+  <section class="hero">
+    <div class="hero-bg"></div>
     <div class="hero-content">
-        <h1>"An archive committed to preserving and celebrating the histories, heritage,
-            culture and human rights of Tamil-speaking people in <span class="nowrap">Ilankai&nbsp;/&nbsp;Sri&nbsp;Lanka</span>"</h1>
-        <p><i>- A secure digital archive preserving affidavits, documents, 
-            Photographs and Recorded testimonies that bear witness to history, heritage and Genocide -</p></i>
-
-        
-    {{--
-    DROP-IN REPLACEMENT for your homepage search-box <form> block.
-    Searches: Collections · Exhibitions · Heritage · Publications
---}}
-
-<div class="search-wrapper" style="position:relative; max-width:600px; margin-top:1rem;">
-
-    <form class="search-box" action="{{ route('search.results') }}" method="GET"
-          role="search" autocomplete="off" id="global-search-form">
-        <input
-            type="search"
-            name="q"
-            id="global-search-input"
-            placeholder="Search..."
-            aria-label="Search archive collection"
-            aria-autocomplete="list"
-            aria-controls="search-dropdown"
-            aria-expanded="false"
-            minlength="2"
-            maxlength="100">
-
-        <button type="submit" aria-label="Search">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true" focusable="false">
-                <path d="M21 21l-4.35-4.35" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                <circle cx="11" cy="11" r="6" stroke="currentColor" stroke-width="2" fill="none"/>
-            </svg>
-        </button>
-    </form>
-
-    {{-- Live dropdown --}}
-    <div id="search-dropdown"
-         role="listbox"
-         aria-label="Search suggestions"
-         style="
-            display:none;
-            position:absolute;
-            top:calc(100% + 6px);
-            left:0; right:0;
-            background:#fff;
-            border:1.5px solid rgba(15,37,64,0.15);
-            border-radius:12px;
-            box-shadow:0 8px 24px rgba(0,0,0,0.12);
-            z-index:9999;
-            overflow:hidden;
-            max-height:420px;
-            overflow-y:auto;
-         ">
+      <div class="hero-logo-box">
+        <img src="{{ asset('images/logo.png') }}" alt="TIC Logo" />
+      </div>
+      <h1 class="hero-quote">"Every collection tells a story.<br>Every story keeps our history alive."</h1>
+      <p class="hero-sub">
+        Preserving history, heritage, culture and human rights for generations to come —
+        <em>by Tamil Information Centre (TIC).</em>
+      </p>
     </div>
-</div>
+  </section>
 
-{{-- ── Dropdown styles ─────────────────────────────────────────────────────── --}}
-<style>
-.sdrop-item {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    padding: 9px 14px;
-    cursor: pointer;
-    text-decoration: none;
-    color: #0f2540;
-    transition: background 0.12s;
-    border-bottom: 1px solid rgba(0,0,0,0.05);
-}
-.sdrop-item:last-of-type { border-bottom: none; }
-.sdrop-item:hover, .sdrop-item:focus, .sdrop-item.active {
-    background: #f6ece0;
-    outline: none;
-}
+  <div class="main-parchment-wrapper">
+    <!-- ── FEATURED COLLECTIONS ── -->
+    <section class="featured-section">
+      <div class="section-container">
+        <h2 class="section-head">Featured Collections</h2>
+        <div class="cards-wrapper">
 
-/* Thumbnail */
-.sdrop-thumb {
-    width: 42px; height: 42px;
-    border-radius: 7px;
-    object-fit: cover;
-    flex-shrink: 0;
-    background: #e6d3bd;
-    display: flex; align-items: center; justify-content: center;
-    font-size: 1.2rem;
-}
-.sdrop-thumb img {
-    width: 42px; height: 42px;
-    border-radius: 7px;
-    object-fit: cover;
-}
+          <a href="{{ route('client.archivecentrecollection') }}" class="archive-card">
+            <div class="card-media">
+              <img src="{{ asset('images/topimg.jpeg') }}" alt="Archival Collections" loading="lazy" />
+            </div>
+            <div class="card-content">
+              <div class="card-headline">The TIC Collections</div>
+              <p class="card-summary">Sri Lanka's documented archives and historical records.</p>
+              <span class="card-btn">View Collections</span>
+            </div>
+          </a>
 
-/* Text */
-.sdrop-info { flex:1; min-width:0; }
-.sdrop-title {
-    font-size: 0.875rem;
-    font-weight: 600;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-}
-.sdrop-meta {
-    display: flex;
-    align-items: center;
-    gap: 6px;
-    margin-top: 2px;
-}
-.sdrop-type {
-    font-size: 0.68rem;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-    color: #bfa98b;
-}
-.sdrop-badge {
-    font-size: 0.65rem;
-    font-weight: 700;
-    padding: 1px 6px;
-    border-radius: 20px;
-    background: #fff3cd;
-    color: #856404;
-}
-.sdrop-badge.free {
-    background: #d4edda;
-    color: #155724;
-}
+          <a href="{{ route('client.heritage-centre') }}" class="archive-card">
+            <div class="card-media">
+              <img src="https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=600&q=80" alt="Exhibition" loading="lazy" />
+              <div class="card-overlay">
+                <div class="overlay-title">TAMILS<br>OF LANKA:</div>
+                <div class="overlay-sub">A Timeless Heritage</div>
+              </div>
+            </div>
+            <div class="card-content">
+              <div class="card-headline">Explore the Exhibition</div>
+              <p class="card-summary">Discover curated exhibitions showcasing our rich cultural journey.</p>
+              <span class="card-btn">Visit Exhibition</span>
+            </div>
+          </a>
 
-/* Status & footer */
-.sdrop-status {
-    padding: 13px 16px;
-    font-size: 0.875rem;
-    color: #666;
-    text-align: center;
-}
-.sdrop-footer {
-    padding: 9px 14px;
-    border-top: 1px solid rgba(0,0,0,0.07);
-    text-align: center;
-}
-.sdrop-footer a {
-    font-size: 0.8rem;
-    font-weight: 600;
-    color: #0f2540;
-    text-decoration: none;
-    opacity: 0.65;
-}
-.sdrop-footer a:hover { opacity:1; text-decoration:underline; }
+          <a href="{{ route('heritage.archive-centre') }}" class="archive-card">
+            <div class="card-media">
+              <img src="{{ asset('images/heritage.png') }}" alt="Heritage Museum" loading="lazy" />
+            </div>
+            <div class="card-content">
+              <div class="card-headline">Visit the Heritage Museum</div>
+              <p class="card-summary">Explore our heritage artefacts and preserved cultural treasures.</p>
+              <span class="card-btn">Plan Visit</span>
+            </div>
+          </a>
 
-/* Section separators inside dropdown */
-.sdrop-section-label {
-    padding: 6px 14px 4px;
-    font-size: 0.65rem;
-    font-weight: 800;
-    text-transform: uppercase;
-    letter-spacing: 0.07em;
-    color: #aaa;
-    background: #fafafa;
-    border-bottom: 1px solid rgba(0,0,0,0.06);
-}
-</style>
-
-{{-- ── JavaScript ───────────────────────────────────────────────────────────── --}}
-<script>
-(function () {
-    const input    = document.getElementById('global-search-input');
-    const dropdown = document.getElementById('search-dropdown');
-    const form     = document.getElementById('global-search-form');
-    const liveUrl  = '{{ route("search.live") }}';
-
-    const typeIcons = {
-        Collection:  '📚',
-        Exhibition:  '🏛️',
-        Heritage:    '🏺',
-        Publication: '📖',
-    };
-
-    let debounceTimer = null;
-    let currentIndex  = -1;
-    let currentQuery  = '';
-    let controller    = null;
-
-    // ── helpers ───────────────────────────────────────────────────────────────
-
-    const showDrop = () => { dropdown.style.display = 'block'; input.setAttribute('aria-expanded','true'); };
-    const hideDrop = () => { dropdown.style.display = 'none';  input.setAttribute('aria-expanded','false'); currentIndex = -1; };
-
-    function setStatus(html) {
-        dropdown.innerHTML = `<div class="sdrop-status">${html}</div>`;
-        showDrop();
-    }
-
-    function escHtml(str) {
-        const d = document.createElement('div');
-        d.textContent = String(str ?? '');
-        return d.innerHTML;
-    }
-
-    // ── render ────────────────────────────────────────────────────────────────
-
-    function renderResults(results, query) {
-        if (!results.length) { setStatus('No results found.'); return; }
-
-        dropdown.innerHTML = '';
-
-        // Group by type to show section labels
-        const grouped = {};
-        results.forEach(item => {
-            if (!grouped[item.type]) grouped[item.type] = [];
-            grouped[item.type].push(item);
-        });
-
-        let itemIdx = 0;
-
-        Object.entries(grouped).forEach(([type, items]) => {
-            // Section label
-            const label = document.createElement('div');
-            label.className   = 'sdrop-section-label';
-            label.textContent = type + 's';
-            dropdown.appendChild(label);
-
-            items.forEach(item => {
-                const a = document.createElement('a');
-                a.className    = 'sdrop-item';
-                a.href         = item.url;
-                a.role         = 'option';
-                a.dataset.idx  = itemIdx++;
-                a.tabIndex     = -1;
-
-                // Thumbnail
-                const imageSrc = item.image
-  ? (item.image.startsWith('http://') || item.image.startsWith('https://')
-      ? item.image
-      : `/storage/${item.image}`)
-  : null;
-
-const thumbHtml = imageSrc
-  ? `<div class="sdrop-thumb">
-        <img src="${escHtml(imageSrc)}" alt="" loading="lazy">
-     </div>`
-  : `<div class="sdrop-thumb">${typeIcons[item.type] ?? '📄'}</div>`;
-
-                // Price badge (Publications only)
-                let badgeHtml = '';
-                if (item.badge) {
-                    const isFree = item.badge === 'Free';
-                    badgeHtml = `<span class="sdrop-badge ${isFree ? 'free' : ''}">${escHtml(item.badge)}</span>`;
-                }
-
-                a.innerHTML = `
-                    ${thumbHtml}
-                    <div class="sdrop-info">
-                        <div class="sdrop-title">${escHtml(item.label)}</div>
-                        <div class="sdrop-meta">
-                            <span class="sdrop-type">${escHtml(item.type)}</span>
-                            ${badgeHtml}
-                        </div>
-                    </div>`;
-
-                a.addEventListener('mousedown', e => {
-                    e.preventDefault();
-                    window.location.href = item.url;
-                });
-
-                dropdown.appendChild(a);
-            });
-        });
-
-        // Footer: see all results
-        const footer = document.createElement('div');
-        footer.className = 'sdrop-footer';
-        footer.innerHTML = `<a href="{{ route('search.results') }}?q=${encodeURIComponent(query)}">See all results →</a>`;
-        dropdown.appendChild(footer);
-
-        showDrop();
-        currentIndex = -1;
-    }
-
-    // ── fetch ─────────────────────────────────────────────────────────────────
-
-    async function fetchResults(query) {
-        if (controller) controller.abort();
-        controller = new AbortController();
-
-        try {
-            const resp = await fetch(`${liveUrl}?q=${encodeURIComponent(query)}`, {
-                headers: { 'X-Requested-With': 'XMLHttpRequest', 'Accept': 'application/json' },
-                signal: controller.signal,
-            });
-            if (!resp.ok) throw new Error('error');
-            const data = await resp.json();
-            renderResults(data.results ?? [], query);
-        } catch (err) {
-            if (err.name === 'AbortError') return;
-            setStatus('Search unavailable. Please try again.');
-        }
-    }
-
-    // ── input / debounce ─────────────────────────────────────────────────────
-
-    input.addEventListener('input', function () {
-        const val = this.value.trim();
-        clearTimeout(debounceTimer);
-        if (val.length < 2) { hideDrop(); return; }
-        if (val === currentQuery) return;
-        currentQuery = val;
-        setStatus('<span style="opacity:.45">Searching…</span>');
-        debounceTimer = setTimeout(() => fetchResults(val), 320);
-    });
-
-    // ── keyboard navigation ──────────────────────────────────────────────────
-
-    input.addEventListener('keydown', function (e) {
-        const items = [...dropdown.querySelectorAll('.sdrop-item')];
-        if (!items.length) return;
-
-        if (e.key === 'ArrowDown') {
-            e.preventDefault();
-            currentIndex = Math.min(currentIndex + 1, items.length - 1);
-        } else if (e.key === 'ArrowUp') {
-            e.preventDefault();
-            currentIndex = Math.max(currentIndex - 1, 0);
-        } else if (e.key === 'Escape') {
-            hideDrop(); input.blur(); return;
-        } else if (e.key === 'Enter' && currentIndex >= 0) {
-            e.preventDefault();
-            items[currentIndex].dispatchEvent(new MouseEvent('mousedown'));
-            return;
-        } else { return; }
-
-        items.forEach((el, i) => el.classList.toggle('active', i === currentIndex));
-        if (items[currentIndex]) items[currentIndex].focus();
-    });
-
-    // ── close on outside click ────────────────────────────────────────────────
-
-    document.addEventListener('click', e => {
-        if (!form.parentElement.contains(e.target)) hideDrop();
-    });
-
-    input.addEventListener('focus', function () {
-        if (this.value.trim().length >= 2) showDrop();
-    });
-
-})();
-</script>
-    </div>
-
-
-<div class="hero-image">
-    <img id="hero-img" class="hero-image-content" 
-         src="./images/TIC.jfif"
-         alt="Tamil heritage image"
-         loading="eager"
-         fetchpriority="high">
-
-    <video id="hero-vid" class="hero-image-content" style="display: none;" muted loop>
-        <source src="image/Tamil TIC   promo 2023 final.mp4" type="video/mp4">
-        Your browser does not support the video tag.
-    </video>
-</div>
-</section>
-
-
-
-
-<!-- Featured Collections Section -->
-<h2 class="section-title">Featured Collections</h2>
-<section class="featured-grid">
-    <article class="featured-card" tabindex="0" data-link="./collections.html">
-        <div class="card-thumb">
-            <img src="./images/collection.jpg"
-                 alt="Archive Centre collection"
-                 draggable="false"
-                 ondragstart="return false;"
-                 loading="lazy" />
         </div>
-        <div class="featured-card-content">
-            <h3>Discover the Collections</h3>
-            <a href="{{ route('client.discoverourcollection') }}" class="explore-btn">Explore</a>
+      </div>
+    </section>
+
+    <!-- ── ABOUT & STATS ── -->
+    <section class="about-section">
+      <div class="section-container">
+        <h2 class="section-head">About The TIC Archives</h2>
+        <p class="about-paragraph">
+          With over 43 years of documentation & activism, The TIC Archives is dedicated
+          to preserving the history, human rights, and cultural heritage of Tamil-speaking
+          people in Ilankai / Sri Lanka.
+        </p>
+
+        <div class="stats-container">
+          <div class="stat-box">
+            <span class="stat-val">43+</span>
+            <span class="stat-tag">Years of Documentation</span>
+          </div>
+          <div class="stat-box">
+            <span class="stat-val">5,000+</span>
+            <span class="stat-tag">Records Preserved</span>
+          </div>
+          <div class="stat-box">
+            <span class="stat-val">700+</span>
+            <span class="stat-tag">Oral Histories</span>
+          </div>
+          <div class="stat-box">
+            <span class="stat-val">60,000+</span>
+            <span class="stat-tag">Digital Archives</span>
+          </div>
         </div>
-    </article>
 
-
-<article class="featured-card" tabindex="0" data-link="./exhibition.html">
-    <div class="card-thumb">
-        <img src="./images/exhibition.png"
-             alt="ToL Exhibition"
-             draggable="false" ondragstart="return false;"
-             loading="lazy" />
-    </div>
-    <div class="featured-card-content">
-        <h3>Explore the Exhibition</h3>
-        <a href="{{ route('client.explorexhibition') }}" class="explore-btn">Explore</a>
-    </div>
-</article>
-
-<article class="featured-card" tabindex="0" data-link="./Heritage Hub.html">
-    <div class="card-thumb">
-        <img src="./images/heritage.png"
-             alt="Heritage Hub"
-             draggable="false" ondragstart="return false;"
-             loading="lazy" />
-    </div>
-    <div class="featured-card-content">
-        <h3>Explore the Heritage Museum</h3>
-        <a href="{{ route('heritage.discover') }}" class="explore-btn">Explore</a>
-    </div>
-</article>
-</section>
-
-<!-- Call to Action Section -->
-<section class="cta-section">
-    <div class="cta-content">
-        <h2>History of TIC Archives</h2>
-        <p>{{ now()->year - 1983 }} Years of Ilankai Tamils activism and documentation</p>
-        
-    </div>
-   <a href="{{ route('client.about') }}" class="cta-btn">Read More</a>
-
-</section>
-        </div>
-  
+        <p class="final-tagline">A global resource for researchers, educators, and communities worldwide.</p>
+        <a href="{{ route('client.about') }}" class="read-more-link">Read More &rarr;</a>
+      </div>
+    </section>
+  </div>
 @endsection
