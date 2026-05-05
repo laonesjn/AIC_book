@@ -49,8 +49,8 @@
     }
 
     .hero-logo-box {
-      width: 140px;
-      height: 140px;
+      width: 160px;
+      height: 160px;
       margin: 0 auto 32px;
       /* background: rgba(255, 255, 255, 0.95); */
       border-radius: 50%;

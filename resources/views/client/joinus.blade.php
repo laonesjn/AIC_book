@@ -480,7 +480,7 @@
 
     <div class="container">
         <div class="volunteer-box">
-            <h1 class="title">Become a Volunteer</h1>
+            <h1 class="title" id="volunteer-section">Become a Volunteer</h1>
 
             <div class="main-content">
                 <div class="left-section">

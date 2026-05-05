@@ -78,14 +78,16 @@
            ACCESSIBILITY
         ============================================================ */
         .skip-link {
-            position: absolute;
-            top: -40px; left: 0;
-            background: var(--accent-dark);
+            position: fixed;
+            top: -100px; left: 0;
+            background: var(--rust);
             color: white;
-            padding: 8px 16px;
+            padding: 12px 24px;
             text-decoration: none;
-            z-index: 9999;
-            border-radius: 0 0 4px 0;
+            z-index: 99999;
+            border-radius: 0 0 8px 0;
+            font-weight: bold;
+            transition: top 0.3s ease;
         }
         .skip-link:focus { top: 0; outline: 3px solid #ffd700; }
 
@@ -93,7 +95,8 @@
            HEADER
         ============================================================ */
         header {
-            background: rgba(10, 6, 2, 0.98);
+            background: #0a0602 url('{{ asset("images/tornbkrund.png") }}') center/cover;
+            background-blend-mode: multiply;
             border-bottom: 1px solid #3a2a18;
             position: sticky;
             top: 0;
@@ -119,10 +122,10 @@
 
         .nav-brand {
             font-family: 'Cinzel', serif;
-            font-size: 15px;
-            font-weight: 600;
+            font-size: 16px;
+            font-weight: 700;
             color: #e8dcc8;
-            letter-spacing: 0.1em;
+            letter-spacing: 0.12em;
             text-decoration: none;
             white-space: nowrap;
         }
@@ -138,15 +141,85 @@
 
         .main-nav a {
             font-family: 'EB Garamond', serif;
-            font-size: 15px;
+            font-size: 16px;
+            font-weight: 600;
             color: #d4c4a8;
             text-decoration: none;
             letter-spacing: 0.04em;
-            transition: color 0.2s;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 4px;
         }
 
         .main-nav a:hover {
             color: var(--gold);
+        }
+
+        .nav-active {
+            background: var(--gold);
+            color: #ffffff !important;
+            padding: 6px 14px;
+            border-radius: 6px;
+        }
+
+        /* Dropdown Styles */
+        .dropdown-parent {
+            position: relative;
+        }
+
+        .dropdown-menu-custom {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background: #ffffff;
+            border: 1px solid #e2e8f0;
+            border-radius: 12px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            min-width: 220px;
+            padding: 12px 0;
+            display: none;
+            z-index: 100;
+            margin-top: 10px;
+        }
+
+        .dropdown-parent:hover .dropdown-menu-custom {
+            display: block;
+        }
+
+        .dropdown-menu-custom::before {
+            content: '';
+            position: absolute;
+            top: -10px;
+            left: 0;
+            width: 100%;
+            height: 10px;
+            background: transparent;
+        }
+
+        .dropdown-menu-custom a {
+            display: block !important;
+            padding: 10px 20px !important;
+            color: #001f3f !important;
+            font-size: 15px !important;
+            font-weight: 500 !important;
+            text-decoration: none !important;
+            transition: all 0.2s !important;
+            gap: 0 !important;
+        }
+
+        .dropdown-menu-custom a:hover {
+            background: #f1f5f9 !important;
+            color: #003366 !important;
+            padding-left: 24px !important;
+        }
+
+        .dropdown-parent > a i {
+            transition: transform 0.2s;
+        }
+
+        .dropdown-parent:hover > a i {
+            transform: rotate(180deg);
         }
 
         .nav-right {
@@ -168,6 +241,94 @@
 
         .nav-search-btn:hover {
             color: var(--gold);
+        }
+
+        /* ─────────────── SEARCH OVERLAY ─────────────── */
+        .search-overlay {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: rgba(10, 6, 2, 0.96);
+            z-index: 2000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .search-overlay.open {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .search-overlay-close {
+            position: absolute;
+            top: 30px;
+            right: 40px;
+            background: none;
+            border: none;
+            color: #d4c4a8;
+            font-size: 36px;
+            cursor: pointer;
+            transition: color 0.2s;
+            padding: 10px;
+        }
+
+        .search-overlay-close:hover {
+            color: var(--gold);
+        }
+
+        .search-form-container {
+            width: 100%;
+            max-width: 700px;
+            padding: 0 20px;
+            position: relative;
+            transform: translateY(-20px);
+            transition: transform 0.4s ease;
+        }
+
+        .search-overlay.open .search-form-container {
+            transform: translateY(0);
+        }
+
+        .search-form-container input {
+            width: 100%;
+            background: transparent;
+            border: none;
+            border-bottom: 2px solid #3a2a18;
+            color: #e8dcc8;
+            font-size: clamp(24px, 4vw, 36px);
+            font-family: var(--font-heading);
+            padding: 15px 50px 15px 10px;
+            outline: none;
+            transition: border-color 0.3s;
+        }
+
+        .search-form-container input::placeholder {
+            color: rgba(212, 196, 168, 0.4);
+        }
+
+        .search-form-container input:focus {
+            border-bottom-color: var(--gold);
+        }
+
+        .search-submit-btn {
+            position: absolute;
+            right: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: none;
+            border: none;
+            color: var(--gold);
+            font-size: 24px;
+            cursor: pointer;
+            transition: opacity 0.2s;
+        }
+
+        .search-submit-btn:hover {
+            opacity: 0.8;
         }
 
         .mobile-toggle {
@@ -266,6 +427,52 @@
         .drawer-body a:hover {
             color: var(--gold);
             background: rgba(255, 255, 255, 0.04);
+        }
+
+        /* Drawer Accordion Styles */
+        .drawer-group {
+            border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+        }
+
+        .drawer-group-toggle {
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 13px 24px;
+            font-family: 'EB Garamond', serif;
+            font-size: 17px;
+            color: #d4c4a8;
+            background: none;
+            border: none;
+            text-decoration: none;
+            letter-spacing: 0.04em;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        .drawer-group-toggle:hover {
+            background: rgba(255, 255, 255, 0.04);
+            color: var(--gold);
+        }
+
+        .drawer-sub-menu {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            background: rgba(0, 0, 0, 0.2);
+            display: none;
+        }
+
+        .drawer-sub-menu.open {
+            display: block;
+        }
+
+        .drawer-sub-menu a {
+            padding-left: 44px !important;
+            font-size: 16px !important;
+            border-bottom: none !important;
+            opacity: 0.85;
         }
 
         .drawer-divider {
@@ -543,6 +750,21 @@
     <!-- Skip to content -->
     <a href="#main-content" class="skip-link">Skip to main content</a>
 
+    <!-- Search Overlay -->
+    <div class="search-overlay" id="searchOverlay">
+        <button class="search-overlay-close" id="closeSearchBtn" aria-label="Close search">
+            <i class="fas fa-times"></i>
+        </button>
+        <div class="search-form-container">
+            <form action="{{ route('search.results') }}" method="GET">
+                <input type="text" name="search" id="globalSearchInput" placeholder="Search the archives..." autocomplete="off" required>
+                <button type="submit" class="search-submit-btn" aria-label="Submit search">
+                    <i class="fas fa-search"></i>
+                </button>
+            </form>
+        </div>
+    </div>
+
     <header role="banner">
         <div class="header-container">
             <div class="header-main">
@@ -550,12 +772,31 @@
 
                 <nav class="main-nav" role="navigation">
                     <ul>
-                        <li><a href="{{ route('client.home') }}">Home</a></li>
-                        <li><a href="{{ route('client.archivecentrecollection') }}">Collections</a></li>
-                        <li><a href="{{ route('client.heritage-centre') }}">Exhibition</a></li>
-                        <li><a href="{{ route('heritage.archive-centre') }}">Museum</a></li>
-                        <li><a href="{{ route('client.about') }}">About</a></li>
-                        <li><a href="{{ route('client.contactus') }}">Contact</a></li>
+                        <li><a href="{{ route('client.home') }}" class="{{ request()->routeIs('client.home') ? 'nav-active' : '' }}">Home</a></li>
+                        <li class="dropdown-parent">
+                            <a href="{{ route('client.about') }}" class="{{ request()->routeIs('client.about', 'client.committee', 'client.technicalteam') ? 'nav-active' : '' }}">
+                                About <i class="fas fa-chevron-down" style="font-size: 10px;"></i>
+                            </a>
+                            <div class="dropdown-menu-custom">
+                                <a href="{{ route('client.about') }}">About Us</a>
+                                <a href="{{ route('client.committee') }}">Committee</a>
+                                <a href="{{ route('client.technicalteam') }}">Technical Team</a>
+                            </div>
+                        </li>
+                        <li><a href="{{ route('client.archivecentrecollection') }}" class="{{ request()->routeIs('client.archivecentrecollection') ? 'nav-active' : '' }}">Archive Centre</a></li>
+                        <li><a href="{{ route('client.heritage-centre') }}" class="{{ request()->routeIs('client.heritage-centre') ? 'nav-active' : '' }}">Exhibition</a></li>
+                        <li><a href="{{ route('heritage.archive-centre') }}" class="{{ request()->routeIs('heritage.archive-centre') ? 'nav-active' : '' }}">Heritage Museum</a></li>
+                        <li class="dropdown-parent">
+                            <a href="{{ route('client.joinus') }}" class="{{ request()->routeIs('client.joinus') ? 'nav-active' : '' }}">
+                                Join <i class="fas fa-chevron-down" style="font-size: 10px;"></i>
+                            </a>
+                            <div class="dropdown-menu-custom">
+                                <a href="{{ route('client.joinus') }}">Member Application</a>
+                                <a href="{{ route('client.joinus') }}#volunteer-section">Become a Volunteer</a>
+                            </div>
+                        </li>
+                        <li><a href="{{ route('client.publications') }}" class="{{ request()->routeIs('client.publications') ? 'nav-active' : '' }}">Shop</a></li>
+                        <li><a href="{{ route('client.contactus') }}" class="{{ request()->routeIs('client.contactus') ? 'nav-active' : '' }}">Contact</a></li>
                     </ul>
                 </nav>
 
@@ -595,10 +836,29 @@
         <div class="drawer-body">
             <ul>
                 <li><a href="{{ route('client.home') }}">Home</a></li>
-                <li><a href="{{ route('client.archivecentrecollection') }}">Collections</a></li>
+                <li class="drawer-group">
+                    <button class="drawer-group-toggle" aria-expanded="false" aria-controls="about-sub">
+                        About <i class="fas fa-chevron-down" style="font-size: 12px;"></i>
+                    </button>
+                    <ul id="about-sub" class="drawer-sub-menu">
+                        <li><a href="{{ route('client.about') }}">About Us</a></li>
+                        <li><a href="{{ route('client.committee') }}">Committee</a></li>
+                        <li><a href="{{ route('client.technicalteam') }}">Technical Team</a></li>
+                    </ul>
+                </li>
+                <li><a href="{{ route('client.archivecentrecollection') }}">Archive Centre</a></li>
                 <li><a href="{{ route('client.heritage-centre') }}">Exhibition</a></li>
-                <li><a href="{{ route('heritage.archive-centre') }}">Museum</a></li>
-                <li><a href="{{ route('client.about') }}">About</a></li>
+                <li><a href="{{ route('heritage.archive-centre') }}">Heritage Museum</a></li>
+                <li class="drawer-group">
+                    <button class="drawer-group-toggle" aria-expanded="false" aria-controls="join-sub">
+                        Join <i class="fas fa-chevron-down" style="font-size: 12px;"></i>
+                    </button>
+                    <ul id="join-sub" class="drawer-sub-menu">
+                        <li><a href="{{ route('client.joinus') }}">Member Application</a></li>
+                        <li><a href="{{ route('client.joinus') }}#volunteer-section">Become a Volunteer</a></li>
+                    </ul>
+                </li>
+                <li><a href="{{ route('client.publications') }}">Shop</a></li>
                 <li><a href="{{ route('client.contactus') }}">Contact</a></li>
             </ul>
         </div>
@@ -770,6 +1030,10 @@
         const overlay   = document.getElementById('mobileNavOverlay');
         const drawer    = document.getElementById('mobileNavDrawer');
         const closeBtn  = document.getElementById('mobileNavClose');
+        
+        const searchOverlay = document.getElementById('searchOverlay');
+        const closeSearchBtn = document.getElementById('closeSearchBtn');
+        const searchInput = document.getElementById('globalSearchInput');
 
         /* ── Open / Close helpers ── */
         function openDrawer() {
@@ -783,9 +1047,15 @@
             closeBtn.focus();
         }
 
-        function toggleSearchOverlay() {
-            // No search overlay logic found, redirecting to results page
-            window.location.href = "{{ route('search.results') }}";
+        window.toggleSearchOverlay = function() {
+            searchOverlay.classList.add('open');
+            document.body.style.overflow = 'hidden';
+            setTimeout(() => searchInput.focus(), 100);
+        };
+
+        function closeSearchOverlay() {
+            searchOverlay.classList.remove('open');
+            document.body.style.overflow = '';
         }
 
         function closeDrawer() {
@@ -802,10 +1072,12 @@
         hamburger.addEventListener('click', openDrawer);
         closeBtn.addEventListener('click', closeDrawer);
         overlay.addEventListener('click', closeDrawer);
+        closeSearchBtn.addEventListener('click', closeSearchOverlay);
 
         document.addEventListener('keydown', function (e) {
-            if (e.key === 'Escape' && drawer.classList.contains('open')) {
-                closeDrawer();
+            if (e.key === 'Escape') {
+                if (drawer.classList.contains('open')) closeDrawer();
+                if (searchOverlay.classList.contains('open')) closeSearchOverlay();
             }
         });
 
