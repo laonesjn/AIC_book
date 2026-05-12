@@ -14,7 +14,7 @@
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=Cinzel:wght@400;600&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=Cinzel:wght@400;600&family=Lato:wght@300;400;700&display=swap" rel="stylesheet" />
     
     <!-- Toastr CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
@@ -35,11 +35,13 @@
             --rust-dark: #6e2222;
             --gold: #c9973a;
             --text-muted: #5a4030;
-            --nav-h: 64px;
+            --nav-h: 62px;
             --font-serif: 'EB Garamond', Georgia, serif;
-            --font-heading: 'Cinzel', serif;
+            --font-heading: 'Playfair Display', serif;
             --font-accent: 'Playfair Display', serif;
             --container-max: 1200px;
+            --crimson: #8B1A1A;
+            --crimson-hover: #A52020;
         }
 
         /* ============================================================
@@ -92,75 +94,76 @@
         .skip-link:focus { top: 0; outline: 3px solid #ffd700; }
 
         /* ============================================================
-           HEADER
+           HEADER & NAV
         ============================================================ */
         header {
-            background: #0a0602 url('{{ asset("images/tornbkrund.png") }}') center/cover;
-            background-blend-mode: multiply;
-            border-bottom: 1px solid #3a2a18;
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-            height: var(--nav-h);
+            background: rgba(10, 5, 2, 0.98);
+            padding: 0 60px;
             display: flex;
             align-items: center;
+            justify-content: space-between;
+            height: var(--nav-h);
+            position: fixed;
+            top: 0; left: 0; right: 0;
+            width: 100%;
+            z-index: 1000;
+            border-bottom: 1px solid rgba(196,168,122,0.2);
         }
 
         .header-container {
             width: 100%;
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 0 28px;
-        }
-
-        .header-main {
+            max-width: 100%;
+            margin: 0;
+            padding: 0;
             display: flex;
-            justify-content: space-between;
             align-items: center;
-            width: 100%;
+            justify-content: space-between;
         }
 
         .nav-brand {
-            font-family: 'Cinzel', serif;
-            font-size: 16px;
-            font-weight: 700;
-            color: #e8dcc8;
-            letter-spacing: 0.12em;
-            text-decoration: none;
-            white-space: nowrap;
+            font-family: 'Playfair Display', serif !important;
+            font-size: 20px !important;
+            font-weight: 700 !important;
+            color: #f5e8d0 !important;
+            letter-spacing: 0.04em !important;
+            text-decoration: none !important;
+            white-space: nowrap !important;
+            background: none !important;
         }
 
-        .main-nav ul {
+        .main-nav > ul {
             display: flex;
             align-items: center;
-            gap: 24px;
+            gap: 18px;
             list-style: none;
             margin: 0;
             padding: 0;
         }
 
         .main-nav a {
-            font-family: 'EB Garamond', serif;
-            font-size: 16px;
-            font-weight: 600;
-            color: #d4c4a8;
-            text-decoration: none;
-            letter-spacing: 0.04em;
-            transition: all 0.2s;
-            display: flex;
-            align-items: center;
-            gap: 4px;
+            color: #d4c4a8 !important;
+            text-decoration: none !important;
+            font-size: 13.5px !important;
+            font-family: 'Lato', sans-serif !important;
+            font-weight: 400 !important;
+            padding: 8px 12px !important;
+            transition: color 0.2s !important;
+            display: flex !important;
+            align-items: center !important;
+            gap: 4px !important;
+            white-space: nowrap !important;
+            background: none !important;
+            border-bottom: none !important;
         }
 
-        .main-nav a:hover {
-            color: var(--gold);
-        }
+        .main-nav a:hover { color: #fff !important; }
 
-        .nav-active {
-            background: var(--gold);
+        .main-nav a.nav-active {
             color: #ffffff !important;
-            padding: 6px 14px;
-            border-radius: 6px;
+            border-bottom: 2px solid #ffffff !important;
+            padding-bottom: 4px !important;
+            background: none !important;
+            border-radius: 0 !important;
         }
 
         /* Dropdown Styles */
@@ -172,164 +175,109 @@
             position: absolute;
             top: 100%;
             left: 0;
-            background: #ffffff;
-            border: 1px solid #e2e8f0;
-            border-radius: 12px;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
-            min-width: 220px;
-            padding: 12px 0;
+            background: rgba(10, 5, 2, 0.95);
+            border: 1px solid rgba(196, 168, 122, 0.2);
+            list-style: none;
+            min-width: 180px;
             display: none;
-            z-index: 100;
-            margin-top: 10px;
+            flex-direction: column;
+            padding: 8px 0;
+            z-index: 1000;
         }
 
         .dropdown-parent:hover .dropdown-menu-custom {
-            display: block;
-        }
-
-        .dropdown-menu-custom::before {
-            content: '';
-            position: absolute;
-            top: -10px;
-            left: 0;
-            width: 100%;
-            height: 10px;
-            background: transparent;
+            display: flex;
         }
 
         .dropdown-menu-custom a {
-            display: block !important;
             padding: 10px 20px !important;
-            color: #001f3f !important;
-            font-size: 15px !important;
-            font-weight: 500 !important;
-            text-decoration: none !important;
-            transition: all 0.2s !important;
-            gap: 0 !important;
+            font-size: 13px !important;
+            display: block !important;
+            white-space: nowrap !important;
+            color: #d4c4a8 !important;
+            background: transparent !important;
         }
 
         .dropdown-menu-custom a:hover {
-            background: #f1f5f9 !important;
-            color: #003366 !important;
-            padding-left: 24px !important;
-        }
-
-        .dropdown-parent > a i {
-            transition: transform 0.2s;
-        }
-
-        .dropdown-parent:hover > a i {
-            transform: rotate(180deg);
+            background: rgba(196, 168, 122, 0.1) !important;
+            color: #fff !important;
         }
 
         .nav-right {
             display: flex;
             align-items: center;
-            gap: 15px;
+            gap: 16px;
+            flex-shrink: 0;
         }
 
         .nav-search-btn {
             background: none;
             border: none;
-            color: #d4c4a8;
             cursor: pointer;
-            padding: 4px;
+            color: #d4c4a8;
+            padding: 15px;
+            line-height: 0;
+            transition: color 0.2s;
             display: flex;
             align-items: center;
-            transition: color 0.2s;
         }
 
-        .nav-search-btn:hover {
-            color: var(--gold);
-        }
+        .nav-search-btn:hover { color: #fff; }
 
-        /* ─────────────── SEARCH OVERLAY ─────────────── */
-        .search-overlay {
+        /* ─── SEARCH BAR (below nav) ─── */
+        .search-bar-new {
             position: fixed;
-            top: 0; left: 0;
-            width: 100%; height: 100%;
-            background: rgba(10, 6, 2, 0.96);
-            z-index: 2000;
+            top: var(--nav-h);
+            left: 0; right: 0;
+            background: rgba(10, 5, 2, 0.95);
+            border-bottom: 1px solid rgba(196,168,122,0.3);
+            padding: 12px 60px;
             display: flex;
             align-items: center;
-            justify-content: center;
+            gap: 12px;
+            z-index: 999;
+            transform: translateY(-110%);
             opacity: 0;
-            visibility: hidden;
-            transition: all 0.3s ease;
+            transition: transform 0.3s ease, opacity 0.3s ease;
+            pointer-events: none;
         }
 
-        .search-overlay.open {
-            opacity: 1;
-            visibility: visible;
-        }
-
-        .search-overlay-close {
-            position: absolute;
-            top: 30px;
-            right: 40px;
-            background: none;
-            border: none;
-            color: #d4c4a8;
-            font-size: 36px;
-            cursor: pointer;
-            transition: color 0.2s;
-            padding: 10px;
-        }
-
-        .search-overlay-close:hover {
-            color: var(--gold);
-        }
-
-        .search-form-container {
-            width: 100%;
-            max-width: 700px;
-            padding: 0 20px;
-            position: relative;
-            transform: translateY(-20px);
-            transition: transform 0.4s ease;
-        }
-
-        .search-overlay.open .search-form-container {
+        .search-bar-new.open {
             transform: translateY(0);
+            opacity: 1;
+            pointer-events: all;
         }
 
-        .search-form-container input {
-            width: 100%;
-            background: transparent;
-            border: none;
-            border-bottom: 2px solid #3a2a18;
-            color: #e8dcc8;
-            font-size: clamp(24px, 4vw, 36px);
-            font-family: var(--font-heading);
-            padding: 15px 50px 15px 10px;
+        .search-bar-new input {
+            flex: 1;
+            background: rgba(255,255,255,0.08);
+            border: 1px solid rgba(196,168,122,0.35);
+            border-radius: 4px;
+            padding: 9px 16px;
+            color: #f5e8d0;
+            font-size: 15px;
+            font-family: 'Lato', sans-serif;
             outline: none;
-            transition: border-color 0.3s;
+            transition: border-color 0.2s;
         }
 
-        .search-form-container input::placeholder {
-            color: rgba(212, 196, 168, 0.4);
-        }
+        .search-bar-new input::placeholder { color: rgba(196,168,122,0.55); }
+        .search-bar-new input:focus { border-color: rgba(196,168,122,0.7); }
 
-        .search-form-container input:focus {
-            border-bottom-color: var(--gold);
-        }
-
-        .search-submit-btn {
-            position: absolute;
-            right: 20px;
-            top: 50%;
-            transform: translateY(-50%);
+        .search-close-btn {
             background: none;
             border: none;
-            color: var(--gold);
-            font-size: 24px;
             cursor: pointer;
-            transition: opacity 0.2s;
+            color: #d4c4a8;
+            padding: 8px;
+            line-height: 0;
+            transition: color 0.2s;
+            flex-shrink: 0;
+            display: flex;
+            align-items: center;
         }
 
-        .search-submit-btn:hover {
-            opacity: 0.8;
-        }
+        .search-close-btn:hover { color: #fff; }
 
         .mobile-toggle {
             display: none;
@@ -509,7 +457,7 @@
            MAIN CONTENT
         ============================================================ */
         main {
-            margin-top: 1.5rem;  /* mobile */
+            margin-top: calc(var(--nav-h) + 1rem);
         }
 
         /* .container {
@@ -750,67 +698,63 @@
     <!-- Skip to content -->
     <a href="#main-content" class="skip-link">Skip to main content</a>
 
-    <!-- Search Overlay -->
-    <div class="search-overlay" id="searchOverlay">
-        <button class="search-overlay-close" id="closeSearchBtn" aria-label="Close search">
-            <i class="fas fa-times"></i>
+    <!-- New Search Bar -->
+    <div class="search-bar-new" id="searchBarNew">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" style="opacity:0.6;">
+            <circle cx="11" cy="11" r="6" stroke="#d4c4a8" stroke-width="2"/>
+            <line x1="16.5" y1="16.5" x2="21" y2="21" stroke="#d4c4a8" stroke-width="2" stroke-linecap="round"/>
+        </svg>
+        <form action="{{ route('search.results') }}" method="GET" style="flex:1; display:flex;">
+            <input type="text" name="q" id="globalSearchInput" placeholder="Search the archives..." autocomplete="off" required>
+        </form>
+        <button type="button" class="search-close-btn" id="closeSearchBtn" aria-label="Close search">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+                <line x1="5" y1="5" x2="19" y2="19" stroke="#d4c4a8" stroke-width="2" stroke-linecap="round"/>
+                <line x1="5" y1="19" x2="19" y2="5" stroke="#d4c4a8" stroke-width="2" stroke-linecap="round"/>
+            </svg>
         </button>
-        <div class="search-form-container">
-            <form action="{{ route('search.results') }}" method="GET">
-                <input type="text" name="search" id="globalSearchInput" placeholder="Search the archives..." autocomplete="off" required>
-                <button type="submit" class="search-submit-btn" aria-label="Submit search">
-                    <i class="fas fa-search"></i>
-                </button>
-            </form>
-        </div>
     </div>
 
     <header role="banner">
         <div class="header-container">
-            <div class="header-main">
-                <a href="{{ route('client.home') }}" class="nav-brand">THE TIC ARCHIVES</a>
+            <a href="{{ route('client.home') }}" class="nav-brand">THE TIC ARCHIVES</a>
 
-                <nav class="main-nav" role="navigation">
-                    <ul>
-                        <li><a href="{{ route('client.home') }}" class="{{ request()->routeIs('client.home') ? 'nav-active' : '' }}">Home</a></li>
-                        <li class="dropdown-parent">
-                            <a href="{{ route('client.about') }}" class="{{ request()->routeIs('client.about', 'client.committee', 'client.technicalteam') ? 'nav-active' : '' }}">
-                                About <i class="fas fa-chevron-down" style="font-size: 10px;"></i>
-                            </a>
-                            <div class="dropdown-menu-custom">
-                                <a href="{{ route('client.about') }}">About Us</a>
-                                <a href="{{ route('client.committee') }}">Committee</a>
-                                <a href="{{ route('client.technicalteam') }}">Technical Team</a>
-                            </div>
-                        </li>
-                        <li><a href="{{ route('client.archivecentrecollection') }}" class="{{ request()->routeIs('client.archivecentrecollection') ? 'nav-active' : '' }}">Archive Centre</a></li>
-                        <li><a href="{{ route('client.heritage-centre') }}" class="{{ request()->routeIs('client.heritage-centre') ? 'nav-active' : '' }}">Exhibition</a></li>
-                        <li><a href="{{ route('heritage.archive-centre') }}" class="{{ request()->routeIs('heritage.archive-centre') ? 'nav-active' : '' }}">Heritage Museum</a></li>
-                        <li class="dropdown-parent">
-                            <a href="{{ route('client.joinus') }}" class="{{ request()->routeIs('client.joinus') ? 'nav-active' : '' }}">
-                                Join <i class="fas fa-chevron-down" style="font-size: 10px;"></i>
-                            </a>
-                            <div class="dropdown-menu-custom">
-                                <a href="{{ route('client.joinus') }}">Member Application</a>
-                                <a href="{{ route('client.joinus') }}#volunteer-section">Become a Volunteer</a>
-                            </div>
-                        </li>
-                        <li><a href="{{ route('client.publications') }}" class="{{ request()->routeIs('client.publications') ? 'nav-active' : '' }}">Shop</a></li>
-                        <li><a href="{{ route('client.contactus') }}" class="{{ request()->routeIs('client.contactus') ? 'nav-active' : '' }}">Contact</a></li>
-                    </ul>
-                </nav>
+            <nav class="main-nav" role="navigation">
+                <ul>
+                    <li><a href="{{ route('client.home') }}" class="{{ request()->routeIs('client.home') ? 'nav-active' : '' }}">Home</a></li>
+                    <li class="dropdown-parent">
+                        <a href="{{ route('client.about') }}" class="{{ request()->routeIs('client.about', 'client.committee', 'client.technicalteam') ? 'nav-active' : '' }}">About ▾</a>
+                        <ul class="dropdown-menu-custom">
+                            <li><a href="{{ route('client.about') }}">About Us</a></li>
+                            <li><a href="{{ route('client.committee') }}">Committee</a></li>
+                            <li><a href="{{ route('client.technicalteam') }}">Technical Team</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="{{ route('client.archivecentrecollection') }}" class="{{ request()->routeIs('client.archivecentrecollection') ? 'nav-active' : '' }}">Archive Centre</a></li>
+                    <li><a href="{{ route('client.heritage-centre') }}" class="{{ request()->routeIs('client.heritage-centre') ? 'nav-active' : '' }}">Exhibition</a></li>
+                    <li><a href="{{ route('heritage.archive-centre') }}" class="{{ request()->routeIs('heritage.archive-centre') ? 'nav-active' : '' }}">Heritage Museum</a></li>
+                    <li class="dropdown-parent">
+                        <a href="{{ route('client.joinus') }}" class="{{ request()->routeIs('client.joinus') ? 'nav-active' : '' }}">Join ▾</a>
+                        <ul class="dropdown-menu-custom">
+                            <li><a href="{{ route('client.joinus') }}">Member Application</a></li>
+                            <li><a href="{{ route('client.joinus') }}#volunteer-section">Become a Volunteer</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="{{ route('client.publications') }}" class="{{ request()->routeIs('client.publications') ? 'nav-active' : '' }}">Shop</a></li>
+                    <li><a href="{{ route('client.contactus') }}" class="{{ request()->routeIs('client.contactus') ? 'nav-active' : '' }}">Contact</a></li>
+                </ul>
+            </nav>
 
-                <div class="nav-right">
-                    <button class="nav-search-btn" aria-label="Search" onclick="toggleSearchOverlay()">
-                        <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-                            <circle cx="11" cy="11" r="8" />
-                            <line x1="21" y1="21" x2="16.65" y2="16.65" />
-                        </svg>
-                    </button>
-                    <button class="mobile-toggle" id="mobile-toggle" aria-label="Menu">
-                        <span></span><span></span><span></span>
-                    </button>
-                </div>
+            <div class="nav-right">
+                <button class="nav-search-btn" id="searchToggleNew" aria-label="Search">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+                        <circle cx="11" cy="11" r="6" stroke="#d4c4a8" stroke-width="2"/>
+                        <line x1="16.5" y1="16.5" x2="21" y2="21" stroke="#d4c4a8" stroke-width="2" stroke-linecap="round"/>
+                    </svg>
+                </button>
+                <button class="mobile-toggle" id="mobile-toggle" aria-label="Menu">
+                    <span></span><span></span><span></span>
+                </button>
             </div>
         </div>
     </header>
@@ -1031,32 +975,30 @@
         const drawer    = document.getElementById('mobileNavDrawer');
         const closeBtn  = document.getElementById('mobileNavClose');
         
-        const searchOverlay = document.getElementById('searchOverlay');
-        const closeSearchBtn = document.getElementById('closeSearchBtn');
-        const searchInput = document.getElementById('globalSearchInput');
+        const searchToggle = document.getElementById('searchToggleNew');
+        const searchBar    = document.getElementById('searchBarNew');
+        const closeSearch  = document.getElementById('closeSearchBtn');
+        const searchInput  = document.getElementById('globalSearchInput');
 
-        /* ── Open / Close helpers ── */
-        function openDrawer() {
-            drawer.classList.add('open');
-            overlay.classList.add('open');
-            hamburger.setAttribute('aria-expanded', 'true');
-            drawer.setAttribute('aria-hidden', 'false');
-            overlay.setAttribute('aria-hidden', 'false');
-            document.body.style.overflow = 'hidden';
-            // Move focus into drawer for accessibility
-            closeBtn.focus();
+        if (searchToggle && searchBar) {
+            searchToggle.addEventListener('click', function() {
+                searchBar.classList.toggle('open');
+                if (searchBar.classList.contains('open')) {
+                    setTimeout(() => searchInput.focus(), 300);
+                }
+            });
+        }
+
+        if (closeSearch && searchBar) {
+            closeSearch.addEventListener('click', function() {
+                searchBar.classList.remove('open');
+            });
         }
 
         window.toggleSearchOverlay = function() {
-            searchOverlay.classList.add('open');
-            document.body.style.overflow = 'hidden';
-            setTimeout(() => searchInput.focus(), 100);
+            if (searchBar) searchBar.classList.add('open');
+            setTimeout(() => searchInput.focus(), 300);
         };
-
-        function closeSearchOverlay() {
-            searchOverlay.classList.remove('open');
-            document.body.style.overflow = '';
-        }
 
         function closeDrawer() {
             drawer.classList.remove('open');
@@ -1072,12 +1014,11 @@
         hamburger.addEventListener('click', openDrawer);
         closeBtn.addEventListener('click', closeDrawer);
         overlay.addEventListener('click', closeDrawer);
-        closeSearchBtn.addEventListener('click', closeSearchOverlay);
 
         document.addEventListener('keydown', function (e) {
             if (e.key === 'Escape') {
                 if (drawer.classList.contains('open')) closeDrawer();
-                if (searchOverlay.classList.contains('open')) closeSearchOverlay();
+                if (searchBar && searchBar.classList.contains('open')) searchBar.classList.remove('open');
             }
         });
 
