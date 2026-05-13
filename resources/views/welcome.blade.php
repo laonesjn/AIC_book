@@ -4,12 +4,16 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <title>The TIC Archives - Preserving Tamil Heritage</title>
   <meta name="description"
     content="Explore The TIC Archives featuring rare books, historical documents, cultural exhibitions, and Tamil heritage collections.">
   <link
     href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=EB+Garamond:wght@400;600&family=Lato:wght@300;400;700&display=swap"
     rel="stylesheet">
+  <link rel="preload" as="image" href="{{ asset('images/topimg.jpeg') }}" fetchpriority="high">
+  <link rel="preload" as="image" href="{{ asset('images/logo.png') }}" fetchpriority="high">
   <style>
     *,
     *::before,
@@ -275,7 +279,7 @@
     .hero-bg {
       position: absolute;
       inset: 0;
-      background-image: url('{{ asset("images/bgg.png") }}');
+      background-image: url('{{ asset("images/topimg.jpeg") }}');
       background-size: cover;
       background-position: center;
       opacity: 0.90;
@@ -952,7 +956,7 @@
     </form>
 
     <div class="hero-seal">
-      <img src="{{ asset('images/logo.png') }}" alt="TIC Seal">
+      <img src="{{ asset('images/logo.png') }}" alt="TIC Seal" fetchpriority="high" loading="eager">
     </div>
 
     <div class="hero-content">
@@ -979,7 +983,7 @@
     <div class="featured-inner">
       <div class="collections-grid">
         <div class="coll-card" onclick="window.location='{{ route('client.archivecentrecollection') }}'">
-          <img src="{{ asset('images/collection.jpeg') }}" alt="Oral Testimonies" class="coll-img">
+          <img src="{{ asset('images/collection.jpeg') }}" alt="Oral Testimonies" class="coll-img" loading="lazy">
           <div class="coll-body">
             <div class="coll-title">The TIC Collection</div>
             <div class="coll-desc"></div>
@@ -987,7 +991,7 @@
           </div>
         </div>
         <div class="coll-card" onclick="window.location='{{ route('client.heritage-centre') }}'">
-          <img src="{{ asset('images/exhibiton.jpeg') }}" alt="Historical Documents" class="coll-img">
+          <img src="{{ asset('images/exhibiton.jpeg') }}" alt="Historical Documents" class="coll-img" loading="lazy">
           <div class="coll-body">
             <div class="coll-title">Explore the Exhibition</div>
             <div class="coll-desc">Discover curated exhibitions.</div>
@@ -995,7 +999,7 @@
           </div>
         </div>
         <div class="coll-card" onclick="window.location='{{ route('heritage.archive-centre') }}'">
-          <img src="{{ asset('images/museum.jpeg') }}" alt="Photographic Archive" class="coll-img">
+          <img src="{{ asset('images/museum.jpeg') }}" alt="Photographic Archive" class="coll-img" loading="lazy">
           <div class="coll-body">
             <div class="coll-title">Visit the Heritage <br> Museum</div>
             <div class="coll-desc"></div>
