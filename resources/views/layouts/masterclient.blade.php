@@ -28,20 +28,15 @@
            CSS VARIABLES
         ============================================================ */
         :root {
-            --parchment: #f4ede0;
-            --parchment-dark: #e8dcc8;
-            --ink: #1a1008;
-            --rust: #8b2d2d;
-            --rust-dark: #6e2222;
-            --gold: #c9973a;
-            --text-muted: #5a4030;
-            --nav-h: 62px;
-            --font-serif: 'EB Garamond', Georgia, serif;
-            --font-heading: 'Playfair Display', serif;
-            --font-accent: 'Playfair Display', serif;
-            --container-max: 1200px;
-            --crimson: #8B1A1A;
-            --crimson-hover: #A52020;
+            --primary-bg:    #f6e3c5;
+            --accent-dark:   #0f2540;
+            --accent-muted:  #bfa98b;
+            --card-bg:       #f6ece0;
+            --hover-bg:      #e6d3bd;
+            --border-radius: 12px;
+            --font-serif:    "Georgia", "Times New Roman", serif;
+            --header-h-mob:  64px;
+            --header-h-desk: 88px;
         }
 
         /* ============================================================
@@ -56,245 +51,260 @@
 
         body {
             font-family: var(--font-serif);
-            background-color: var(--parchment);
-            color: var(--ink);
-            font-size: 17px;
-            line-height: 1.6;
+            background-color: var(--primary-bg);
+            color: var(--accent-dark);
+            line-height: 1.5;
             -webkit-font-smoothing: antialiased;
             user-select: none;
-            overflow-x: hidden;
         }
 
-        h1, h2, h3, h4, h5, h6 {
-            font-family: var(--font-heading);
-            font-weight: 400;
-            color: var(--ink);
+        h1, h2, h3 {
+            font-family: var(--font-serif);
+            font-weight: 700;
+            line-height: 1.3;
         }
 
-        h1 { font-size: clamp(1.8rem, 5vw, 2.5rem); }
-        h2 { font-size: clamp(1.5rem, 4vw, 2rem); }
-        h3 { font-size: clamp(1.2rem, 3vw, 1.5rem); }
-        p { font-size: clamp(0.95rem, 2.5vw, 1.1rem); }
+        h1 { font-size: clamp(1.5rem,  5vw, 2.5rem); }
+        h2 { font-size: clamp(1.25rem, 4vw, 2rem);   }
+        h3 { font-size: clamp(1.1rem,  3vw, 1.5rem); }
+        p  { font-size: clamp(0.875rem, 2.5vw, 1rem); }
 
         /* ============================================================
            ACCESSIBILITY
         ============================================================ */
         .skip-link {
-            position: fixed;
-            top: -100px; left: 0;
-            background: var(--rust);
+            position: absolute;
+            top: -40px; left: 0;
+            background: var(--accent-dark);
             color: white;
-            padding: 12px 24px;
+            padding: 8px 16px;
             text-decoration: none;
-            z-index: 99999;
-            border-radius: 0 0 8px 0;
-            font-weight: bold;
-            transition: top 0.3s ease;
+            z-index: 9999;
+            border-radius: 0 0 4px 0;
         }
         .skip-link:focus { top: 0; outline: 3px solid #ffd700; }
 
         /* ============================================================
-           HEADER & NAV
+           HEADER
         ============================================================ */
         header {
-            background: rgba(10, 5, 2, 0.98);
-            padding: 0 60px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            height: var(--nav-h);
-            position: fixed;
-            top: 0; left: 0; right: 0;
-            width: 100%;
+            background: #fff;
+            border-bottom: 1px solid rgba(15,37,64,0.1);
+            position: sticky;
+            top: 0;
             z-index: 1000;
-            border-bottom: 1px solid rgba(196,168,122,0.2);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.06);
         }
 
         .header-container {
-            width: 100%;
-            max-width: 100%;
-            margin: 0;
-            padding: 0;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0.55rem 1rem;        /* mobile */
+        }
+
+        .header-main {
             display: flex;
-            align-items: center;
             justify-content: space-between;
+            align-items: center;
+            width: 100%;
+            gap: 1rem;
         }
 
-        .nav-brand {
-            font-family: 'Playfair Display', serif !important;
-            font-size: 20px !important;
-            font-weight: 700 !important;
-            color: #f5e8d0 !important;
-            letter-spacing: 0.04em !important;
-            text-decoration: none !important;
-            white-space: nowrap !important;
-            background: none !important;
-        }
-
-        .main-nav > ul {
+        /* ============================================================
+           LOGO
+        ============================================================ */
+        .logo {
             display: flex;
             align-items: center;
-            gap: 18px;
-            list-style: none;
-            margin: 0;
-            padding: 0;
-        }
-
-        .main-nav a {
-            color: #d4c4a8 !important;
-            text-decoration: none !important;
-            font-size: 13.5px !important;
-            font-family: 'Lato', sans-serif !important;
-            font-weight: 400 !important;
-            padding: 8px 12px !important;
-            transition: color 0.2s !important;
-            display: flex !important;
-            align-items: center !important;
-            gap: 4px !important;
-            white-space: nowrap !important;
-            background: none !important;
-            border-bottom: none !important;
-        }
-
-        .main-nav a:hover { color: #fff !important; }
-
-        .main-nav a.nav-active {
-            color: #ffffff !important;
-            border-bottom: 2px solid #ffffff !important;
-            padding-bottom: 4px !important;
-            background: none !important;
-            border-radius: 0 !important;
-        }
-
-        /* Dropdown Styles */
-        .dropdown-parent {
-            position: relative;
-        }
-
-        .dropdown-menu-custom {
-            position: absolute;
-            top: 100%;
-            left: 0;
-            background: rgba(10, 5, 2, 0.95);
-            border: 1px solid rgba(196, 168, 122, 0.2);
-            list-style: none;
-            min-width: 180px;
-            display: none;
-            flex-direction: column;
-            padding: 8px 0;
-            z-index: 1000;
-        }
-
-        .dropdown-parent:hover .dropdown-menu-custom {
-            display: flex;
-        }
-
-        .dropdown-menu-custom a {
-            padding: 10px 20px !important;
-            font-size: 13px !important;
-            display: block !important;
-            white-space: nowrap !important;
-            color: #d4c4a8 !important;
-            background: transparent !important;
-        }
-
-        .dropdown-menu-custom a:hover {
-            background: rgba(196, 168, 122, 0.1) !important;
-            color: #fff !important;
-        }
-
-        .nav-right {
-            display: flex;
-            align-items: center;
-            gap: 16px;
+            gap: 0.6rem;
+            text-decoration: none;
+            color: var(--accent-dark);
             flex-shrink: 0;
         }
 
-        .nav-search-btn {
-            background: none;
-            border: none;
-            cursor: pointer;
-            color: #d4c4a8;
-            padding: 15px;
-            line-height: 0;
-            transition: color 0.2s;
-            display: flex;
-            align-items: center;
+        .logo img {
+            width:  48px;   /* mobile */
+            height: 48px;
+            background: #fff;
+            flex-shrink: 0;
+            display: block;
         }
 
-        .nav-search-btn:hover { color: #fff; }
+        .logo-text { display: flex; flex-direction: column; }
 
-        /* ─── SEARCH BAR (below nav) ─── */
-        .search-bar-new {
-            position: fixed;
-            top: var(--nav-h);
-            left: 0; right: 0;
-            background: rgba(10, 5, 2, 0.95);
-            border-bottom: 1px solid rgba(196,168,122,0.3);
-            padding: 12px 60px;
+        .logo-text .ta {
+            font-family: var(--font-serif);
+            font-size: 1.05rem;   /* mobile */
+            font-weight: 700;
+            letter-spacing: -0.5px;
+            line-height: 1.15;
+        }
+
+        .logo-text .en {
+            font-size: 0.62rem;
+            color: var(--accent-muted);
+            font-weight: 600;
+        }
+
+        .logo-text .meta {
+            font-size: 0.58rem;
+            color: var(--accent-muted);
+        }
+
+        /* ============================================================
+           DESKTOP NAV  — hidden below 992px
+        ============================================================ */
+        .main-nav { display: none; }
+
+        .main-nav ul {
+            list-style: none;
+            padding: 0; margin: 0;
+            display: flex;
+            gap: 0.15rem;
+            align-items: center;
+            flex-wrap: nowrap;
+        }
+
+        .main-nav li { position: relative; }
+
+        .main-nav > ul > li > a,
+        .main-nav > ul > li > .nav-link-btn {
+            font-family: var(--font-serif);
+            font-weight: 700;
+            font-size: 0.88rem;
+            color: var(--accent-dark);
+            text-decoration: none;
+            padding: 0.45rem 0.85rem;
             display: flex;
             align-items: center;
-            gap: 12px;
-            z-index: 999;
-            transform: translateY(-110%);
-            opacity: 0;
-            transition: transform 0.3s ease, opacity 0.3s ease;
+            gap: 0.3rem;
+            border-radius: 8px;
+            white-space: nowrap;
+            transition: background 0.2s, outline 0.2s;
+            cursor: pointer;
+            background: none;
+            border: none;
+            line-height: 1.4;
+        }
+
+        .main-nav > ul > li > a:hover,
+        .main-nav > ul > li > a:focus,
+        .main-nav > ul > li > .nav-link-btn:hover,
+        .main-nav > ul > li > .nav-link-btn:focus {
+            background: var(--hover-bg);
+            outline: 2px solid var(--accent-dark);
+            outline-offset: 2px;
+        }
+
+        .main-nav > ul > li > a.active {
+            background: var(--accent-dark);
+            color: #fff;
+        }
+
+        /* chevron icon for desktop dropdown triggers */
+        .main-nav .nav-chevron {
+            font-size: 0.65rem;
+            transition: transform 0.25s;
             pointer-events: none;
         }
 
-        .search-bar-new.open {
-            transform: translateY(0);
-            opacity: 1;
-            pointer-events: all;
+        .dropdown-parent:hover .nav-chevron,
+        .dropdown-parent:focus-within .nav-chevron {
+            transform: rotate(180deg);
         }
 
-        .search-bar-new input {
-            flex: 1;
-            background: rgba(255,255,255,0.08);
-            border: 1px solid rgba(196,168,122,0.35);
-            border-radius: 4px;
-            padding: 9px 16px;
-            color: #f5e8d0;
-            font-size: 15px;
-            font-family: 'Lato', sans-serif;
-            outline: none;
-            transition: border-color 0.2s;
+        /* ---- DESKTOP DROPDOWN ---- */
+        .dropdown-parent { position: relative; }
+
+        .dropdown {
+            position: absolute;
+            top: calc(100% + 6px);
+            left: 0;
+            background: #fff;
+            border-radius: 10px;
+            box-shadow: 0 6px 20px rgba(0,0,0,0.13);
+            min-width: 210px;
+            padding: 0.4rem 0;
+            z-index: 200;
+            border: 1px solid rgba(15,37,64,0.07);
+
+            /* Transition setup */
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(10px);
+            transition: all 0.2s ease, visibility 0s linear 0.2s, opacity 0.2s linear 0s;
         }
 
-        .search-bar-new input::placeholder { color: rgba(196,168,122,0.55); }
-        .search-bar-new input:focus { border-color: rgba(196,168,122,0.7); }
-
-        .search-close-btn {
-            background: none;
-            border: none;
-            cursor: pointer;
-            color: #d4c4a8;
-            padding: 8px;
-            line-height: 0;
-            transition: color 0.2s;
-            flex-shrink: 0;
-            display: flex;
-            align-items: center;
-        }
-
-        .search-close-btn:hover { color: #fff; }
-
-        .mobile-toggle {
-            display: none;
-            flex-direction: column;
-            gap: 5px;
-            background: none;
-            border: none;
-            cursor: pointer;
-            padding: 6px;
-        }
-
-        .mobile-toggle span {
+        .dropdown a {
+            font-family: var(--font-serif);
+            font-weight: 600;
+            font-size: 0.875rem;
+            color: var(--accent-dark);
+            text-decoration: none;
+            padding: 0.7rem 1.2rem;
             display: block;
-            width: 22px;
-            height: 2px;
-            background: #d4c4a8;
-            transition: 0.3s;
+            white-space: nowrap;
+            transition: background 0.15s;
+        }
+
+        .dropdown a:hover,
+        .dropdown a:focus {
+            background: var(--hover-bg);
+            outline: none;
+        }
+
+        .dropdown a.active {
+            background: var(--accent-dark);
+            color: #fff;
+        }
+
+        /* show on hover or keyboard focus-within */
+        .dropdown-parent:hover .dropdown,
+        .dropdown-parent:focus-within .dropdown {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+            transition-delay: 0s;
+        }
+
+        /* Bridge the gap between the trigger and the menu */
+        .dropdown::before {
+            content: "";
+            position: absolute;
+            top: -15px;
+            left: 0;
+            width: 100%;
+            height: 15px;
+        }
+
+        /* ---- DESKTOP NAV RIGHT ACTIONS (optional search/cta) ---- */
+        .nav-actions {
+            display: none;  /* shown at 992px+ */
+            align-items: center;
+            gap: 0.5rem;
+            flex-shrink: 0;
+        }
+
+        /* ============================================================
+           MOBILE HAMBURGER BUTTON
+        ============================================================ */
+        .mobile-menu-btn {
+            display: flex;          /* visible on mobile */
+            align-items: center;
+            justify-content: center;
+            background: none;
+            border: 2px solid var(--accent-dark);
+            border-radius: 8px;
+            padding: 0;
+            cursor: pointer;
+            min-width: 44px;
+            min-height: 44px;
+            width: 44px;
+            height: 44px;
+            color: var(--accent-dark);
+            font-size: 1.15rem;
+            transition: background 0.2s;
+            flex-shrink: 0;
         }
 
         .mobile-menu-btn:hover,
@@ -608,11 +618,24 @@
         /* ============================================================
            DESKTOP  992px+  — show desktop nav, hide mobile btn
         ============================================================ */
-            @media (max-width: 900px) {
-                .main-nav { display: none; }
-                .mobile-toggle { display: flex; }
-                .header-container { padding: 0 20px; }
-            }
+        @media (min-width: 992px) {
+            .header-container  { padding: 0.75rem 1.5rem; }
+
+            .logo img          { width: 80px; height: 80px; }
+            .logo-text .ta     { font-size: 1.75rem; }
+
+            /* Show desktop nav */
+            .main-nav          { display: block; }
+
+            /* Hide mobile hamburger */
+            .mobile-menu-btn   { display: none; }
+
+            .nav-actions       { display: flex; }
+
+            main               { margin-top: 2.5rem; }
+
+            .footer-content    { grid-template-columns: 2fr 1fr 1fr 1fr; }
+        }
 
         /* ============================================================
            LARGE DESKTOP  1200px+
@@ -698,65 +721,126 @@
     <!-- Skip to content -->
     <a href="#main-content" class="skip-link">Skip to main content</a>
 
-    <!-- New Search Bar -->
-    <div class="search-bar-new" id="searchBarNew">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" style="opacity:0.6;">
-            <circle cx="11" cy="11" r="6" stroke="#d4c4a8" stroke-width="2"/>
-            <line x1="16.5" y1="16.5" x2="21" y2="21" stroke="#d4c4a8" stroke-width="2" stroke-linecap="round"/>
-        </svg>
-        <form action="{{ route('search.results') }}" method="GET" style="flex:1; display:flex;">
-            <input type="text" name="q" id="globalSearchInput" placeholder="Search the archives..." autocomplete="off" required>
-        </form>
-        <button type="button" class="search-close-btn" id="closeSearchBtn" aria-label="Close search">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
-                <line x1="5" y1="5" x2="19" y2="19" stroke="#d4c4a8" stroke-width="2" stroke-linecap="round"/>
-                <line x1="5" y1="19" x2="19" y2="5" stroke="#d4c4a8" stroke-width="2" stroke-linecap="round"/>
-            </svg>
-        </button>
-    </div>
-
     <header role="banner">
         <div class="header-container">
-            <a href="{{ route('client.home') }}" class="nav-brand">THE TIC ARCHIVES</a>
+            <div class="header-main">
 
-            <nav class="main-nav" role="navigation">
-                <ul>
-                    <li><a href="{{ route('client.home') }}" class="{{ request()->routeIs('client.home') ? 'nav-active' : '' }}">Home</a></li>
-                    <li class="dropdown-parent">
-                        <a href="{{ route('client.about') }}" class="{{ request()->routeIs('client.about', 'client.committee', 'client.technicalteam') ? 'nav-active' : '' }}">About ▾</a>
-                        <ul class="dropdown-menu-custom">
-                            <li><a href="{{ route('client.about') }}">About Us</a></li>
-                            <li><a href="{{ route('client.committee') }}">Committee</a></li>
-                            <li><a href="{{ route('client.technicalteam') }}">Technical Team</a></li>
-                        </ul>
-                    </li>
-                    <li><a href="{{ route('client.archivecentrecollection') }}" class="{{ request()->routeIs('client.archivecentrecollection') ? 'nav-active' : '' }}">Archive Centre</a></li>
-                    <li><a href="{{ route('client.heritage-centre') }}" class="{{ request()->routeIs('client.heritage-centre') ? 'nav-active' : '' }}">Exhibition</a></li>
-                    <li><a href="{{ route('heritage.archive-centre') }}" class="{{ request()->routeIs('heritage.archive-centre') ? 'nav-active' : '' }}">Heritage Museum</a></li>
-                    <li class="dropdown-parent">
-                        <a href="{{ route('client.joinus') }}" class="{{ request()->routeIs('client.joinus') ? 'nav-active' : '' }}">Join ▾</a>
-                        <ul class="dropdown-menu-custom">
-                            <li><a href="{{ route('client.joinus') }}">Member Application</a></li>
-                            <li><a href="{{ route('client.joinus') }}#volunteer-section">Become a Volunteer</a></li>
-                        </ul>
-                    </li>
-                    <li><a href="{{ route('client.publications') }}" class="{{ request()->routeIs('client.publications') ? 'nav-active' : '' }}">Shop</a></li>
-                    <li><a href="{{ route('client.contactus') }}" class="{{ request()->routeIs('client.contactus') ? 'nav-active' : '' }}">Contact</a></li>
-                </ul>
-            </nav>
+                <!-- ── LOGO ── -->
+                <a href="{{ route('client.home') }}" class="logo" aria-label="The Archives Home">
+                    <img src="{{ asset('./images/newlogo.jpeg') }}"
+                         alt="Tamil Bookshop Archives Logo"
+                         width="100" height="100"
+                         loading="eager"
+                         fetchpriority="high">
+                    <div class="logo-text">
+                        <span class="ta">THE TIC <br>ARCHIVES</span>
+                    </div>
+                </a>
 
-            <div class="nav-right">
-                <button class="nav-search-btn" id="searchToggleNew" aria-label="Search">
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
-                        <circle cx="11" cy="11" r="6" stroke="#d4c4a8" stroke-width="2"/>
-                        <line x1="16.5" y1="16.5" x2="21" y2="21" stroke="#d4c4a8" stroke-width="2" stroke-linecap="round"/>
-                    </svg>
+                <!-- ── DESKTOP NAVIGATION ── -->
+                <nav class="main-nav" role="navigation" aria-label="Main navigation">
+                    <ul>
+
+                        <!-- Home -->
+                        <li>
+                            <a href="{{ route('client.home') }}"
+                               class="{{ Route::is('client.home') ? 'active' : '' }}">
+                                Home
+                            </a>
+                        </li>
+
+                        <!-- About (with dropdown) -->
+                        <li class="dropdown-parent">
+                            <a href="{{ route('client.about') }}"
+                               class="{{ Route::is('client.about') ? 'active' : '' }}"
+                               aria-haspopup="true">
+                                About
+                                <i class="fas fa-chevron-down nav-chevron" aria-hidden="true"></i>
+                            </a>
+                            <div class="dropdown" role="menu">
+                                <a href="{{ route('client.about') }}"
+                                   class="{{ Route::is('client.about') ? 'active' : '' }}"
+                                   role="menuitem">About TIC archive</a>
+                                <a href="{{ route('client.archiving') }}"
+                                   class="{{ Route::is('client.archiving') ? 'active' : '' }}"
+                                   role="menuitem">Submit</a>
+                                <a href="{{ route('client.committee') }}"
+                                   class="{{ Route::is('client.committee') ? 'active' : '' }}"
+                                   role="menuitem">Committee</a>
+                                <a href="{{ route('client.technicalteam') }}"
+                                    class="{{ Route::is('client.technicalteam') ? 'active' : '' }}"
+                                    role="menuitem">Technical Team</a>
+                            </div>
+                        </li>
+
+                        <!-- Archive Centre -->
+                        <li>
+                            <a href="{{ route('client.archivecentrecollection') }}"
+                               class="{{ Route::is('client.archivecentrecollection') ? 'active' : '' }}">
+                                Archive Centre
+                            </a>
+                        </li>
+
+                        <!-- Exhibition -->
+                        <li>
+                            <a href="{{ route('client.heritage-centre') }} " class="{{ Route::is('client.heritage-centre') ? 'active' : '' }}">Exhibition</a>
+                        </li>
+
+                        <!-- Heritage Museum -->
+                        <li>
+                            <a href="{{ route('heritage.archive-centre') }}"class="{{ Route::is('heritage.archive-centre') ? 'active' : '' }}">Heritage Museum</a>
+                        </li>
+
+                        <!-- Join (with dropdown) -->
+                        <li class="dropdown-parent">
+                            <a href="#" aria-haspopup="true">
+                                Join
+                                <i class="fas fa-chevron-down nav-chevron" aria-hidden="true"></i>
+                            </a>
+                            <div class="dropdown" role="menu">
+                                <a href="{{ route('client.joinus') }}" role="menuitem">
+                                    Membership
+                                </a>
+                                <a href="https://www.paypal.com/donate?hosted_button_id=YOUR_BUTTON_ID" role="menuitem" target="_blank">
+                                    <img src="https://www.paypalobjects.com/webstatic/mktg/logo/pp_cc_mark_111x69.jpg"
+                                        alt="Donate with PayPal"
+                                        style="width:18px; height:auto; margin-right:6px; vertical-align:middle;">
+                                    Donate
+                                </a>
+                            </div>
+                        </li>
+
+                        <!-- Shop -->
+                        <li>
+                            <a href="{{ route('client.publications') }}"
+                               class="{{ Route::is('client.publications') ? 'active' : '' }}">
+                                Shop
+                            </a>
+                        </li>
+
+                        <!-- Contact -->
+                        <li>
+                            <a href="{{ route('client.contactus') }}"
+                               class="{{ Route::is('client.contactus') ? 'active' : '' }}">
+                                Contact
+                            </a>
+                        </li>
+
+                    </ul>
+                </nav>
+                <!-- /desktop nav -->
+
+                <!-- ── MOBILE HAMBURGER BUTTON ── -->
+                <button class="mobile-menu-btn"
+                        id="mobileMenuBtn"
+                        aria-label="Open navigation menu"
+                        aria-expanded="false"
+                        aria-controls="mobileNavDrawer">
+                    <i class="fas fa-bars" aria-hidden="true"></i>
                 </button>
-                <button class="mobile-toggle" id="mobile-toggle" aria-label="Menu">
-                    <span></span><span></span><span></span>
-                </button>
-            </div>
-        </div>
+
+            </div><!-- /header-main -->
+        </div><!-- /header-container -->
     </header>
 
     <!-- ================================================================

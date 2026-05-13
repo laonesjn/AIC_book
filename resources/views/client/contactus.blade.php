@@ -264,15 +264,6 @@ a:hover {
    =================================================== */
 
 @media (max-width: 992px) {
-    /* Header/Nav Mobile Switch */
-    .main-nav {
-        display: none;
-    }
-    
-    .mobile-menu-btn {
-        display: block;
-    }
-    
     /* Contact Page Mobile Overrides */
     .contact-grid-section {
         grid-template-columns: 1fr; /* Stack into a single column */

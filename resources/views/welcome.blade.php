@@ -900,6 +900,7 @@
             ▾</a>
           <ul class="dropdown-menu">
             <li><a href="{{ route('client.about') }}">About Us</a></li>
+            <li><a href="{{ route('client.archiving') }}">Submit</a></li>
             <li><a href="{{ route('client.committee') }}">Committee</a></li>
             <li><a href="{{ route('client.technicalteam') }}">Technical Team</a></li>
           </ul>
