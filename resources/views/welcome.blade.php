@@ -421,22 +421,21 @@
     .featured-inner {
       max-width: 1500px;
       margin: 0 auto;
-      padding: 0 24px;
+      padding: 0 80px;
     }
 
     .collections-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
       gap: 80px;
-      max-width: 1300px;
       margin: 0 auto;
     }
 
     /* ─── FIX 3: Collection cards height increased ─── */
     .coll-card {
       position: relative;
-      height: 520px;
-      /* was 420px */
+      height: 450px;
+      /* was 520px */
       border-radius: 0px;
       overflow: hidden;
       background: #000;
@@ -750,6 +749,19 @@
       .about {
         padding: 44px 20px;
       }
+
+      .featured-inner {
+        padding: 0 25px;
+      }
+
+      .collections-grid {
+        gap: 25px;
+        max-width: 100%;
+      }
+
+      .coll-card {
+        height: 380px;
+      }
     }
 
     @media (max-width: 600px) {
@@ -853,35 +865,35 @@
 
       /* Mobile: 3 columns one row, neat height */
       .collections-grid {
-        grid-template-columns: repeat(3, 1fr) !important;
-        gap: 6px;
-        padding: 0 4px;
+        grid-template-columns: 1fr !important;
+        gap: 24px;
+        padding: 0 20px;
       }
 
       .coll-card {
-        height: 240px;
+        height: 300px;
       }
 
       .coll-title {
-        font-size: 11px;
-        margin-bottom: 3px;
+        font-size: 20px;
+        margin-bottom: 8px;
         line-height: 1.2;
       }
 
       .coll-desc {
-        font-size: 9px;
-        margin-bottom: 7px;
-        line-height: 1.3;
+        font-size: 15px;
+        margin-bottom: 15px;
+        line-height: 1.4;
       }
 
       .coll-body {
-        padding: 8px 7px;
+        padding: 24px 20px;
       }
 
       .coll-btn {
-        font-size: 8px;
-        padding: 5px 7px;
-        letter-spacing: 0.02em;
+        font-size: 11px;
+        padding: 9px 18px;
+        letter-spacing: 0.04em;
       }
     }
   </style>
@@ -994,7 +1006,7 @@
           <img src="{{ asset('images/exhibiton.jpeg') }}" alt="Historical Documents" class="coll-img" loading="lazy">
           <div class="coll-body">
             <div class="coll-title">Explore the Exhibition</div>
-            <div class="coll-desc">Discover curated exhibitions.</div>
+            <div class="coll-desc"></div>
             <a href="{{ route('client.heritage-centre') }}" class="coll-btn">View Collection</a>
           </div>
         </div>
